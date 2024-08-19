@@ -5,7 +5,7 @@ import NavLink from "./navLink/navLink";
 const links = [
   { title: "Home", path: "/" },
   { title: "Table", path: "/table" },
-  { title: "Contact", path: "/contact" }
+  { title: "Test", path: "/test" }
 ];
 const Links = () => {
   return (

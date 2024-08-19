@@ -6,22 +6,15 @@ async function getData(): Promise<Payment[]> {
   return [
     {
       id: "728ed52f",
-      submitTime: new Date("2023-01-01T00:00:00Z"),
-      endTime: new Date("2023-01-01T00:00:00Z"),
-      ifIncludedCouple: true,
-      ifTogether:true,
-      major:'食品',
-      educationLevel:'博士',
-      educationType:'其他',
-      submitPlace:'境外',
-      ifDIY:true,
-      infoFrom:'自己'
+      amount: 100,
+      status: "pending",
+      email: "m@example.com",
     },
     // ...
   ]
 }
 
-export default async function TablePage() {
+export default async function TestPage() {
   const data = await getData()
 
   return (
