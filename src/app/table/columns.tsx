@@ -6,8 +6,8 @@ import { ColumnDef } from "@tanstack/react-table"
 // You can use a Zod schema here if you want.
 export type Payment = {
   id: string
-  submitTime: Date
-  endTime:Date
+  submitTime: String
+  endTime:String
   ifIncludedCouple:Boolean
   ifTogether:Boolean
   major:String
@@ -22,18 +22,12 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "submitTime",
     header: "递签时间",
-    cell: ({ row }) => {
-      const submitTime = row.getValue("submitTime") as String; // 类型断言
-      return <div suppressHydrationWarning>{submitTime.slice(0, 10)}</div>;
-    }
+    
   },
   {
     accessorKey: "endTime",
     header: "下签时间",
-    cell: ({ row }) => {
-      const endTime = row.getValue("endTime") as String; // 类型断言
-      return <div suppressHydrationWarning>{endTime.slice(0, 10)}</div>;
-    }
+
   },
   {
     accessorKey: "ifIncludedCouple",
