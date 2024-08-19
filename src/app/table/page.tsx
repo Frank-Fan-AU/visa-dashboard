@@ -3,29 +3,19 @@ import { DataTable } from "./data-table"
 
 async function getData(): Promise<Payment[]> {
   // Fetch data from your API here.
-  return [
-    {
-      id: "728ed52f",
-      submitTime: new Date("2023-01-01T00:00:00Z"),
-      endTime: new Date("2023-01-01T00:00:00Z"),
-      ifIncludedCouple: true,
-      ifTogether:true,
-      major:'食品',
-      educationLevel:'博士',
-      educationType:'其他',
-      submitPlace:'境外',
-      ifDIY:true,
-      infoFrom:'自己'
-    },
-    // ...
-  ]
+  let res = await fetch('http://localhost:3000/api/visaTable')
+  if(!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+  console.log(res.json)
+  return res.json()
 }
 
 export default async function TablePage() {
   const data = await getData()
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-8">
       <DataTable columns={columns} data={data} />
     </div>
   )

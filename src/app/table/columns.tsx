@@ -23,16 +23,16 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "submitTime",
     header: "递签时间",
     cell: ({ row }) => {
-      const submitTime = row.getValue("submitTime") as Date; // 类型断言
-      return <div suppressHydrationWarning>{submitTime.toLocaleDateString()}</div>;
+      const submitTime = row.getValue("submitTime") as String; // 类型断言
+      return <div suppressHydrationWarning>{submitTime.slice(0, 10)}</div>;
     }
   },
   {
     accessorKey: "endTime",
     header: "下签时间",
     cell: ({ row }) => {
-      const submitTime = row.getValue("endTime") as Date; // 类型断言
-      return <div suppressHydrationWarning>{submitTime.toLocaleDateString()}</div>;
+      const endTime = row.getValue("endTime") as String; // 类型断言
+      return <div suppressHydrationWarning>{endTime.slice(0, 10)}</div>;
     }
   },
   {
