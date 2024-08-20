@@ -11,7 +11,7 @@ const recordSchema = new mongoose.Schema({
   educationLevel: { type: String,  },
   educationType: { type: String, },
   submitPlace: { type: String,  },
-  ifDIY: { type: Boolean,  },
+  ifDIY: { type: String,  },
   infoFrom: { type: String, },
 });
 export const Record = mongoose.models?.Record || mongoose.model("Record", recordSchema);

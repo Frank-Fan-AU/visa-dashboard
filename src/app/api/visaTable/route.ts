@@ -13,3 +13,13 @@ export const GET = async () => {
         throw new Error((error as Error).message);
     }
 }
+
+export const POST = async (request: Request) => {
+    try {
+        const body:unknown = await request.json()
+
+        return NextResponse.json({})
+    }catch(error){
+        throw new Error((error as Error).message);
+    }
+}

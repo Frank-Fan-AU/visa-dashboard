@@ -18,16 +18,38 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const formSchema = z.object({
-  startTime: z.string({
-    required_error: "startTime is required",
-  }),
-  endTime: z.string({
-    required_error: "endTime is required",
-  }),
+  startTime: z.string().optional(),
+  endTime: z.string().optional(),
   ifIncludedCouple: z.string({
     required_error: "ifIncludedCouple is required",
   }),
+  ifTogether:z.string({
+    required_error: "ifIncludedCouple is required",
+  }),
+  major:z.string().optional(),
+  majorType:z.string({
+    required_error: "ifIncludedCouple is required",
+  }),
+  educationLevel:z.string({
+    required_error: "ifIncludedCouple is required",
+  }),
+  educationType:z.string({
+    required_error: "ifIncludedCouple is required",
+  }),
+  submitPlace:z.string({
+    required_error: "ifIncludedCouple is required",
+  }),
+  ifDIY:z.string({
+    required_error: "ifIncludedCouple is required",
+  }),
+  infoFrom:z.string({
+    required_error: "ifIncludedCouple is required",
+  }),
 });
+
+const getRecords = async () =>{
+  const res = await fetch(`http://localhost:3000/api/visaTable`)
+}
 
 export function ProfileForm() {
   // 1. Define your form.
@@ -42,13 +64,14 @@ export function ProfileForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+
     console.log(values);
   }
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-row space-x-4">
+        className="flex flex-row space-x-12">
 
           <div className="space-y-3 w-3/4 ml-10">
 
@@ -61,7 +84,7 @@ export function ProfileForm() {
               <FormControl>
                 <Input placeholder="yyyy-mm-dd" {...field} />
               </FormControl>
-              <FormDescription>如果要是还没递签可以填写未递签</FormDescription>
+              <FormDescription>如果要是还没递签可以空着，填日期按2024-08-28这样的格式填</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -75,7 +98,7 @@ export function ProfileForm() {
               <FormControl>
                 <Input placeholder="yyyy-mm-dd" {...field} />
               </FormControl>
-              <FormDescription>如果要是还没下签可以填写未下签</FormDescription>
+              <FormDescription>如果要是还没下签可以空着，填日期按2024-08-28这样的格式填</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -83,26 +106,26 @@ export function ProfileForm() {
 
 <FormField
           control={form.control}
-          name="startTime"
+          name="major"
           render={({ field }) => (
             <FormItem>
               <FormLabel>主申专业</FormLabel>
               <FormControl>
-                <Input placeholder="yyyy-mm-dd" {...field} />
+                <Input placeholder="可以的话最好填中文的" {...field} />
               </FormControl>
-              <FormDescription>如果要是还没递签可以填写未递签</FormDescription>
+              <FormDescription>大概专业，比如具体到食品、计算机这种就行</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
           <FormField
           control={form.control}
-          name="startTime"
+          name="infoFrom"
           render={({ field }) => (
             <FormItem>
               <FormLabel>信息来源</FormLabel>
               <FormControl>
-                <Input placeholder="yyyy-mm-dd" {...field} />
+                <Input placeholder="这条信息是从哪里获取的" {...field} />
               </FormControl>
               <FormDescription>小红书？微信群？自己</FormDescription>
               <FormMessage />
@@ -111,7 +134,7 @@ export function ProfileForm() {
         />
           </div>
 
-          <div className="space-y-3 w-3/4 ml-10">
+          <div className="space-y-5 w-3/4 ml-10">
           <FormField
           control={form.control}
           name="ifIncludedCouple"
@@ -125,13 +148,13 @@ export function ProfileForm() {
                   className="flex flex-row space-x-3">
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="all" />
+                      <RadioGroupItem value="true" />
                     </FormControl>
                     <FormLabel className="font-normal">是</FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="mentions" />
+                      <RadioGroupItem value="false" />
                     </FormControl>
                     <FormLabel className="font-normal">否</FormLabel>
                   </FormItem>
@@ -144,7 +167,7 @@ export function ProfileForm() {
 
         <FormField
           control={form.control}
-          name="ifIncludedCouple"
+          name="ifTogether"
           render={({ field }) => (
             <FormItem className="space-y-3">
               <FormLabel>分开递/一起递</FormLabel>
@@ -155,13 +178,13 @@ export function ProfileForm() {
                   className="flex flex-row space-x-3">
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="all" />
+                      <RadioGroupItem value="分开递" />
                     </FormControl>
                     <FormLabel className="font-normal">分开递</FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="mentions" />
+                      <RadioGroupItem value="一起递" />
                     </FormControl>
                     <FormLabel className="font-normal">一起递</FormLabel>
                   </FormItem>
@@ -173,7 +196,7 @@ export function ProfileForm() {
         />
         <FormField
           control={form.control}
-          name="ifIncludedCouple"
+          name="educationLevel"
           render={({ field }) => (
             <FormItem className="space-y-3">
               <FormLabel>本/硕/博</FormLabel>
@@ -184,19 +207,19 @@ export function ProfileForm() {
                   className="flex flex-row space-x-3">
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="all" />
+                      <RadioGroupItem value="本科" />
                     </FormControl>
                     <FormLabel className="font-normal">本科</FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="mentions" />
+                      <RadioGroupItem value="硕士" />
                     </FormControl>
                     <FormLabel className="font-normal">硕士</FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="mentions" />
+                      <RadioGroupItem value="博士" />
                     </FormControl>
                     <FormLabel className="font-normal">博士</FormLabel>
                   </FormItem>
@@ -208,7 +231,7 @@ export function ProfileForm() {
         />
         <FormField
           control={form.control}
-          name="ifIncludedCouple"
+          name="educationType"
           render={({ field }) => (
             <FormItem className="space-y-3">
               <FormLabel>学校类别：八大/其他</FormLabel>
@@ -219,14 +242,14 @@ export function ProfileForm() {
                   className="flex flex-row space-x-3">
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="all" />
+                      <RadioGroupItem value="八大" />
                     </FormControl>
                     <FormLabel className="font-normal">八大</FormLabel>
                   </FormItem>
                   
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="mentions" />
+                      <RadioGroupItem value="其他" />
                     </FormControl>
                     <FormLabel className="font-normal">其他</FormLabel>
                   </FormItem>
@@ -239,7 +262,7 @@ export function ProfileForm() {
 
 <FormField
           control={form.control}
-          name="ifIncludedCouple"
+          name="majorType"
           render={({ field }) => (
             <FormItem className="space-y-3">
               <FormLabel>专业类别：三宝/其他</FormLabel>
@@ -251,13 +274,13 @@ export function ProfileForm() {
                   
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="mentions" />
+                      <RadioGroupItem value="三宝" />
                     </FormControl>
                     <FormLabel className="font-normal">三宝</FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="mentions" />
+                      <RadioGroupItem value="其他" />
                     </FormControl>
                     <FormLabel className="font-normal">其他</FormLabel>
                   </FormItem>
@@ -269,7 +292,7 @@ export function ProfileForm() {
         />
         <FormField
           control={form.control}
-          name="ifIncludedCouple"
+          name="submitPlace"
           render={({ field }) => (
             <FormItem className="space-y-3">
               <FormLabel>境内境外递交</FormLabel>
@@ -280,13 +303,13 @@ export function ProfileForm() {
                   className="flex flex-row space-x-3">
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="all" />
+                      <RadioGroupItem value="境内递交" />
                     </FormControl>
                     <FormLabel className="font-normal">境内递交</FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="mentions" />
+                      <RadioGroupItem value="境外递交" />
                     </FormControl>
                     <FormLabel className="font-normal">境外递交</FormLabel>
                   </FormItem>
@@ -298,7 +321,7 @@ export function ProfileForm() {
         />
         <FormField
           control={form.control}
-          name="ifIncludedCouple"
+          name="ifDIY"
           render={({ field }) => (
             <FormItem className="space-y-3">
               <FormLabel>DIY/找中介</FormLabel>
@@ -309,13 +332,13 @@ export function ProfileForm() {
                   className="flex flex-row space-x-3">
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="all" />
+                      <RadioGroupItem value="DIY" />
                     </FormControl>
                     <FormLabel className="font-normal">DIY</FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-1 space-y-0">
                     <FormControl>
-                      <RadioGroupItem value="mentions" />
+                      <RadioGroupItem value="找中介" />
                     </FormControl>
                     <FormLabel className="font-normal">找中介</FormLabel>
                   </FormItem>
