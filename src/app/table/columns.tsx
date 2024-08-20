@@ -11,6 +11,7 @@ export type Payment = {
   ifIncludedCouple:Boolean
   ifTogether:Boolean
   major:String
+  majorType:String
   educationLevel:String
   educationType:String
   submitPlace:String
@@ -59,12 +60,16 @@ export const columns: ColumnDef<Payment>[] = [
     header: "主申专业",
   },
   {
-    accessorKey: "educationLevel",
-    header: "本/硕/博",
+    accessorKey: "majorType",
+    header: "三宝/其他",
   },
   {
     accessorKey: "educationType",
-    header: "八大/三宝/其他",
+    header: "八大/其他",
+  },
+  {
+    accessorKey: "educationLevel",
+    header: "本/硕/博",
   },
   {
     accessorKey: "submitPlace",
