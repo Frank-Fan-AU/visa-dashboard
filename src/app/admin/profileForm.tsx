@@ -56,6 +56,8 @@ export function ProfileForm() {
     if(!response.ok){
       alert('Submit failed')
       return
+    }else{
+      alert('Submit success')
     }
     form.reset()
   }
