@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,56 +16,48 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { formSchema } from "@/lib/schema";
+import { z } from "zod";
 
-const formSchema = z.object({
-  startTime: z.string().optional(),
-  endTime: z.string().optional(),
-  ifIncludedCouple: z.string({
-    required_error: "ifIncludedCouple is required",
-  }),
-  ifTogether:z.string({
-    required_error: "ifIncludedCouple is required",
-  }),
-  major:z.string().optional(),
-  majorType:z.string({
-    required_error: "ifIncludedCouple is required",
-  }),
-  educationLevel:z.string({
-    required_error: "ifIncludedCouple is required",
-  }),
-  educationType:z.string({
-    required_error: "ifIncludedCouple is required",
-  }),
-  submitPlace:z.string({
-    required_error: "ifIncludedCouple is required",
-  }),
-  ifDIY:z.string({
-    required_error: "ifIncludedCouple is required",
-  }),
-  infoFrom:z.string({
-    required_error: "ifIncludedCouple is required",
-  }),
-});
 
-const getRecords = async () =>{
-  const res = await fetch(`http://localhost:3000/api/visaTable`)
-}
+
 
 export function ProfileForm() {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      startTime: "",
+      submitTime: "",
+      endTime: "",
+      ifIncludedCouple:"",
+      ifTogether:"",
+      major:"",
+      majorType:"",
+      educationLevel:"",
+      educationType:"",
+      submitPlace:"",
+      ifDIY:"",
+      infoFrom:"",
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function  onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-
-    console.log(values);
+   const response =  await fetch("/api/visaTable", {
+      method: "POST",
+      body:JSON.stringify(values),
+      headers:{
+        "Content-Type":"application/json"
+      }
+    })
+    console.log('response',response)
+    if(!response.ok){
+      alert('Submit failed')
+      return
+    }
+    form.reset()
   }
   return (
     <Form {...form}>
@@ -77,7 +69,7 @@ export function ProfileForm() {
 
           <FormField
           control={form.control}
-          name="startTime"
+          name="submitTime"
           render={({ field }) => (
             <FormItem>
               <FormLabel>递签时间</FormLabel>

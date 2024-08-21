@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const recordSchema = new mongoose.Schema({
-  id: { type: String, required: true },
   submitTime: { type: String,  },
   endTime: { type: String, },
   ifIncludedCouple: { type: String, },
