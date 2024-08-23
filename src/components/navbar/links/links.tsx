@@ -10,7 +10,7 @@ import {
 } from "@clerk/nextjs";
 
 const links = [
-  { title: "Home", path: "/" },
+  { title: "About", path: "/about" },
   { title: "Table", path: "/table" },
 ];
 const Links = () => {
@@ -19,7 +19,7 @@ const Links = () => {
   console.log(isSignedIn);
   console.log(user);
   return (
-    <div className="flex gap-4 items-center">
+    <div className="flex gap-4 items-center pr-4">
       {links.map((link, index) => (
         <NavLink item={link} key={index} /> // Pass the link object to NavLink component
       ))}
