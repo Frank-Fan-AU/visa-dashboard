@@ -17,28 +17,30 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { newFormSchema } from "@/lib/schema";
 import { z } from "zod";
+import { useEffect } from "react";
 
+const defaultValues = {
+  ifSubmit: "",
+  submitTime: "",
+  submitPlace: "",
+  ifGetVisa: "",
+  getVisaTime: "",
+  visaOfficer: "",
+  ifIncludedCouple: "",
+  ifTogether: "",
+  major: "",
+  majorType: "",
+  educationLevel: "",
+  schoolType: "",
+  ifDIY: "",
+  isUser: "",
+  infoFrom: "",
+};
 export function ProfileForm() {
   // 1. Define your form.
   const form = useForm<z.infer<typeof newFormSchema>>({
     resolver: zodResolver(newFormSchema),
-    defaultValues: {
-      ifSubmit: "false",
-      submitTime: "",
-      submitPlace: "",
-      ifGetVisa: "false",
-      getVisaTime: "",
-      visaOfficer: "",
-      ifIncludedCouple: "false",
-      ifTogether: "",
-      major: "",
-      majorType: "",
-      educationLevel: "",
-      schoolType: "",
-      ifDIY: "",
-      isUser: "false",
-      infoFrom: "",
-    },
+    defaultValues: defaultValues,
   });
 
   // 2. Define a submit handler.
@@ -46,21 +48,21 @@ export function ProfileForm() {
     // Do something with the form values.
     console.log("Form data:", values);
     // ✅ This will be type-safe and validated.
-     const response =  await fetch("/api/visaTable", {
-        method: "POST",
-        body:JSON.stringify(values),
-        headers:{
-          "Content-Type":"application/json"
-        }
-      })
-      console.log('response',response)
-      if(!response.ok){
-        alert('Submit failed')
-        return
-      }else{
-        alert('Submit success')
-      }
-      form.reset()
+    const response = await fetch("/api/visaTable", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("response", response);
+    if (!response.ok) {
+      alert("Submit failed");
+      return;
+    } else {
+      alert("Submit success");
+    }
+     form.reset()
   }
 
   //Define a watch
@@ -69,9 +71,7 @@ export function ProfileForm() {
   const ifIncludedCouple = form.watch("ifIncludedCouple");
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-row   ">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-row   ">
         <div className="w-1/3 border-r-2 border-gray-300  p-4">
           <FormField
             control={form.control}
@@ -282,7 +282,7 @@ export function ProfileForm() {
             control={form.control}
             name="major"
             render={({ field }) => (
-              <FormItem >
+              <FormItem>
                 <FormLabel>主申专业</FormLabel>
                 <FormControl>
                   <Input className="w-1/2" placeholder="" {...field} />
@@ -413,7 +413,7 @@ export function ProfileForm() {
               </FormItem>
             )}
           />
-       
+
           <Button type="submit" className="w-40 mt-5">
             Submit
           </Button>
