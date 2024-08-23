@@ -7,16 +7,14 @@ import { ColumnDef } from "@tanstack/react-table"
 export type Record = {
   id: string
   submitTime: String
-  endTime:String
+  getVisaTime:String
   ifIncludedCouple:String
   ifTogether:String
   major:String
   majorType:String
   educationLevel:String
-  educationType:String
+  schoolType:String
   submitPlace:String
-  ifDIY:String
-  infoFrom:String
 }
 
 export const columns: ColumnDef<Record>[] = [
@@ -25,16 +23,15 @@ export const columns: ColumnDef<Record>[] = [
     header: "递签时间",
   },
   {
-    accessorKey: "endTime",
+    accessorKey: "getVisaTime",
     header: "下签时间",
-
+    cell(props) {
+      return  props.getValue() === "" ? "未下签" : props.getValue()
+    },
   },
   {
     accessorKey: "ifIncludedCouple",
     header: "是否含陪读",
-  },{
-    accessorKey: "ifTogether",
-    header: "分开递/一起递",
   },
   {
     accessorKey: "major",
@@ -45,23 +42,15 @@ export const columns: ColumnDef<Record>[] = [
     header: "三宝/其他",
   },
   {
-    accessorKey: "educationType",
-    header: "八大/其他",
-  },
-  {
     accessorKey: "educationLevel",
     header: "本/硕/博",
   },
   {
+    accessorKey: "schoolType",
+    header: "八大/其他",
+  },
+  {
     accessorKey: "submitPlace",
     header: "境内境外递交",
-  },
-  {
-    accessorKey: "ifDIY",
-    header: "DIY/找中介"
-  },
-  {
-    accessorKey: "infoFrom",
-    header: "信息来源",
-  },
+  }
 ]
