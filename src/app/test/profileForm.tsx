@@ -44,7 +44,7 @@ export function ProfileForm() {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof newFormSchema>) {
     // Do something with the form values.
-    console.log("Form data:", values);
+    
     // ✅ This will be type-safe and validated.
      const response =  await fetch("/api/visaTable", {
         method: "POST",
@@ -53,7 +53,7 @@ export function ProfileForm() {
           "Content-Type":"application/json"
         }
       })
-      console.log('response',response)
+     
       if(!response.ok){
         alert('Submit failed')
         return

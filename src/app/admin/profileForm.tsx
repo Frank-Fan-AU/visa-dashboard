@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,7 +17,10 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { newFormSchema } from "@/lib/schema";
 import { z } from "zod";
 
+import { message } from 'antd';
+
 export function ProfileForm() {
+  const [messageApi, contextHolder] = message.useMessage();
   // 1. Define your form.
   const form = useForm<z.infer<typeof newFormSchema>>({
     resolver: zodResolver(newFormSchema),
@@ -43,8 +45,9 @@ export function ProfileForm() {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof newFormSchema>) {
+   
     // Do something with the form values.
-    console.log("Form data:", values);
+    
     // ✅ This will be type-safe and validated.
      const response =  await fetch("/api/visaTable", {
         method: "POST",
@@ -54,10 +57,16 @@ export function ProfileForm() {
         }
       })
       if(!response.ok){
-        alert('Submit failed')
+        messageApi.open({
+          type: 'error',
+          content: 'Something error,please wait us fix',
+        });
         return
       }else{
-        alert('Submit success')
+        messageApi.open({
+          type: 'success',
+          content: 'Upload Access',
+        });
       }
       form.reset()
   }
@@ -67,6 +76,8 @@ export function ProfileForm() {
   const ifGetVisa = form.watch("ifGetVisa");
   const ifIncludedCouple = form.watch("ifIncludedCouple");
   return (
+    <>
+    {contextHolder}
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
@@ -424,5 +435,7 @@ export function ProfileForm() {
         </div>
       </form>
     </Form>
+    </>
+    
   );
 }

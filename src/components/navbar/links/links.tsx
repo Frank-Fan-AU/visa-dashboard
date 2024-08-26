@@ -16,8 +16,6 @@ const links = [
 const Links = () => {
   const { isSignedIn, user } = useUser();
   const isAdmin = user?.organizationMemberships[0]?.role === 'org:admin'
-  console.log(isSignedIn);
-  console.log(user);
   return (
     <div className="flex gap-4 items-center pr-4">
       {links.map((link, index) => (

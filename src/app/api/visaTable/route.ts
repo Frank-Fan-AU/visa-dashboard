@@ -24,7 +24,7 @@ export const POST = async (request: Request) => {
             throw new Error(params.error.issues[0].message)
         } 
         let res = await Record.create(params.data)
-        console.log('res',res)
+        
         return NextResponse.json({})
     }catch(error){
         throw new Error((error as Error).message);

@@ -12,7 +12,7 @@ async function getData(): Promise<Record[]> {
 
 export default async function TablePage() {
   const data = await getData()
-  console.log('data',data)
+  
   return (
     <div className="container mx-auto py-8">
       <DataTable columns={columns} data={data} />
