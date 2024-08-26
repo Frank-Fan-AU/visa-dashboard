@@ -1,7 +1,7 @@
 import { HeroHighlight, Highlight } from "../ui/hero-highlight";
 import { Skeleton } from "@/components/ui/skeleton";
 import Contributors from "./contributors";
-import RightPart from "./RightPart";
+import RightPart from "./rightPart";
 import Link from "next/link";
 
 
