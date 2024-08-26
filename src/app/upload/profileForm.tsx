@@ -82,6 +82,7 @@ export function ProfileForm() {
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
+                    value={field.value}
                     className="flex flex-row space-x-3">
                     <FormItem className="flex items-center space-x-1 space-y-0">
                       <FormControl>
@@ -129,7 +130,7 @@ export function ProfileForm() {
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        value={field.value}
                         className="flex flex-row space-x-3">
                         <FormItem className="flex items-center space-x-1 space-y-0">
                           <FormControl>
@@ -164,6 +165,7 @@ export function ProfileForm() {
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
+                    value={field.value}
                     className="flex flex-row space-x-3">
                     <FormItem className="flex items-center space-x-1 space-y-0">
                       <FormControl>
@@ -226,6 +228,7 @@ export function ProfileForm() {
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
+                    value={field.value}
                     className="flex flex-row space-x-3">
                     <FormItem className="flex items-center space-x-1 space-y-0">
                       <FormControl>
@@ -255,6 +258,7 @@ export function ProfileForm() {
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
+                      value={field.value}
                       className="flex flex-row space-x-3">
                       <FormItem className="flex items-center space-x-1 space-y-0">
                         <FormControl>
@@ -300,7 +304,7 @@ export function ProfileForm() {
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    value={field.value}
                     className="flex flex-row space-x-3">
                     <FormItem className="flex items-center space-x-1 space-y-0">
                       <FormControl>
@@ -329,7 +333,7 @@ export function ProfileForm() {
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    value={field.value}
                     className="flex flex-row space-x-3">
                     <FormItem className="flex items-center space-x-1 space-y-0">
                       <FormControl>
@@ -364,7 +368,7 @@ export function ProfileForm() {
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    value={field.value}
                     className="flex flex-row space-x-3">
                     <FormItem className="flex items-center space-x-1 space-y-0">
                       <FormControl>
@@ -394,6 +398,7 @@ export function ProfileForm() {
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
+                    value={field.value}
                     className="flex flex-row space-x-3">
                     <FormItem className="flex items-center space-x-1 space-y-0">
                       <FormControl>
