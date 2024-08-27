@@ -1,19 +1,27 @@
-export default function getFakeVisaData() {
-    let res = []
-    for(let i = 0; i < 20; i++) {
-        res.push({
-            id: "728ed52f",
-            submitTime: new Date("2023-01-01T00:00:00Z"),
-            endTime: new Date("2023-01-01T00:00:00Z"),
-            ifIncludedCouple: true,
-            ifTogether:true,
-            major:'食品',
-            educationLevel:'博士',
-            educationType:'其他',
-            submitPlace:'境外',
-            ifDIY:true,
-            infoFrom:'自己'
-          })
+import { Record } from '@/app/table/columns';
+import { faker } from '@faker-js/faker';
+
+export const generateFakeRecords = (count: number = 100): Record[] => {
+    const records: Record[] = [];
+  
+    for (let i = 0; i < count; i++) {
+      const record: Record = {
+        id: faker.datatype.uuid(),
+        submitTime: faker.date.past().toISOString(),
+        getVisaTime: faker.date.past().toISOString(),
+        ifIncludedCouple: faker.helpers.arrayElement(['Yes', 'No']),
+        ifTogether: faker.helpers.arrayElement(['Yes', 'No']),
+        major: faker.helpers.arrayElement(['Computer Science', 'Business', 'Engineering', 'Arts', 'Medicine']),
+        majorType: faker.helpers.arrayElement(['STEM', 'Non-STEM']),
+        educationLevel: faker.helpers.arrayElement(['Bachelor', 'Master', 'PhD']),
+        schoolType: faker.helpers.arrayElement(['Public', 'Private']),
+        submitPlace: faker.helpers.arrayElement(['USA', 'Canada', 'UK', 'Australia']),
+      };
+  
+      records.push(record);
     }
-    return res
-}
+  
+    return records;
+  };
+  
+  // 生成100条数据

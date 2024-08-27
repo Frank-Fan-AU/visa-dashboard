@@ -21,10 +21,14 @@ export const columns: ColumnDef<Record>[] = [
   {
     accessorKey: "submitTime",
     header: "递签时间",
+    sortUndefined: "last",
   },
   {
     accessorKey: "getVisaTime",
     header: "下签时间",
+    sortDescFirst: false,
+    sortUndefined: "last",
+    
     cell(props) {
       return  props.getValue() === "" ? "未下签" : props.getValue()
     },
@@ -33,10 +37,10 @@ export const columns: ColumnDef<Record>[] = [
     accessorKey: "ifIncludedCouple",
     header: "是否含陪读",
   },
-  {
-    accessorKey: "major",
-    header: "主申专业",
-  },
+  // {
+  //   accessorKey: "major",
+  //   header: "主申专业",
+  // },
   {
     accessorKey: "majorType",
     header: "三宝/其他",
@@ -49,8 +53,8 @@ export const columns: ColumnDef<Record>[] = [
     accessorKey: "schoolType",
     header: "八大/其他",
   },
-  {
-    accessorKey: "submitPlace",
-    header: "境内境外递交",
-  }
+  // {
+  //   accessorKey: "submitPlace",
+  //   header: "境内境外递交",
+  // }
 ]
