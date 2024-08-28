@@ -429,9 +429,11 @@ export function ProfileForm() {
             )}
           />
 
-          <Button type="submit" className="w-40 mt-5">
+          <Button type="submit" className="w-40 mt-5" disabled>
             Submit
           </Button>
+          <p>暂时禁止普通用户上传信息，后续做好权限管理后开放</p>
+          <p>想参与信息贡献力量可以联系fanzejiea@gmail.com</p>
         </div>
       </form>
     </Form>
