@@ -19,7 +19,7 @@ const people = [
 
 export default function Contributors() {
   return (
-    <div className="flex flex-row items-center justify-start w-3/4 mt-12 ml-8">
+    <div className="flex flex-row items-center justify-start w-3/4 mt-12 ml-4">
       <div className="text-2xl font-bold mr-4">Contributers:</div>
       <AnimatedTooltip items={people} />
     </div>
