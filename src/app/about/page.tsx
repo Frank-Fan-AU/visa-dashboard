@@ -1,3 +1,4 @@
+import NewAboutDesign from "@/components/about/newAboutDesign";
 import Image from "next/image";
 const AboutPage = () => {
   return (
@@ -127,6 +128,9 @@ const AboutPage = () => {
       </div>
     </main>
   );
+  // return(
+  //   <NewAboutDesign></NewAboutDesign>
+  // )
 };
 
 export default AboutPage;

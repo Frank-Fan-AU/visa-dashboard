@@ -10,7 +10,7 @@ import {
 } from "@clerk/nextjs";
 
 const links = [
-  { title: "About", path: "/about" },
+  { title: "Home", path: "/" },
   { title: "Table", path: "/table" },
 ];
 const Links = () => {

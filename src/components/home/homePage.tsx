@@ -7,8 +7,8 @@ import Link from "next/link";
 
 const HomePage = () => {
   return (
-    <div className="flex flex-row items-center justify-center h-[calc(100vh-5rem)] px-8">
-      <div className="w-1/2 h-full">
+    <div className="flex flex-row items-center justify-center  px-8 mb-4">
+      <div className="w-1/2 ">
         <HeroHighlight className="h-96">
           <h1 className="text-5xl font-bold text-black px-4 py-2">欢迎👏🏻 </h1>
           <h2 className="text-3xl font-bold text-black px-4 pt-2">
@@ -47,7 +47,7 @@ const HomePage = () => {
         </HeroHighlight>
         
       </div>
-      <div className="w-1/2 h-full flex flex-col">
+      <div className="w-1/2  flex flex-col">
         {/* <Image className="rounded-md mt-12" src={"https://images.pexels.com/photos/68704/pexels-photo-68704.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"} alt="image" width={600} height={500} /> */}
         
        <RightPart></RightPart>
