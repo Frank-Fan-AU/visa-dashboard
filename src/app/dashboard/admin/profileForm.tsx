@@ -49,7 +49,7 @@ export function ProfileForm() {
     // Do something with the form values.
     
     // ✅ This will be type-safe and validated.
-     const response =  await fetch("/api/visaTable", {
+     const response =  await fetch("/api/admin", {
         method: "POST",
         body:JSON.stringify(values),
         headers:{

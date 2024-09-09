@@ -63,7 +63,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
       values.userId = userId; // userId 不为 null 时才赋值
     }
     // ✅ This will be type-safe and validated.
-    const response = await fetch("/api/visaTable", {
+    const response = await fetch("/api/upload", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {
@@ -87,16 +87,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
   }
 
 
-
-  const  ifUserModify = async()=>{
-    if (userId) {
-      const response = await fetch(`/api/visaTable/${userId}`)
-      const data = await response.json()
-      return data.exists
-    }else{
-      return false
-    }
-  }
 
   //Define a watch
   const ifSubmit = form.watch("ifSubmit");
