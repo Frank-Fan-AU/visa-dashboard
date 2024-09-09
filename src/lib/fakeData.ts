@@ -1,4 +1,4 @@
-import { Record } from '@/app/table/columns';
+import { Record } from '@/app/dashboard/table/columns';
 import { faker } from '@faker-js/faker';
 
 export const generateFakeRecords = (count: number = 100): Record[] => {
