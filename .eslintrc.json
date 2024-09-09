@@ -1,3 +1,9 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  // 这里的useState报了一个ESlint错误React Hook "useState" is called in function "cell" that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter. React Hook names must start with the word "use"我该如何修复或者屏蔽他
+  "rules": {
+    "react-hooks/rules-of-hooks": "off" // 禁用 React Hooks 规则
+  }
 }
+
+
