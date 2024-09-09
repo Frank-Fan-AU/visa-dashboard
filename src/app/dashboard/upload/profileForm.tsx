@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -19,6 +19,7 @@ import { z } from "zod";
 
 
 import { message } from 'antd';
+import React from "react";
 
 const defaultValues = {
   ifSubmit: "",
@@ -37,8 +38,18 @@ const defaultValues = {
   isUser: "",
   infoFrom: "",
 };
-export function ProfileForm() {
+type ProfileFormProps = {
+  userId: string | null ;
+};
+export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
   const [messageApi, contextHolder] = message.useMessage();
+
+  useEffect(() => {
+    if (userId) {
+      const queryParams = new URLSearchParams({ userId });
+      fetch(`/api/visaTable?${queryParams}`)
+    }
+  }, [userId])
   // 1. Define your form.
   const form = useForm<z.infer<typeof newFormSchema>>({
     resolver: zodResolver(newFormSchema),
@@ -48,7 +59,9 @@ export function ProfileForm() {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof newFormSchema>) {
     // Do something with the form values.
-    
+    if (userId) {
+      values.userId = userId; // userId 不为 null 时才赋值
+    }
     // ✅ This will be type-safe and validated.
     const response = await fetch("/api/visaTable", {
       method: "POST",
@@ -71,6 +84,18 @@ export function ProfileForm() {
       });
     }
      form.reset()
+  }
+
+
+
+  const  ifUserModify = async()=>{
+    if (userId) {
+      const response = await fetch(`/api/visaTable/${userId}`)
+      const data = await response.json()
+      return data.exists
+    }else{
+      return false
+    }
   }
 
   //Define a watch
@@ -429,11 +454,11 @@ export function ProfileForm() {
             )}
           />
 
-          <Button type="submit" className="w-40 mt-5" disabled>
+          <Button type="submit" className="w-40 mt-5">
             Submit
           </Button>
-          <p>暂时禁止普通用户上传信息，后续做好权限管理后开放</p>
-          <p>想参与信息贡献力量可以联系fanzejiea@gmail.com</p>
+          <p>{userId}</p>
+          
         </div>
       </form>
     </Form>

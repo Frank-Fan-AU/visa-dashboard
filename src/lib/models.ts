@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const recordSchema = new mongoose.Schema({
+  userId: { type: String },
   ifSubmit: { type: String },
   submitTime: { type: String },
   submitPlace: { type: String },

@@ -1,6 +1,9 @@
 import { ProfileForm } from "./profileForm";
 import Image from "next/image";
+import { auth } from '@clerk/nextjs/server'
 const UploadPage = () => {
+  const { userId }: { userId: string | null } = auth()
+  console.log('userOId',userId)
   return (
     <>
     <div className="flex flex-row ">
@@ -14,7 +17,7 @@ const UploadPage = () => {
         />
       </div>
       <div className="w-2/3">
-        <ProfileForm></ProfileForm>
+        <ProfileForm userId={userId}></ProfileForm>
       </div>
       
     </div>
