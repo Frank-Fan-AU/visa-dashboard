@@ -3,6 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Contributors from "./contributors";
 import RightPart from "./rightPart";
 import Link from "next/link";
+import { SignInButton } from "@clerk/nextjs";
 
 const HomePage = () => {
   return (
@@ -33,7 +34,7 @@ const HomePage = () => {
               <button className="p-[3px] relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
                 <div className="px-8 py-2  bg-white rounded-[6px]  relative group transition duration-200 text-black hover:bg-transparent">
-                  Login to Share
+                 <SignInButton forceRedirectUrl={"/dashboard"}>Login to share</SignInButton>
                 </div>
               </button>
             </div>
