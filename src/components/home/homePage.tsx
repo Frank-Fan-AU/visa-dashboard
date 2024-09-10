@@ -9,6 +9,7 @@ const HomePage = () => {
     <div className="flex flex-row items-center justify-center  px-8 mb-4">
       <div className="w-1/2 ">
         <HeroHighlight className="h-96">
+        <h1 className="text-5xl font-bold text-black px-4 pb-4">AU-500-VISA-Dashboard</h1>
           <h1 className="text-5xl font-bold text-black px-4 py-2">欢迎👏🏻 </h1>
           <h2 className="text-3xl font-bold text-black px-4 pt-2">
             旨在帮您更容易得获取所有要关心的签证信息
