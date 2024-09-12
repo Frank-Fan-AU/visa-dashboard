@@ -1,0 +1,59 @@
+type docListType = {
+    img:string,
+    title:string,
+    description:string,
+    avatar:string
+}
+
+const docList:docListType[] = [
+    {
+        img:'',
+        title:'80表格',
+        description:'80表格(*****)',
+        avatar:''
+    },
+    {
+        img:'',
+        title:'1221表格',
+        description:'1221表格(*****)',
+        avatar:''
+    },
+    {
+        img:'',
+        title:'80表格',
+        description:'80表格(*****)',
+        avatar:''
+    },
+    {
+        img:'',
+        title:'1221表格',
+        description:'1221表格(*****)',
+        avatar:''
+    },
+    {
+        img:'',
+        title:'80表格',
+        description:'80表格(*****)',
+        avatar:''
+    },
+    {
+        img:'',
+        title:'1221表格',
+        description:'1221表格(*****)',
+        avatar:''
+    },
+    {
+        img:'',
+        title:'80表格',
+        description:'80表格(*****)',
+        avatar:''
+    },
+    {
+        img:'',
+        title:'1221表格',
+        description:'1221表格(*****)',
+        avatar:''
+    },
+] 
+
+export default docList

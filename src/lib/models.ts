@@ -18,5 +18,21 @@ const recordSchema = new mongoose.Schema({
   isUser: { type: String },
   infoFrom: { type: String },
 });
+const docSchema = new mongoose.Schema({
+  categoryId: String,
+  authorId: String,
+  title: String,
+  content: String,
+});
+const docCategoriesSchema = new mongoose.Schema({
+  title: String,
+  slug: String,
+  img: String,
+});
 export const Record =
   mongoose.models?.Record || mongoose.model("Record", recordSchema);
+
+export const Doc = mongoose.models?.Doc || mongoose.model("Doc", docSchema);
+export const DocCategories =
+  mongoose.models?.DocCategories ||
+  mongoose.model("DocCategories", docCategoriesSchema);
