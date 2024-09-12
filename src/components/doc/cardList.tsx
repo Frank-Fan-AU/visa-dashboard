@@ -12,10 +12,10 @@ const CardList = () => {
       className="m-2"
       key={idx}
       onClick={() => {
-        window.open("/dashboard/doc/1", "_self");
+        window.open(`/dashboard/doc/${item.slug}`, "_self");
       }}
       hoverable
-      style={{ width: 240 }}
+      style={{ width: 260 }}
       cover={
         <img
           alt="example"
@@ -32,7 +32,7 @@ const CardList = () => {
       />
     </Card>
   ));
-  return <div className="flex flex-row flex-wrap ml-2">{listItems}</div>;
+  return <div className="flex flex-row flex-wrap ml-2 justify-start gap-2">{listItems}</div>;
 };
 
 export default CardList;

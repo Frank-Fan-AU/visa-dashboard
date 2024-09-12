@@ -2,7 +2,8 @@ type docListType = {
     img:string,
     title:string,
     description:string,
-    avatar:string
+    avatar:string,
+    slug:string
 }
 
 const docList:docListType[] = [
@@ -10,50 +11,17 @@ const docList:docListType[] = [
         img:'',
         title:'80表格',
         description:'80表格(*****)',
-        avatar:''
+        avatar:'',
+        slug:'80form'
     },
     {
         img:'',
         title:'1221表格',
         description:'1221表格(*****)',
-        avatar:''
+        avatar:'',
+        slug:'1221form',
     },
-    {
-        img:'',
-        title:'80表格',
-        description:'80表格(*****)',
-        avatar:''
-    },
-    {
-        img:'',
-        title:'1221表格',
-        description:'1221表格(*****)',
-        avatar:''
-    },
-    {
-        img:'',
-        title:'80表格',
-        description:'80表格(*****)',
-        avatar:''
-    },
-    {
-        img:'',
-        title:'1221表格',
-        description:'1221表格(*****)',
-        avatar:''
-    },
-    {
-        img:'',
-        title:'80表格',
-        description:'80表格(*****)',
-        avatar:''
-    },
-    {
-        img:'',
-        title:'1221表格',
-        description:'1221表格(*****)',
-        avatar:''
-    },
+    
 ] 
 
 export default docList
