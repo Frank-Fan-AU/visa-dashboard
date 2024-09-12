@@ -37,3 +37,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 ICON: Lucide
+what I install manualy
+
+```
+mdx:
+npm install @next/mdx @mdx-js/loader @mdx-js/react @types/mdx
+npm install -D @tailwindcss/typography
+```

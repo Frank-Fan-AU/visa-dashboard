@@ -1,8 +1,8 @@
-
+import path from 'path'
 const DocDetailPage = () => {
   return (
     <div>
-      details
+      {typeof path.join(process.cwd(),'src','docPosts')}
     </div>
   )
 };
