@@ -386,7 +386,20 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
               </FormItem>
             )}
           />
-          
+           <FormField
+              control={form.control}
+              name="schoolType"
+              render={({ field }) => (
+                <FormItem className="mt-4">
+                  <FormLabel>学校:</FormLabel>
+                  <FormControl>
+                    <Input className="w-1/2" placeholder="" {...field} />
+                  </FormControl>
+                  <FormDescription>可以模糊填写</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           <FormField
             control={form.control}
             name="educationLevel"
@@ -422,20 +435,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
               </FormItem>
             )}
           />
-          <FormField
-              control={form.control}
-              name="schoolType"
-              render={({ field }) => (
-                <FormItem className="mt-4">
-                  <FormLabel>学校:</FormLabel>
-                  <FormControl>
-                    <Input className="w-1/2" placeholder="" {...field} />
-                  </FormControl>
-                  <FormDescription>可以模糊填写</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+         
           <FormField
             control={form.control}
             name="ifDIY"

@@ -3,8 +3,8 @@ import Image from "next/image";
 const AdminPage = () => {
   return (
     <>
-    <div className="flex flex-row ">
-      <div className=" w-1/3 px-5">
+    <div className="flex flex-row mt-8">
+      <div className=" w-1/3 px-5 ">
         <Image
           src="https://images.pexels.com/photos/20642051/pexels-photo-20642051.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           alt="Sydney Opera House"
