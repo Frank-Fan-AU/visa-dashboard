@@ -20,6 +20,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -422,35 +423,19 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
             )}
           />
           <FormField
-            control={form.control}
-            name="schoolType"
-            render={({ field }) => (
-              <FormItem className="mt-4">
-                <FormLabel>学校类别：八大/其他</FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    value={field.value}
-                    className="flex flex-row space-x-3">
-                    <FormItem className="flex items-center space-x-1 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="八大" />
-                      </FormControl>
-                      <FormLabel className="font-normal">八大</FormLabel>
-                    </FormItem>
-
-                    <FormItem className="flex items-center space-x-1 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="其他" />
-                      </FormControl>
-                      <FormLabel className="font-normal">其他</FormLabel>
-                    </FormItem>
-                  </RadioGroup>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+              control={form.control}
+              name="schoolType"
+              render={({ field }) => (
+                <FormItem className="mt-4">
+                  <FormLabel>学校:</FormLabel>
+                  <FormControl>
+                    <Input className="w-1/2" placeholder="" {...field} />
+                  </FormControl>
+                  <FormDescription>可以模糊填写</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           <FormField
             control={form.control}
             name="ifDIY"
@@ -484,7 +469,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
           <Button type="submit" className="w-40 mt-5">
             Submit
           </Button>
-          <p>{userId}</p>
+          <p>以下/以上问题均不是必填项，您可以根据个人情况自愿分享，感谢您的支持</p>
           
         </div>
       </form>

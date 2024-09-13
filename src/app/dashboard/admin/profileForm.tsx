@@ -19,6 +19,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
@@ -95,7 +96,7 @@ export function ProfileForm() {
               control={form.control}
               name="ifSubmit"
               render={({ field }) => (
-                <FormItem >
+                <FormItem>
                   <FormLabel>是否已提交签证？</FormLabel>
                   <FormControl>
                     <RadioGroup
@@ -150,10 +151,12 @@ export function ProfileForm() {
                         <PopoverContent className="w-auto p-0" align="start">
                           <Calendar
                             mode="single"
-                            selected={field.value ? new Date(field.value) : undefined}
+                            selected={
+                              field.value ? new Date(field.value) : undefined
+                            }
                             onSelect={(date) => {
                               if (date) {
-                                field.onChange(format(date, 'yyyy-MM-dd')); // 将 Date 对象转换为字符串并存储
+                                field.onChange(format(date, "yyyy-MM-dd")); // 将 Date 对象转换为字符串并存储
                               }
                             }}
                             disabled={(date) =>
@@ -163,7 +166,7 @@ export function ProfileForm() {
                           />
                         </PopoverContent>
                       </Popover>
-                      
+
                       <FormMessage />
                     </FormItem>
                   )}
@@ -261,10 +264,12 @@ export function ProfileForm() {
                         <PopoverContent className="w-auto p-0" align="start">
                           <Calendar
                             mode="single"
-                            selected={field.value ? new Date(field.value) : undefined}
+                            selected={
+                              field.value ? new Date(field.value) : undefined
+                            }
                             onSelect={(date) => {
                               if (date) {
-                                field.onChange(format(date, 'yyyy-MM-dd')); // 将 Date 对象转换为字符串并存储
+                                field.onChange(format(date, "yyyy-MM-dd")); // 将 Date 对象转换为字符串并存储
                               }
                             }}
                             disabled={(date) =>
@@ -274,7 +279,7 @@ export function ProfileForm() {
                           />
                         </PopoverContent>
                       </Popover>
-                      
+
                       <FormMessage />
                     </FormItem>
                   )}
@@ -410,27 +415,11 @@ export function ProfileForm() {
               name="schoolType"
               render={({ field }) => (
                 <FormItem className="mt-4">
-                  <FormLabel>学校类别：八大/其他</FormLabel>
+                  <FormLabel>学校:</FormLabel>
                   <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      value={field.value}
-                      className="flex flex-row space-x-3">
-                      <FormItem className="flex items-center space-x-1 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="八大" />
-                        </FormControl>
-                        <FormLabel className="font-normal">八大</FormLabel>
-                      </FormItem>
-
-                      <FormItem className="flex items-center space-x-1 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="其他" />
-                        </FormControl>
-                        <FormLabel className="font-normal">其他</FormLabel>
-                      </FormItem>
-                    </RadioGroup>
+                    <Input className="w-1/2" placeholder="" {...field} />
                   </FormControl>
+                  <FormDescription>可以模糊填写</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
