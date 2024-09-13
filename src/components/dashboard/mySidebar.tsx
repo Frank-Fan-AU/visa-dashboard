@@ -60,7 +60,7 @@ export function MySidebarDemo({
               {links.map((link, idx) => (
                 <SidebarLink key={idx} link={link} />
               ))}
-              {isSignedIn && !isAdmin &&(
+              {isSignedIn &&(
                 <SidebarLink
                   key={"upload"}
                   link={{

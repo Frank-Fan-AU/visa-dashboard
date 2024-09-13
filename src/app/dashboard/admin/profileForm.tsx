@@ -90,8 +90,9 @@ export function ProfileForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-row   ">
-          <div className="w-1/3 border-r-2 border-gray-300  p-4">
+          className="flex flex-row ml-8">
+          <div className="w-1/2 border-r-2 border-gray-300 ">
+          <div className="text-2xl font-bold mb-4">Genel</div>
             <FormField
               control={form.control}
               name="ifSubmit"
@@ -128,7 +129,7 @@ export function ProfileForm() {
                   control={form.control}
                   name="submitTime"
                   render={({ field }) => (
-                    <FormItem className="mt-4">
+                    <FormItem className="mt-4 flex flex-col">
                       <FormLabel>递签日期</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
@@ -241,7 +242,7 @@ export function ProfileForm() {
                   control={form.control}
                   name="getVisaTime"
                   render={({ field }) => (
-                    <FormItem className="mt-4">
+                    <FormItem className="mt-4 flex flex-col">
                       <FormLabel>下签日期</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
@@ -293,6 +294,7 @@ export function ProfileForm() {
                       <FormControl>
                         <Input className="w-60" placeholder="" {...field} />
                       </FormControl>
+                      <FormDescription>机审秒签的同学这一栏直接跳过即可</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -362,6 +364,7 @@ export function ProfileForm() {
           </div>
 
           <div className="w-1/2 ml-8">
+          <div className="text-2xl font-bold mb-4">Details</div>
             <FormField
               control={form.control}
               name="major"
