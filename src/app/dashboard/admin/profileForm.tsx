@@ -372,35 +372,6 @@ export function ProfileForm() {
             />
             <FormField
               control={form.control}
-              name="majorType"
-              render={({ field }) => (
-                <FormItem className="mt-4">
-                  <FormLabel>专业类别：三宝/其他</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      value={field.value}
-                      className="flex flex-row space-x-3">
-                      <FormItem className="flex items-center space-x-1 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="三宝" />
-                        </FormControl>
-                        <FormLabel className="font-normal">三宝</FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-1 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="其他" />
-                        </FormControl>
-                        <FormLabel className="font-normal">其他</FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
               name="educationLevel"
               render={({ field }) => (
                 <FormItem className="mt-4">
