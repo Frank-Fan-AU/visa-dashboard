@@ -33,7 +33,7 @@ export default function RightPart() {
             </div>
           </WobbleCard>
         </div>
-        <div className="col-span-1 min-h-[300px]">
+        <div onClick={handleClick} className="col-span-1 min-h-[300px]">
           <WobbleCard containerClassName="h-full" key={"2"}>
             <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
               材料准备清单
