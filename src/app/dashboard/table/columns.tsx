@@ -64,10 +64,6 @@ export const columns: ColumnDef<Record>[] = [
     header: "专业",
   },
   {
-    accessorKey: "schoolType",
-    header: "院校",
-  },
-  {
     accessorKey: "submitPlace",
     header: "递签地点",
   },
