@@ -346,37 +346,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                 </FormItem>
               )}
             />
-            {ifIncludedCouple === "true" && (
-              <FormField
-                control={form.control}
-                name="ifTogether"
-                render={({ field }) => (
-                  <FormItem className="mt-4">
-                    <FormLabel>分开递还是一起递的</FormLabel>
-                    <FormControl>
-                      <RadioGroup
-                        onValueChange={field.onChange}
-                        value={field.value}
-                        className="flex flex-row space-x-3">
-                        <FormItem className="flex items-center space-x-1 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="true" />
-                          </FormControl>
-                          <FormLabel className="font-normal">分开递</FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-1 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="false" />
-                          </FormControl>
-                          <FormLabel className="font-normal">一起递</FormLabel>
-                        </FormItem>
-                      </RadioGroup>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
+            
           </div>
 
           <div className="w-1/2 ml-8">
@@ -477,9 +447,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
             <Button type="submit" className="w-40 mt-5">
               Submit
             </Button>
-            <p>
-              以下/以上问题均不是必填项，您可以根据个人情况自愿分享，感谢您的支持
-            </p>
+            
           </div>
         </form>
       </Form>

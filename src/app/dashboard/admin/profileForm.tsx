@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { newFormSchema } from "@/lib/schema";
 import { z } from "zod";
@@ -50,6 +51,7 @@ export function ProfileForm() {
       ifDIY: "",
       isUser: "",
       infoFrom: "",
+      otherInfo: "",
     },
   });
 
@@ -91,8 +93,8 @@ export function ProfileForm() {
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-row ml-8">
-          <div className="w-1/2 border-r-2 border-gray-300 ">
-          <div className="text-2xl font-bold mb-4">Genel</div>
+          <div className="min-w-80 border-r-2 border-gray-300 ">
+            <div className="text-2xl font-bold mb-4">Genel</div>
             <FormField
               control={form.control}
               name="ifSubmit"
@@ -294,7 +296,9 @@ export function ProfileForm() {
                       <FormControl>
                         <Input className="w-60" placeholder="" {...field} />
                       </FormControl>
-                      <FormDescription>机审秒签的同学这一栏直接跳过即可</FormDescription>
+                      <FormDescription>
+                        机审秒签的同学这一栏直接跳过即可
+                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -330,41 +334,10 @@ export function ProfileForm() {
                 </FormItem>
               )}
             />
-            {ifIncludedCouple === "true" && (
-              <FormField
-                control={form.control}
-                name="ifTogether"
-                render={({ field }) => (
-                  <FormItem className="mt-4">
-                    <FormLabel>分开递还是一起递的</FormLabel>
-                    <FormControl>
-                      <RadioGroup
-                        onValueChange={field.onChange}
-                        value={field.value}
-                        className="flex flex-row space-x-3">
-                        <FormItem className="flex items-center space-x-1 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="true" />
-                          </FormControl>
-                          <FormLabel className="font-normal">分开递</FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-1 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="false" />
-                          </FormControl>
-                          <FormLabel className="font-normal">一起递</FormLabel>
-                        </FormItem>
-                      </RadioGroup>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
           </div>
 
-          <div className="w-1/2 ml-8">
-          <div className="text-2xl font-bold mb-4">Details</div>
+          <div className="min-w-80  ml-8 border-r-2 border-gray-300">
+            <div className="text-2xl font-bold mb-4">Details</div>
             <FormField
               control={form.control}
               name="major"
@@ -427,7 +400,7 @@ export function ProfileForm() {
                 </FormItem>
               )}
             />
-            
+
             <FormField
               control={form.control}
               name="ifDIY"
@@ -457,7 +430,26 @@ export function ProfileForm() {
                 </FormItem>
               )}
             />
+          </div>
+          <div className="min-w-80  ml-8">
+            <div className="text-2xl font-bold mb-4 pr-8">Others</div>
+            <FormField
+              control={form.control}
+              name="otherInfo"
+              render={({ field }) => (
+                <FormItem className="mt-4">
+                  <FormControl>
+                    <Textarea
+                      placeholder="如: 补材料/defer/小黄旗/催签"
+                      className="resize-none h-[300px] w-[300px]  pr-8"
+                      {...field}
+                    />
+                  </FormControl>
 
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <Button type="submit" className="w-40 mt-5">
               Submit
             </Button>

@@ -17,6 +17,7 @@ const recordSchema = new mongoose.Schema({
   ifDIY: { type: String },
   isUser: { type: String },
   infoFrom: { type: String },
+  otherInfo: { type: String }
 });
 const docSchema = new mongoose.Schema({
   categoryId: String,

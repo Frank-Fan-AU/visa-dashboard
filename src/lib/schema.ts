@@ -33,5 +33,6 @@ export const newFormSchema = z.object({
     required_error: "ifSubmit is required",
   }),
   infoFrom:z.string().optional(),
+  otherInfo:z.string().optional(),
   userId:z.string().optional(),
 })
