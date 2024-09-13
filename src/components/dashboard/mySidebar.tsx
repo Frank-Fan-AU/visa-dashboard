@@ -29,14 +29,14 @@ export function MySidebarDemo({
       ),
     },
     {
-      label: "签证记录表",
+      label: "递签统计表",
       href: "/dashboard/table",
       icon: (
         <Table2 className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: "材料清单",
+      label: "递签材料清单",
       href: "/dashboard/doc",
       icon: (
         <ClipboardList className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
@@ -64,7 +64,7 @@ export function MySidebarDemo({
                 <SidebarLink
                   key={"upload"}
                   link={{
-                    label: "Upload",
+                    label: "个人递签信息",
                     href: "/dashboard/upload",
                     icon: (
                       <FileUp className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />

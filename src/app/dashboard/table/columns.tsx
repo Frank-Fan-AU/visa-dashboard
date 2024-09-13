@@ -13,7 +13,7 @@ const calculateDaysBetween = (start: string, end: string) => {
   // 计算相差的天数
   const diffTime = endDate.getTime() - startDate.getTime();
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // 转换为天数
-  return diffDays > 0 ? `${diffDays} 天` : "未下签";
+  return diffDays >= 0 ? `${diffDays} 天` : "未下签";
 };
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -75,8 +75,12 @@ export const columns: ColumnDef<Record>[] = [
     accessorKey: "ifIncludedCouple",
     header: "是否含陪读",
     cell: ({ getValue }) => {
-      const value = getValue() as boolean; // 确保值是布尔类型
-      return value ? "含陪读" : "单独";
+      const value = getValue() 
+      if(value === "true"){
+        return "含陪读"
+      } else{
+        return "单独"
+      }
     },
   },
   {
