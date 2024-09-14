@@ -23,6 +23,7 @@ import {
   FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { newFormSchema } from "@/lib/schema";
 import { z } from "zod";
@@ -46,6 +47,7 @@ const defaultValues = {
   ifDIY: "",
   isUser: "",
   infoFrom: "",
+  otherInfo: "",
 };
 type ProfileFormProps = {
   userId: string | null;
@@ -106,7 +108,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-row ml-8">
-          <div className="w-1/2 border-r-2 border-gray-300">
+          <div className="min-w-96 border-r-2 border-gray-300">
             <div className="text-2xl font-bold mb-4">Genel</div>
             <FormField
               control={form.control}
@@ -346,7 +348,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                 </FormItem>
               )}
             />
-            
           </div>
 
           <div className="w-1/2 ml-8">
@@ -443,11 +444,27 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="otherInfo"
+              render={({ field }) => (
+                <FormItem className="mt-4">
+                  <FormLabel>其他信息</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="如: 补材料/defer/小黄旗/催签"
+                      className="resize-none h-[240px] w-full  pr-8"
+                      {...field}
+                    />
+                  </FormControl>
 
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <Button type="submit" className="w-40 mt-5">
               Submit
             </Button>
-            
           </div>
         </form>
       </Form>
