@@ -1,4 +1,4 @@
-import NewAboutDesign from "@/components/about/newAboutDesign";
+import NewAboutDesign from "@/components/home/newAboutDesign";
 import HomePage from "@/components/home/homePage";
 import Navbar from "@/components/navbar/navbar";
 
