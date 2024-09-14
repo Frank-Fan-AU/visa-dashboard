@@ -5,7 +5,7 @@ import { DataTable } from "./data-table";
 import { generateFakeRecords } from "@/lib/fakeData";
 async function getData(): Promise<Record[]> {
   // Fetch data from your API here.
-  let res = await fetch("http://localhost:3000/api/upload", {
+  let res = await fetch("http://localhost:3000/api/visaTable", {
     cache: "no-store",
   });
   if (!res.ok) {
