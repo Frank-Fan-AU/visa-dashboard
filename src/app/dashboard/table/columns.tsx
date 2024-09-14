@@ -33,7 +33,9 @@ export type Record = {
   submitPlace: string;
 };
 
-export const columns: ColumnDef<Record>[] = [
+
+
+export const getColumns = (handleDelete: (id: string) => void): ColumnDef<Record>[] => [
   {
     accessorKey: "submitTime",
     header: "递签日期",
@@ -97,18 +99,7 @@ export const columns: ColumnDef<Record>[] = [
       const handleClose = () => {
         setIsModalVisible(false);
       };
-      const deleteRow = async () => {
-        // 在这里实现删除行的逻辑
-        const response = await fetch(`/api/admin?id=${row.original._id}`, {
-          method: 'DELETE',
-        });
-        const data = await response.json();
-        if (response.ok) {
-          console.log('Document deleted successfully:', data);
-        } else {
-          console.error('Error deleting document:', data);
-        }
-      };
+      
       return (
         <>
           <Button
@@ -123,7 +114,7 @@ export const columns: ColumnDef<Record>[] = [
           {isAdmin && (
             <Button
               variant="destructive"
-              onClick={deleteRow}
+              onClick={() => handleDelete(row.original._id)}
               className="h-6 w-10">
               删除
             </Button>
