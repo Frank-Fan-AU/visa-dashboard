@@ -1,7 +1,7 @@
 "use client";
 
 import { Avatar, Card, Button } from "antd";
-
+import Image from "next/image";
 import docList from "./docList";
 const { Meta } = Card;
 const listdata = docList;
@@ -17,7 +17,7 @@ const CardList = () => {
       hoverable
       style={{ width: 260 }}
       cover={
-        <img
+        <Image
           alt="example"
           src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
         />
