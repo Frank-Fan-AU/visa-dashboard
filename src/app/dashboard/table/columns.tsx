@@ -1,35 +1,37 @@
-"use client"
+"use client";
 
-import { ColumnDef } from "@tanstack/react-table"
+import { Button } from "@/components/ui/button";
+import { ColumnDef } from "@tanstack/react-table";
 import { useState } from "react";
 import { DetailModal } from "./detailModal";
-
+import { useUser } from "@clerk/nextjs";
 // 计算日期差的函数
 const calculateDaysBetween = (start: string, end: string) => {
   if (!start || !end) return "未计算"; // 如果没有日期，返回提示信息
   const startDate = new Date(start);
   const endDate = new Date(end);
-  
+
   // 计算相差的天数
   const diffTime = endDate.getTime() - startDate.getTime();
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // 转换为天数
   return diffDays >= 0 ? `${diffDays} 天` : "未下签";
 };
+
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Record = {
-  id: string
-  submitTime: string
-  getVisaTime:string
-  visaOfficer:string
-  ifIncludedCouple:string
-  ifTogether:string
-  major:string
-  majorType:string
-  educationLevel:string
-  schoolType:string
-  submitPlace:string
-}
+  _id: string;
+  submitTime: string;
+  getVisaTime: string;
+  visaOfficer: string;
+  ifIncludedCouple: string;
+  ifTogether: string;
+  major: string;
+  majorType: string;
+  educationLevel: string;
+  schoolType: string;
+  submitPlace: string;
+};
 
 export const columns: ColumnDef<Record>[] = [
   {
@@ -42,9 +44,9 @@ export const columns: ColumnDef<Record>[] = [
     header: "下签日期",
     sortDescFirst: false,
     sortUndefined: "last",
-    
+
     cell(props) {
-      return  props.getValue() === "" ? "未下签" : props.getValue()
+      return props.getValue() === "" ? "未下签" : props.getValue();
     },
   },
   {
@@ -71,11 +73,11 @@ export const columns: ColumnDef<Record>[] = [
     accessorKey: "ifIncludedCouple",
     header: "是否含陪读",
     cell: ({ getValue }) => {
-      const value = getValue() 
-      if(value === "true"){
-        return "含陪读"
-      } else{
-        return "单独"
+      const value = getValue();
+      if (value === "true") {
+        return "含陪读";
+      } else {
+        return "单独";
       }
     },
   },
@@ -85,7 +87,8 @@ export const columns: ColumnDef<Record>[] = [
     cell: ({ row }) => {
       const [isModalVisible, setIsModalVisible] = useState(false);
       const [selectedData, setSelectedData] = useState<any>(null);
-
+      const { user } = useUser();
+      const isAdmin = user?.organizationMemberships[0]?.role === "org:admin";
       const showModal = () => {
         setSelectedData(row.original);
         setIsModalVisible(true);
@@ -94,11 +97,37 @@ export const columns: ColumnDef<Record>[] = [
       const handleClose = () => {
         setIsModalVisible(false);
       };
-
+      const deleteRow = async () => {
+        // 在这里实现删除行的逻辑
+        const response = await fetch(`/api/admin?id=${row.original._id}`, {
+          method: 'DELETE',
+        });
+        const data = await response.json();
+        if (response.ok) {
+          console.log('Document deleted successfully:', data);
+        } else {
+          console.error('Error deleting document:', data);
+        }
+      };
       return (
         <>
-          <button onClick={showModal} className="btn-details">查看详情</button>
-          {isModalVisible && <DetailModal data={selectedData} onClose={handleClose} />}
+          <Button
+            variant="ghost"
+            onClick={showModal}
+            className="h-6 w-16 mr-2 ">
+            查看详情
+          </Button>
+          {isModalVisible && (
+            <DetailModal data={selectedData} onClose={handleClose} />
+          )}
+          {isAdmin && (
+            <Button
+              variant="destructive"
+              onClick={deleteRow}
+              className="h-6 w-10">
+              删除
+            </Button>
+          )}
         </>
       );
     },
@@ -111,4 +140,4 @@ export const columns: ColumnDef<Record>[] = [
   //   accessorKey: "educationLevel",
   //   header: "本/硕/博",
   // },
-]
+];
