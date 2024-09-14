@@ -25,10 +25,10 @@ export default function RightPart() {
             key={"1"}>
             <div className="max-w-xs">
               <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                留学中介红黑榜
+                赛博许愿池
               </h2>
               <p className="mt-4 text-left  text-base/6 text-neutral-200">
-                可以在这里分享你的留学中介经历，让大家知道谁值得信赖，谁需要谨慎选择。
+              没有下签的同志可以在这里赛博许愿、发发吐槽，下签的同志可以在这里分享等签心得。
               </p>
             </div>
           </WobbleCard>
