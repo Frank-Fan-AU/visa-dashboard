@@ -19,7 +19,9 @@ const CardList = () => {
       cover={
         <Image
           alt="example"
-          src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+          src="/xiaqian.jpeg"
+          width={260}
+          height={300}
         />
       }>
       <Meta
