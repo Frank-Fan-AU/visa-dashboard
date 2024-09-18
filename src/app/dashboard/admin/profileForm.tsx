@@ -94,7 +94,7 @@ export function ProfileForm() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-row ml-8">
           <div className="min-w-96 border-r-2 border-gray-300 ">
-            <div className="text-2xl font-bold mb-4">Genel</div>
+            <div className="text-2xl font-bold mb-4">General</div>
             <FormField
               control={form.control}
               name="ifSubmit"
@@ -422,7 +422,7 @@ export function ProfileForm() {
                         <FormControl>
                           <RadioGroupItem value="false" />
                         </FormControl>
-                        <FormLabel className="font-normal">中介</FormLabel>
+                        <FormLabel className="font-normal">找的中介</FormLabel>
                       </FormItem>
                     </RadioGroup>
                   </FormControl>
