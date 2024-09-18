@@ -12,7 +12,7 @@ const docList:docListType[] = [
         title:'80表格',
         description:'80表格(*****)',
         avatar:'',
-        slug:'welcome'
+        slug:'80form'
     },
     {
         img:'',

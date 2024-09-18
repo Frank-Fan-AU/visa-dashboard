@@ -113,8 +113,8 @@ export function MySidebarDemo({
         </SidebarBody>
       </Sidebar>
       {/* <Dashboard /> */}
-      <div className="flex flex-1 ">
-        <div className="flex flex-col  w-full h-full dark:border-neutral-700 bg-white dark:bg-neutral-900 ">
+      <div className="flex flex-1 overflow-auto">
+        <div className="overflow-auto flex flex-col  w-full h-full px-20 dark:border-neutral-700 bg-white dark:bg-neutral-900">
           {children}
         </div>
       </div>

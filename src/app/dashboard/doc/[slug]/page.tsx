@@ -29,7 +29,7 @@ const DocDetailPage = ({ params: { slug } }: DocPageProps) => {
   return (
     <div>
       {/* { path.join(process.cwd(),'src','docPosts')} */}
-      <h1>{data.title || slug}</h1>
+      {/* <h1>{data.title || slug}</h1> */}
       <MDXRemote source={content} />
     </div>
   )
