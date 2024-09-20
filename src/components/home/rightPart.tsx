@@ -28,13 +28,14 @@ export default function RightPart() {
                 赛博许愿池
               </h2>
               <p className="mt-4 text-left  text-base/6 text-neutral-200">
-              没有下签的同志可以在这里赛博许愿、发发吐槽，下签的同志可以在这里分享等签心得。
+              没有下签的同志可以在这里赛博许愿、发发吐槽，下签的同志可以在这里分享等签心得。（未做）
               </p>
             </div>
           </WobbleCard>
         </div>
-        <div onClick={handleClick} className="col-span-1 min-h-[300px]">
-          <WobbleCard containerClassName="h-full" key={"2"}>
+        <Link href="/dashboard/doc"
+        className="col-span-1 min-h-[300px]">
+           <WobbleCard containerClassName="h-full" key={"2"}>
             <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
               材料准备清单
             </h2>
@@ -42,7 +43,8 @@ export default function RightPart() {
               分享签证流程、准备了哪些材料，以及如何准备这些材料。
             </p>
           </WobbleCard>
-        </div>
+        </Link>
+
 
         <Link
           href="/dashboard/table"
