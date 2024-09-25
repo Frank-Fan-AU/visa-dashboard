@@ -1,6 +1,7 @@
 import createMDX from '@next/mdx'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    reactStrictMode: true,
     async headers() {
         return [
             {
@@ -30,6 +31,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'assets.aceternity.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'zejie-img-storage.s3.amazonaws.com'
             }
         ]
     }
