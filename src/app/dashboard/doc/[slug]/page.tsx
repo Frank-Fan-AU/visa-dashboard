@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote/rsc'; // 使用next-mdx-remote来处理mdx文件
 import ImageGallery from '@/components/doc/imageGallery';
+import Image from 'next/image';
 
 
 interface DocPageProps {
@@ -12,6 +13,7 @@ interface DocPageProps {
 
 const components = {
   ImageGallery, // 注册组件
+  Image
 };
 
 const DocDetailPage = ({ params: { slug } }: DocPageProps) => {

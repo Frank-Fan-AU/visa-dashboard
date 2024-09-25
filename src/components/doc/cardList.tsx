@@ -15,20 +15,14 @@ const CardList = () => {
         window.open(`/dashboard/doc/${item.slug}`, "_self");
       }}
       hoverable
-      style={{ width: 260 }}
-      cover={
-        <Image
-          alt="example"
-          src="/xiaqian.jpeg"
-          width={260}
-          height={300}
-        />
-      }>
+      style={{ width: 400 }}
+     
+      >
       <Meta
         avatar={
-          <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />
+          <Avatar src={item.avatar ? item.avatar : "https://api.dicebear.com/7.x/miniavs/svg?seed=8" } />
         }
-        title={item.title}
+        title={<div className="whitespace-normal">{item.title}</div>}
         description={item.description}
         className=" items-center"
       />
