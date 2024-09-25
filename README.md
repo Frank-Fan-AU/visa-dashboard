@@ -44,3 +44,5 @@ mdx:
 npm install @next/mdx @mdx-js/loader @mdx-js/react @types/mdx
 npm install -D @tailwindcss/typography
 ```
+
+图片从s3获取s3://zejie-img-storage/visadashboard/
