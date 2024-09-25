@@ -36,6 +36,13 @@ const docList:docListType[] = [
         avatar:'',
         slug:'1221form',
     },
+    {
+        img:'',
+        title:'澳洲500签证提前体检申请步骤',
+        description:'带家属版',
+        avatar:'',
+        slug:'physicalExamination',
+    },
     
 ] 
 
