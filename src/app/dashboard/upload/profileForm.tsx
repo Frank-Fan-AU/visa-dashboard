@@ -106,11 +106,9 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-row ml-8">
-          <div className="min-w-96 border-r-2 border-gray-300">
+          className="flex flex-col lg:flex-row lg:ml-8">
+          <div className="lg:min-w-96 lg:border-r-2 lg:border-gray-300">
             <div className="text-2xl font-bold mb-4">General</div>
-
-
                 <FormField
                   control={form.control}
                   name="submitTime"
@@ -242,7 +240,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                             <Button
                               variant={"outline"}
                               className={cn(
-                                "w-[240px] pl-3 text-left font-normal",
+                                "lg:w-[240px] w-[200px] pl-3 text-left font-normal",
                                 !field.value && "text-muted-foreground"
                               )}>
                               {field.value ? (
@@ -284,7 +282,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                     <FormItem className="mt-4">
                       <FormLabel>哪位好心的签证官</FormLabel>
                       <FormControl>
-                        <Input className="w-60" placeholder="" {...field} />
+                        <Input className="lg:w-[240px] w-[200px]" placeholder="" {...field} />
                       </FormControl>
                       <FormDescription>
                         机审秒签的同学这一栏直接跳过即可
@@ -326,7 +324,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
             />
           </div>
 
-          <div className="w-1/2 ml-8">
+          <div className="min-w-full lg:w-1/2 lg:ml-8">
             <div className="text-2xl font-bold mb-4">Details</div>
             <FormField
               control={form.control}
@@ -335,7 +333,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                 <FormItem>
                   <FormLabel>主申专业</FormLabel>
                   <FormControl>
-                    <Input className="w-1/2" placeholder="" {...field} />
+                    <Input className="lg:w-1/2" placeholder="" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -348,7 +346,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                 <FormItem className="mt-4">
                   <FormLabel>学校:</FormLabel>
                   <FormControl>
-                    <Input className="w-1/2" placeholder="" {...field} />
+                    <Input className="lg:w-1/2" placeholder="" {...field} />
                   </FormControl>
                   <FormDescription>可以模糊填写</FormDescription>
                   <FormMessage />
@@ -365,7 +363,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                     <RadioGroup
                       onValueChange={field.onChange}
                       value={field.value}
-                      className="flex flex-row space-x-3">
+                      className="flex flex-row space-x-3 w-full">
                       <FormItem className="flex items-center space-x-1 space-y-0">
                         <FormControl>
                           <RadioGroupItem value="本科" />
