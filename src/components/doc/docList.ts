@@ -8,20 +8,20 @@ type docListType = {
 
 const docList:docListType[] = [
     
-    {
-        img:'/emoji1.png',
-        title:'澳洲500学签博士带陪读学签材料清单',
-        description:'主申材料清单',
-        avatar:'',
-        slug:'mainlist',
-    },
-    {
-        img:'',
-        title:'澳洲500学签博士带陪读陪读材料清单',
-        description:'副申材料清单',
-        avatar:'',
-        slug:'sublist',
-    },
+    // {
+    //     img:'/emoji1.png',
+    //     title:'澳洲500学签博士带陪读学签材料清单',
+    //     description:'主申材料清单',
+    //     avatar:'',
+    //     slug:'mainlist',
+    // },
+    // {
+    //     img:'',
+    //     title:'澳洲500学签博士带陪读陪读材料清单',
+    //     description:'副申材料清单',
+    //     avatar:'',
+    //     slug:'sublist',
+    // },
     {
         img:'',
         title:'80表格',
