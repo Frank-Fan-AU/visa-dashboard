@@ -55,7 +55,7 @@ export default function RightPart() {
                 递签统计表
               </h2>
               <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
-                从各个微信群、小红书统计下来的递签统计表，可以帮助您了解各专业、陪读/单独、境内/境外的批签进度
+              这里是我们从各个下签贴、等签群中搜集来的递签信息，希望给大家一些参考！
               </p>
             </div>
             <Image
