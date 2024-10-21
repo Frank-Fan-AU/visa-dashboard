@@ -9,7 +9,7 @@ export default function RightPart() {
   const [messageApi, contextHolder] = message.useMessage(); // 使用 message 组件
   const handleClick = () => {
     messageApi.info(
-      "处于设计阶段，暂未开发完成，敬请期待。签证记录表已开发完成，可以点击查看。"
+      "处于设计阶段，暂未开发完成，敬请期待。递签统计表已开发完成，可以点击查看。"
     );
   };
   return (
@@ -52,10 +52,10 @@ export default function RightPart() {
           <WobbleCard containerClassName="bg-blue-900 h-full" key={"3"}>
             <div className="max-w-sm">
               <h2 className="max-w-sm md:max-w-lg  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                签证记录表
+                递签统计表
               </h2>
               <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
-                从各个微信群、小红书统计下来的签证记录表，可以帮助您了解各专业、陪读/单独、境内/境外的批签进度
+                从各个微信群、小红书统计下来的递签统计表，可以帮助您了解各专业、陪读/单独、境内/境外的批签进度
               </p>
             </div>
             <Image
