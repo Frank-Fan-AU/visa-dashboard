@@ -64,6 +64,10 @@ export const getColumns = (handleDelete: (id: string) => void): ColumnDef<Record
     header: "签证官",
   },
   {
+    accessorKey: "educationLevel",
+    header: "本硕博",
+  },
+  {
     accessorKey: "major",
     header: "专业",
   },

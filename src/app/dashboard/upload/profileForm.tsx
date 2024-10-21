@@ -32,8 +32,7 @@ import { message } from "antd";
 import React from "react";
 
 const defaultValues = {
-  ifSubmit: "",
-  submitTime: "",
+  submitTime: undefined,
   submitPlace: "",
   ifGetVisa: "",
   getVisaTime: "",
@@ -110,37 +109,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
           className="flex flex-row ml-8">
           <div className="min-w-96 border-r-2 border-gray-300">
             <div className="text-2xl font-bold mb-4">General</div>
-            <FormField
-              control={form.control}
-              name="ifSubmit"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>是否已提交签证？</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      value={field.value}
-                      className="flex flex-row space-x-3">
-                      <FormItem className="flex items-center space-x-1 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="true" />
-                        </FormControl>
-                        <FormLabel className="font-normal">是</FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-1 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="false" />
-                        </FormControl>
-                        <FormLabel className="font-normal">否</FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            {ifSubmit === "true" && (
-              <>
+
+
                 <FormField
                   control={form.control}
                   name="submitTime"
@@ -199,20 +169,28 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                           onValueChange={field.onChange}
                           value={field.value}
                           className="flex flex-row space-x-3">
-                          <FormItem className="flex items-center space-x-1 space-y-0">
+                         <FormItem className="flex items-center space-x-1 space-y-0">
                             <FormControl>
-                              <RadioGroupItem value="境内递交" />
+                              <RadioGroupItem value="国内递交" />
                             </FormControl>
                             <FormLabel className="font-normal">
-                              境内递交
+                              国内递交
                             </FormLabel>
                           </FormItem>
                           <FormItem className="flex items-center space-x-1 space-y-0">
                             <FormControl>
-                              <RadioGroupItem value="境外递交" />
+                              <RadioGroupItem value="海外递交" />
                             </FormControl>
                             <FormLabel className="font-normal">
-                              境外递交
+                              海外递交
+                            </FormLabel>
+                          </FormItem>
+                          <FormItem className="flex items-center space-x-1 space-y-0">
+                            <FormControl>
+                              <RadioGroupItem value="澳洲境内递交" />
+                            </FormControl>
+                            <FormLabel className="font-normal">
+                              澳洲境内递交
                             </FormLabel>
                           </FormItem>
                         </RadioGroup>
@@ -221,8 +199,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                     </FormItem>
                   )}
                 />
-              </>
-            )}
             <FormField
               control={form.control}
               name="ifGetVisa"
