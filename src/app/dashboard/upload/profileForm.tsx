@@ -32,6 +32,7 @@ import { message } from "antd";
 import React from "react";
 
 const defaultValues = {
+  ifSubmit:"",
   submitTime: undefined,
   submitPlace: "",
   ifGetVisa: "",

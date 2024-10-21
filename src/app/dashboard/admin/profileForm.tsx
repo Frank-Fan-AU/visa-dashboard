@@ -36,7 +36,8 @@ export function ProfileForm() {
   const form = useForm<z.infer<typeof newFormSchema>>({
     resolver: zodResolver(newFormSchema),
     defaultValues: {
-      submitTime: undefined,
+      ifSubmit:"",
+      submitTime: "",
       submitPlace: "",
       ifGetVisa: "",
       getVisaTime: "",
@@ -57,7 +58,7 @@ export function ProfileForm() {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof newFormSchema>) {
     // Do something with the form values.
-
+    console.log('1111111')
     // ✅ This will be type-safe and validated.
     const response = await fetch("/api/admin", {
       method: "POST",
