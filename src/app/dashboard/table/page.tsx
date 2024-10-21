@@ -44,7 +44,7 @@ export default  function TablePage() {
   };
 
   return (
-    <div className="p-2 ">
+    <div className="p-2">
       {/* <DataTable columns={columns} data={fakeRecords} /> */}
       <DataTable columns={getColumns(handleDelete)} data={data} />
     </div>

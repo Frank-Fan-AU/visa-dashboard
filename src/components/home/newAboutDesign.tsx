@@ -33,7 +33,7 @@ const NewAboutDesign = () => {
     </div>
     
       
-      <div className="pl-20 pr-4 mx-auto ">
+      <div className=" mx-auto ">
         <HoverEffect items={projects} />
       </div>
     </>

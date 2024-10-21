@@ -21,13 +21,13 @@ export function MySidebarDemo({
   const { isSignedIn, user } = useUser();
   const isAdmin = user?.organizationMemberships[0]?.role === "org:admin";
   const links = [
-    {
-      label: "Home",
-      href: "/dashboard",
-      icon: (
-        <House className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
+    // {
+    //   label: "Home",
+    //   href: "/dashboard",
+    //   icon: (
+    //     <House className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+    //   ),
+    // },
     {
       label: "递签统计表",
       href: "/dashboard/table",
@@ -114,7 +114,7 @@ export function MySidebarDemo({
       </Sidebar>
       {/* <Dashboard /> */}
       <div className="flex flex-1 overflow-auto">
-        <div className="overflow-auto flex flex-col  w-full h-full px-20 dark:border-neutral-700 bg-white dark:bg-neutral-900">
+        <div className="overflow-auto flex flex-col  w-full h-full px-2 dark:border-neutral-700 bg-white dark:bg-neutral-900">
           {children}
         </div>
       </div>

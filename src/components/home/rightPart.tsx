@@ -18,7 +18,7 @@ export default function RightPart() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full pt-8">
         <div
           onClick={handleClick}
-          className="col-span-1 lg:col-span-2 h-full  min-h-[500px] lg:min-h-[300px]">
+          className="col-span-1 lg:col-span-2 h-full  min-h-[300px]">
           <WobbleCard
             containerClassName="bg-pink-800 h-full"
             className=""
@@ -63,7 +63,7 @@ export default function RightPart() {
               width={400}
               height={400}
               alt="linear demo image"
-              className="absolute -right-10 md:-right-[40%] lg:-right-[20%] -bottom-4 object-contain rounded-2xl"
+              className="absolute -right-[40%] md:-right-[40%] lg:-right-[20%] -bottom-[30%] object-contain rounded-2xl"
             />
           </WobbleCard>
         </Link>
