@@ -432,7 +432,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                   <FormLabel>其他信息</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="如: 补材料/defer/小黄旗/催签"
+                      placeholder="如: 补材料/defer/小黄旗/催签/COE开学日期"
                       className="resize-none h-[240px] w-full  pr-8"
                       {...field}
                     />
