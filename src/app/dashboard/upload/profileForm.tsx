@@ -298,7 +298,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
               name="ifIncludedCouple"
               render={({ field }) => (
                 <FormItem className="mt-4">
-                  <FormLabel>是否含陪读？</FormLabel>
+                  <FormLabel>是否陪读？</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
@@ -306,15 +306,21 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                       className="flex flex-row space-x-3">
                       <FormItem className="flex items-center space-x-1 space-y-0">
                         <FormControl>
-                          <RadioGroupItem value="true" />
+                          <RadioGroupItem value="单独学签" />
                         </FormControl>
-                        <FormLabel className="font-normal">是</FormLabel>
+                        <FormLabel className="font-normal">单独学签</FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center space-x-1 space-y-0">
                         <FormControl>
-                          <RadioGroupItem value="false" />
+                          <RadioGroupItem value="含陪读一起递" />
                         </FormControl>
-                        <FormLabel className="font-normal">否</FormLabel>
+                        <FormLabel className="font-normal">含陪读一起递</FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="陪读单独递" />
+                        </FormControl>
+                        <FormLabel className="font-normal">陪读单独递</FormLabel>
                       </FormItem>
                     </RadioGroup>
                   </FormControl>
