@@ -16,8 +16,8 @@ export default function RightPart() {
     <>
       {contextHolder}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full pt-8">
-        <div
-          onClick={handleClick}
+        <Link href="/dashboard/doc"
+          
           className="col-span-1 lg:col-span-2 h-full  min-h-[300px]">
           <WobbleCard
             containerClassName="bg-pink-800 h-full"
@@ -25,25 +25,25 @@ export default function RightPart() {
             key={"1"}>
             <div className="max-w-xs">
               <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                留言板
+              递签攻略
               </h2>
               <p className="mt-4 text-left  text-base/6 text-neutral-200">
-              该板块上线后，欢迎大家给我们留言，无论是等签过程中的吐槽，还是下签之后的心得，又或者是对我们网站的改进建议，都欢迎写下来与我们分享！（未做）
+              分享与递签相关的材料准备清单、表格填写、文书模板、体检预约流程以及递签系统的填写步骤等，希望给还未递签的朋友一些参考！
               </p>
             </div>
           </WobbleCard>
-        </div>
-        <Link href="/dashboard/doc"
+        </Link>
+        <div onClick={handleClick}
         className="col-span-1 min-h-[300px]">
            <WobbleCard containerClassName="h-full" key={"2"}>
             <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-              递签攻略
+              留言板
             </h2>
             <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
-            分享与递签相关的材料准备清单、表格填写、文书模板、体检预约流程以及递签系统的填写步骤等，希望给还未递签的朋友一些参考！
+            该板块上线后，欢迎大家给我们留言，无论是等签过程中的吐槽，还是下签之后的心得，又或者是对我们网站的改进建议，都欢迎写下来与我们分享！（未做）
             </p>
           </WobbleCard>
-        </Link>
+        </div>
 
 
         <Link
