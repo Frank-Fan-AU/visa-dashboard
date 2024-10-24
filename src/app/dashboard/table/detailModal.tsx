@@ -20,11 +20,16 @@ export const DetailModal = ({ data, onClose }:DetailModalProps) => {
     },
     {
       key: '2',
-      label: '是否DIY',
-      children: data.ifDIY == "" ? "未填写": data.ifDIY,
+      label: '专业',
+      children: data.major == "" ?  "未填写": data.major,
     },
     {
       key: '3',
+      label: '是否DIY',
+      children: data.ifDIY == "" ? "未填写": data.ifDIY == 'true' ? "DIY" : "找的中介",
+    },
+    {
+      key: '4',
       label: '其他信息',
       children: data.otherInfo == "" ? "未填写": data.otherInfo,
     },

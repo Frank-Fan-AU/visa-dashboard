@@ -70,6 +70,17 @@ export const getColumns = (handleDelete: (id: string) => void): ColumnDef<Record
   {
     accessorKey: "major",
     header: "专业",
+    cell:(props) => {
+  
+      if(props.row.original.major.length >= 10){
+        const str = props.row.original.major.substring(0,15)
+
+        return str+'...'
+      }else{
+        return props.row.original.major
+      }
+      
+    }
   },
   {
     accessorKey: "submitPlace",
