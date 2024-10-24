@@ -47,7 +47,9 @@
 
 数据库中间件:mongoosejs
 
-数据库：MongoDB（初定）
+数据库：MongoDB Altas
+
+等数据量起来了考虑用java代替，同时现在看来如果用MongoDB的免费额度用完了还需要迁移到主机
 
 代码仓库：github
 
