@@ -20,7 +20,6 @@ const UploadPage = () => {
           />
         </div>
       </div>
-      <p className="mt-10 ml-4 text-sm text-gray-500">以上问题均不是必填项，您可以根据个人情况自愿分享，感谢您的支持</p>
 
     </>
   );
