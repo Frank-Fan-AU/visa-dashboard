@@ -97,6 +97,7 @@ export const getColumns = (handleDelete: (id: string) => void): ColumnDef<Record
       const isAdmin = user?.organizationMemberships[0]?.role === "org:admin";
       const showModal = () => {
         setSelectedData(row.original);
+        console.log('selectData',selectedData)
         setIsModalVisible(true);
       };
 
