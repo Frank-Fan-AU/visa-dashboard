@@ -182,6 +182,90 @@ export function ProfileForm() {
                     </FormItem>
                   )}
                 />
+            
+            <FormField
+              control={form.control}
+              name="ifIncludedCouple"
+              render={({ field }) => (
+                <FormItem className="mt-4">
+                  <FormLabel>是否陪读？</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      className="flex flex-row space-x-3">
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="单独学签" />
+                        </FormControl>
+                        <FormLabel className="font-normal">单独学签</FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="含陪读一起递" />
+                        </FormControl>
+                        <FormLabel className="font-normal">含陪读一起递</FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="陪读单独递" />
+                        </FormControl>
+                        <FormLabel className="font-normal">陪读单独递</FormLabel>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="major"
+              render={({ field }) => (
+                <FormItem className="mt-4">
+                  <FormLabel>主申专业</FormLabel>
+                  <FormControl>
+                    <Input className="w-1/2" placeholder="" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          <FormField
+              control={form.control}
+              name="educationLevel"
+              render={({ field }) => (
+                <FormItem className="mt-4">
+                  <FormLabel>本/硕/博</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      className="flex flex-row space-x-3">
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="本科" />
+                        </FormControl>
+                        <FormLabel className="font-normal">本科</FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="硕士" />
+                        </FormControl>
+                        <FormLabel className="font-normal">硕士</FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="博士" />
+                        </FormControl>
+                        <FormLabel className="font-normal">博士</FormLabel>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="ifGetVisa"
@@ -278,58 +362,11 @@ export function ProfileForm() {
                 />
               </>
             )}
-            <FormField
-              control={form.control}
-              name="ifIncludedCouple"
-              render={({ field }) => (
-                <FormItem className="mt-4">
-                  <FormLabel>是否陪读？</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      value={field.value}
-                      className="flex flex-row space-x-3">
-                      <FormItem className="flex items-center space-x-1 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="单独学签" />
-                        </FormControl>
-                        <FormLabel className="font-normal">单独学签</FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-1 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="含陪读一起递" />
-                        </FormControl>
-                        <FormLabel className="font-normal">含陪读一起递</FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-1 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="陪读单独递" />
-                        </FormControl>
-                        <FormLabel className="font-normal">陪读单独递</FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </div>
 
           <div className="w-1/2  ml-8 ">
             <div className="text-2xl font-bold mb-4">Details</div>
-            <FormField
-              control={form.control}
-              name="major"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>主申专业</FormLabel>
-                  <FormControl>
-                    <Input className="w-1/2" placeholder="" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            
             <FormField
               control={form.control}
               name="schoolType"
@@ -344,41 +381,7 @@ export function ProfileForm() {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="educationLevel"
-              render={({ field }) => (
-                <FormItem className="mt-4">
-                  <FormLabel>本/硕/博</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      value={field.value}
-                      className="flex flex-row space-x-3">
-                      <FormItem className="flex items-center space-x-1 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="本科" />
-                        </FormControl>
-                        <FormLabel className="font-normal">本科</FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-1 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="硕士" />
-                        </FormControl>
-                        <FormLabel className="font-normal">硕士</FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-1 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="博士" />
-                        </FormControl>
-                        <FormLabel className="font-normal">博士</FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            
 
             <FormField
               control={form.control}
