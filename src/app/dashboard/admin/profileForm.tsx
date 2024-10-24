@@ -25,7 +25,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { newFormSchema } from "@/lib/schema";
+import { formSchema } from "@/lib/schema";
 import { z } from "zod";
 
 import { message } from "antd";
@@ -33,20 +33,20 @@ import { message } from "antd";
 export function ProfileForm() {
   const [messageApi, contextHolder] = message.useMessage();
   // 1. Define your form.
-  const form = useForm<z.infer<typeof newFormSchema>>({
-    resolver: zodResolver(newFormSchema),
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       ifSubmit:"",
       submitTime: "",
-      submitPlace: "",
-      ifGetVisa: "",
+      submitPlace: "国内递交",
+      ifGetVisa: "false",
       getVisaTime: "",
       visaOfficer: "",
-      ifIncludedCouple: "",
+      ifIncludedCouple: "单独学签",
       ifTogether: "",
       major: "",
       majorType: "",
-      educationLevel: "",
+      educationLevel: "本科",
       schoolType: "",
       ifDIY: "",
       isUser: "",
@@ -56,7 +56,7 @@ export function ProfileForm() {
   });
 
   // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof newFormSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     const response = await fetch("/api/admin", {
@@ -192,6 +192,7 @@ export function ProfileForm() {
                     <RadioGroup
                       onValueChange={field.onChange}
                       value={field.value}
+                      required
                       className="flex flex-row space-x-3">
                       <FormItem className="flex items-center space-x-1 space-y-0">
                         <FormControl>
@@ -420,7 +421,7 @@ export function ProfileForm() {
                   <FormControl>
                     <Textarea
                       placeholder="如: 补材料/defer/小黄旗/催签/COE开学日期"
-                      className="resize-none h-[240px] w-full  pr-8"
+                      className="resize-none h-[240px] w-full lg:w-1/2   pr-8"
                       {...field}
                     />
                   </FormControl>

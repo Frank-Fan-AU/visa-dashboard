@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Record } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
-import { newFormSchema } from "@/lib/schema";
+import { formSchema } from "@/lib/schema";
 
 export const GET = async () => {
   try {
@@ -19,7 +19,7 @@ export const POST = async (request: Request) => {
   try {
     await connectToDb();
     const body: unknown = await request.json();
-    const params = newFormSchema.safeParse(body);
+    const params = formSchema.safeParse(body);
     if (!params.success) {
       throw new Error(params.error.issues[0].message);
     }

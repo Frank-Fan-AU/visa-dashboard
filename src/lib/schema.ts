@@ -1,5 +1,5 @@
 import { z } from "zod";
-export const newFormSchema = z.object({
+export const formSchema = z.object({
   ifSubmit:z.string({
     required_error: "ifSubmit is required",
   }),
@@ -16,7 +16,7 @@ export const newFormSchema = z.object({
   ifTogether:z.string({
     required_error: "ifIncludedCouple is required",
   }),
-  major:z.string().optional(),
+  major:z.string().min(1,{ message:"必填，模糊填写也可"}),
   majorType:z.string({
     required_error: "ifIncludedCouple is required",
   }),
