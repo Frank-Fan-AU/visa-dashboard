@@ -50,22 +50,33 @@ const defaultValues = {
   otherInfo: "",
 };
 type ProfileFormProps = {
-  userId: string | null;
+  userId: string | null | undefined;
 };
 export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
   const [messageApi, contextHolder] = message.useMessage();
-
-  useEffect(() => {
-    if (userId) {
-      const queryParams = new URLSearchParams({ userId });
-      fetch(`/api/visaTable?${queryParams}`);
-    }
-  }, [userId]);
+  
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues,
   });
+
+  const {reset} = form
+
+  useEffect(() => {
+    const fetchData = async ()=>{
+      if (userId) {  
+        let res  = await fetch(`/api/upload/${userId}`);
+        console.log('res',res)
+          let json =await res.json()
+          console.log('json',json)
+          if(json.exists){
+            reset(json.data)
+          }
+       }
+    }
+    fetchData()
+  }, [userId]);
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -94,7 +105,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
         content: "Upload Access",
       });
     }
-    form.reset();
   }
 
   //Define a watch
