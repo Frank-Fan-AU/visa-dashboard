@@ -256,6 +256,12 @@ export function ProfileForm() {
                       </FormItem>
                       <FormItem className="flex items-center space-x-1 space-y-0">
                         <FormControl>
+                          <RadioGroupItem value="MPhil" />
+                        </FormControl>
+                        <FormLabel className="font-normal">MPhil</FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
                           <RadioGroupItem value="博士" />
                         </FormControl>
                         <FormLabel className="font-normal">博士</FormLabel>
