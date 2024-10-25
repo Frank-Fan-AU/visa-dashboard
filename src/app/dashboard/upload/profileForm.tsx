@@ -119,7 +119,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col lg:flex-row lg:ml-8">
           <div className="lg:min-w-96 lg:border-r-2 lg:border-gray-300">
-            <div className="text-2xl font-bold mb-4">General</div>
+            <div className="text-2xl font-bold mb-4">General *</div>
             <FormField
               control={form.control}
               name="submitTime"
