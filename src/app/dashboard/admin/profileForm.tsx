@@ -92,7 +92,7 @@ export function ProfileForm() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col lg:flex-row lg:ml-8">
           <div className="lg:min-w-96 lg:border-r-2 lg:border-gray-300 ">
-            <div className="text-2xl font-bold mb-4">General</div>
+            <div className="text-2xl font-bold mb-4">General*</div>
                 <FormField
                   control={form.control}
                   name="submitTime"
@@ -253,6 +253,12 @@ export function ProfileForm() {
                           <RadioGroupItem value="硕士" />
                         </FormControl>
                         <FormLabel className="font-normal">硕士</FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="MPhil" />
+                        </FormControl>
+                        <FormLabel className="font-normal">MPhil</FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center space-x-1 space-y-0">
                         <FormControl>

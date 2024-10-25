@@ -50,22 +50,33 @@ const defaultValues = {
   otherInfo: "",
 };
 type ProfileFormProps = {
-  userId: string | null;
+  userId: string | null | undefined;
 };
 export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
   const [messageApi, contextHolder] = message.useMessage();
-
-  useEffect(() => {
-    if (userId) {
-      const queryParams = new URLSearchParams({ userId });
-      fetch(`/api/visaTable?${queryParams}`);
-    }
-  }, [userId]);
+  
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: defaultValues,
   });
+
+  const {reset} = form
+
+  useEffect(() => {
+    const fetchData = async ()=>{
+      if (userId) {  
+        let res  = await fetch(`/api/upload/${userId}`);
+        console.log('res',res)
+          let json =await res.json()
+          console.log('json',json)
+          if(json.exists){
+            reset(json.data)
+          }
+       }
+    }
+    fetchData()
+  }, [userId]);
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -94,7 +105,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
         content: "Upload Access",
       });
     }
-    form.reset();
   }
 
   //Define a watch
@@ -109,7 +119,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col lg:flex-row lg:ml-8">
           <div className="lg:min-w-96 lg:border-r-2 lg:border-gray-300">
-            <div className="text-2xl font-bold mb-4">General</div>
+            <div className="text-2xl font-bold mb-4">General *</div>
             <FormField
               control={form.control}
               name="submitTime"
@@ -268,6 +278,12 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
                           <RadioGroupItem value="硕士" />
                         </FormControl>
                         <FormLabel className="font-normal">硕士</FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="MPhil" />
+                        </FormControl>
+                        <FormLabel className="font-normal">MPhil</FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center space-x-1 space-y-0">
                         <FormControl>

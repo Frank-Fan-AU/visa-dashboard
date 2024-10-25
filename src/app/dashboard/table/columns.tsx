@@ -93,8 +93,12 @@ export const getColumns = (handleDelete: (id: string) => void): ColumnDef<Record
       const value = getValue();
       if (value === "true") {
         return "含陪读";
-      } else {
+      } else if (value === "false") {
         return "单独";
+      }else if(value === ""){
+        return "--"
+      }else{
+        return value
       }
     },
   },

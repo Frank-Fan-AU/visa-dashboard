@@ -1,9 +1,13 @@
+'use client'
+import { useAuth } from '@clerk/nextjs'
 import { ProfileForm } from "./profileForm";
 import Image from "next/image";
-import { auth } from "@clerk/nextjs/server";
 const UploadPage = () => {
-  const { userId }: { userId: string | null } = auth();
-  console.log("userOId", userId);
+  const { isLoaded, userId, sessionId, getToken } = useAuth()
+  console.log('isLoaded',isLoaded)
+  console.log("userId", userId);
+  console.log("sessionId", sessionId);
+  console.log("getToken", getToken);
   return (
     <>
       <div className="flex lg:flex-row flex-col mt-8">

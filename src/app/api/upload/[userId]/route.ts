@@ -14,10 +14,11 @@ export async function GET(request: Request, { params }: { params: Params }) {
     const userId = params.userId;
 
     // 查询数据库中是否存在该 userId 的记录
-    const recordExists = await Record.exists({ userId });
+    //const recordExists = await Record.exists({ userId });
+    const record = await Record.findOne({ userId });
     // 返回结果，如果有记录返回 true，没有则返回 false
-    if (recordExists) {
-      return NextResponse.json({ exists: true });
+    if (record) {
+      return NextResponse.json({ exists: true, data: record });
     } else {
       return NextResponse.json({ exists: false });
     }
