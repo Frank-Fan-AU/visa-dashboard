@@ -1,15 +1,16 @@
 import { z } from "zod";
 export const formSchema = z.object({
+  _id:z.string().optional(),
   ifSubmit:z.string({
     required_error: "ifSubmit is required",
   }),
-  submitTime: z.string().optional(),
-  submitPlace:z.string().optional(),
+  submitTime: z.string(),
+  submitPlace:z.string(),
   ifGetVisa:z.string({
     required_error: "ifGetVisa is required",
   }),
-  getVisaTime: z.string().optional(),
-  visaOfficer: z.string().optional(),
+  getVisaTime: z.string(),
+  visaOfficer: z.string(),
   ifIncludedCouple:z.string({
     required_error: "ifSubmit is required",
   }),

@@ -1,6 +1,6 @@
 
 import { Modal } from 'antd'; // 使用 Ant Design 的 Modal 组件
-import { Badge, Descriptions } from 'antd';
+import { Descriptions } from 'antd';
 import type { DescriptionsProps } from 'antd';
 
 
