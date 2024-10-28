@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Record, getColumns } from "./columns";
 import { DataTable } from "./data-table";
-import { generateFakeRecords } from "@/lib/fakeData";
+
 async function getData(): Promise<Record[]> {
   // Fetch data from your API here.
   let res = await fetch("/api/visaTable", {

@@ -3,12 +3,42 @@ import { Record } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { formSchema } from "@/lib/schema";
 
-export const GET = async () => {
-  try {
-    connectToDb();
-    const records = await Record.find();
+// export const GET = async () => {
+//   try {
+//     connectToDb();
+//     const records = await Record.find();
 
-    return NextResponse.json(records);
+//     return NextResponse.json(records);
+//   } catch (error) {
+//     throw new Error((error as Error).message);
+//   }
+// };
+
+export const GET = async (req: Request) => {
+  try {
+    await connectToDb();
+
+    const url = new URL(req.url);
+    const page = parseInt(url.searchParams.get("page") || "1", 10);
+    const limit = parseInt(url.searchParams.get("limit") || "10", 10);
+    const sortBy = url.searchParams.get("sortBy") || "submitTime";
+    const sortOrder = url.searchParams.get("sortOrder") === "desc" ? -1 : 1;
+
+    // 分页与排序
+    const records = await Record.find()
+      .sort({ [sortBy]: sortOrder })
+      .skip((page - 1) * limit)
+      .limit(limit);
+
+    // 获取总条目数
+    const totalRecords = await Record.countDocuments();
+
+    return NextResponse.json({
+      data: records,
+      page,
+      totalPages: Math.ceil(totalRecords / limit),
+      totalRecords,
+    });
   } catch (error) {
     throw new Error((error as Error).message);
   }
