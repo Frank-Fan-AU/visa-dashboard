@@ -1,10 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-
+import { ColumnDef } from "@tanstack/react-table";
+import { useState } from "react";
+import { DetailModal } from "./detailModal";
 import { useUser } from "@clerk/nextjs";
-import { Record } from "@/type/Record";
-import { ColumnsType } from "antd/es/table";
+import EditModal from "./editModal";
 // 计算日期差的函数
 const calculateDaysBetween = (start: string, end: string) => {
   if (!start || !end) return "未计算"; // 如果没有日期，返回提示信息
@@ -17,11 +18,32 @@ const calculateDaysBetween = (start: string, end: string) => {
   return diffDays >= 0 ? `${diffDays} 天` : "未下签";
 };
 
+// This type is used to define the shape of our data.
+// You can use a Zod schema here if you want.
+export type Record = {
+  _id?: string;
+  submitTime: string;
+  getVisaTime: string;
+  visaOfficer: string;
+  ifIncludedCouple: string;
+  ifTogether: string;
+  major: string;
+  majorType: string;
+  educationLevel: string;
+  schoolType: string;
+  submitPlace: string;
+};
+
+// 定义 ColumnActions 类型
+type ColumnActions = {
+  handleDelete: (id: string) => void;
+  handleEdit: (formData: Record) => void;
+};
 
 
 
-export const getColumns = (handleEdit: (row: Record) => void, handleDelete: (id: string) => void, handleDetail: (row: Record) => void): ColumnsType<Record, any>[] => {
-
+export const getColumns = (actions: ColumnActions): ColumnDef<Record>[] => {
+  const { handleDelete,handleEdit } = actions;
   return [
     {
       accessorKey: "submitTime",
@@ -93,33 +115,55 @@ export const getColumns = (handleEdit: (row: Record) => void, handleDelete: (id:
       id: "details",
       header: "详情",
       cell: ({ row }) => {
-       
+        const [isModalVisible, setIsModalVisible] = useState(false);
+        const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+        const [selectedData, setSelectedData] = useState<any>(null);
         const { user } = useUser();
         const isAdmin = user?.organizationMemberships[0]?.role === "org:admin";
+        const showModal = () => {
+          setSelectedData(row.original);
+          setIsModalVisible(true);
+        };
+  
+        const handleClose = () => {
+          setIsModalVisible(false);
+        };
+        const showEditModal = () => {
+          setSelectedData(row.original);
+          setIsEditModalVisible(true)
+        }
+        const handleCloseEditModal = () =>{
+          setIsEditModalVisible(false)
+        }
         
         return (
           <>
             <Button
               variant="default"
-              onClick={() => handleDetail(row.original)}
+              onClick={showModal}
               className="h-6 w-16 mr-2">
               查看详情
             </Button>
-
+            {isModalVisible && (
+              <DetailModal data={selectedData} onClose={handleClose} />
+            )}
             {isAdmin && (
               <>
               <Button
                 variant="default"
-                onClick={() => handleEdit(row.original)}
+                onClick={showEditModal}
                 className="h-6 w-10 mr-2">
                 编辑
               </Button>
+              {isEditModalVisible && (
+                <EditModal data={selectedData} onClose={handleCloseEditModal} onOk={handleEdit}  />
+              )}
               </>
             )}
             {isAdmin && (
               <Button
                 variant="destructive"
-                onClick={() => handleDelete(row.original._id!)}
+                onClick={() => handleDelete(row.original._id ? row.original._id : '')}
                 className="h-6 w-10">
                 删除
               </Button>
@@ -128,6 +172,14 @@ export const getColumns = (handleEdit: (row: Record) => void, handleDelete: (id:
         );
       },
     },
+    // {
+    //   accessorKey: "majorType",
+    //   header: "三宝/其他",
+    // },
+    // {
+    //   accessorKey: "educationLevel",
+    //   header: "本/硕/博",
+    // },
   ];
 }
   

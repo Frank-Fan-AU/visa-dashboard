@@ -17,26 +17,30 @@ import { formSchema } from "@/lib/schema";
 export const GET = async (req: Request) => {
   try {
     await connectToDb();
-
     const url = new URL(req.url);
-    const page = parseInt(url.searchParams.get("page") || "1", 10);
-    const limit = parseInt(url.searchParams.get("limit") || "10", 10);
-    const sortBy = url.searchParams.get("sortBy") || "submitTime";
-    const sortOrder = url.searchParams.get("sortOrder") === "desc" ? -1 : 1;
+    const params = new URLSearchParams(url.search);
+    const paginationCurrent = params.get('pagination[current]');
+    const paginationPageSize = params.get('pagination[pageSize]');
+    // 将值转换为整数，确保它们是数字
+    const current = parseInt(paginationCurrent || "1", 1); // 默认值为 1
+    const pageSize = parseInt(paginationPageSize || "10", 10); // 默认值为 10
+    console.log(params)
+    const sortField = url.searchParams.get("sortField") || "submitTime";
+    const sortOrder = url.searchParams.get("sortOrder") === "descend" ? -1 : 1;
 
     // 分页与排序
     const records = await Record.find()
-      .sort({ [sortBy]: sortOrder })
-      .skip((page - 1) * limit)
-      .limit(limit);
+      .sort({ [sortField]: sortOrder })
+      .skip((current - 1) * pageSize)
+      .limit(pageSize);
 
     // 获取总条目数
     const totalRecords = await Record.countDocuments();
 
     return NextResponse.json({
       data: records,
-      page,
-      totalPages: Math.ceil(totalRecords / limit),
+      current,
+      totalPages: Math.ceil(totalRecords / pageSize),
       totalRecords,
     });
   } catch (error) {
