@@ -11,5 +11,5 @@ export type Record = {
     schoolType: string;
     submitPlace: string;
     ifDIY:string;
-    otherInfo:string
+    otherInfo?:string
   };

@@ -9,6 +9,7 @@ import { Record } from "@/type/Record";
 import { fetchDataApi } from "@/api/visaTable";
 import qs from 'qs';
 import { DetailModal } from "./detailModal";
+import EditModal from "./editModal";
 
 type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
 
@@ -26,6 +27,7 @@ const TablePage = () => {
   const [loading, setLoading] = useState(false);
   const [selectedRecord, setSelectedRecord] = useState<Record | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
 
   const [tableParams, setTableParams] = useState<TableParams>({
@@ -37,7 +39,6 @@ const TablePage = () => {
 
   const fetchData = () => {
     setLoading(true);
-    console.log('tableparams',tableParams)
     const queryString = qs.stringify(tableParams, { encode: true, indices: false });
     fetch(`/api/visaTable?${queryString}`)
     .then((res) => res.json())
@@ -92,6 +93,37 @@ const TablePage = () => {
     setSelectedRecord(record);
     setIsDetailModalOpen(true);
   };
+
+  const handleEditBtnClick = (record: Record) =>{
+    setSelectedRecord(record);
+    console.log('record',record)
+    setIsEditModalOpen(true)
+  }
+
+  const handleCloseEditModal = ()=>{
+    setIsEditModalOpen(false)
+  }
+
+  const handleEdit = async (formData: Record) => {
+    try {
+      const response = await fetch('/api/admin', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`更新失败: ${response.statusText}`);
+      }
+      
+      fetchData();
+      setIsEditModalOpen(false)
+    } catch (error) {
+      console.error('更新失败:', error);
+    }
+  }
 
   const columns: TableColumnsType<Record> = [
 
@@ -161,7 +193,7 @@ const TablePage = () => {
       render: (_, record) => (
         <Space size="middle">
           <Button size="small" onClick={()=>{handleDetail(record)}}>详情</Button>
-          <Button size="small">编辑</Button>
+          <Button size="small" onClick={()=>{handleEditBtnClick(record)}}>编辑</Button>
           <Button size="small">删除</Button>
         </Space>
       ),
@@ -189,7 +221,6 @@ const TablePage = () => {
         showSizeChanger
         showTotal={(total) => `Total ${total} items`}
         onChange={(page, pageSize) => {
-          console.log('page',page)
           setTableParams({
             ...tableParams,
             pagination:{
@@ -202,6 +233,7 @@ const TablePage = () => {
 
 
       <DetailModal visible={isDetailModalOpen} record={selectedRecord} onClose={() => setIsDetailModalOpen(false)} />
+      <EditModal visible={isEditModalOpen} data={selectedRecord} onClose={handleCloseEditModal} onOk={handleEdit}  />
     </div>
   )
 };
