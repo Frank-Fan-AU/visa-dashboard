@@ -63,10 +63,8 @@ const EditModal = ({visible,data,onClose,onOk} : EditModalProps) => {
         },
       });
 
-      const {reset} = form
-
       useEffect(()=>{
-        reset(data)
+        form.reset(data)
       },[data])
     // 当输入变化时更新formData状态
 //   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
