@@ -1,39 +1,37 @@
 
-import { Record } from '@/type/Record';
 import { Modal } from 'antd'; // 使用 Ant Design 的 Modal 组件
 import { Descriptions } from 'antd';
 import type { DescriptionsProps } from 'antd';
 
 
 interface DetailModalProps {
-  visible:boolean;
-  record: Record | null;
+  data: any;
   onClose: () => void;
 }
 
 
-export const DetailModal = ({visible, record, onClose }:DetailModalProps) => {
+export const DetailModal = ({ data, onClose }:DetailModalProps) => {
 
   const items: DescriptionsProps['items'] = [
     {
       key: '1',
       label: '学校',
-      children: record?.schoolType == "" ?  "未填写": record?.schoolType,
+      children: data.schoolType == "" ?  "未填写": data.schoolType,
     },
     {
       key: '2',
       label: '专业',
-      children: record?.major == "" ?  "未填写": record?.major,
+      children: data.major == "" ?  "未填写": data.major,
     },
     {
       key: '3',
       label: '是否DIY',
-      children: record?.ifDIY == "" ? "未填写": record?.ifDIY == 'true' ? "DIY" : "找的中介",
+      children: data.ifDIY == "" ? "未填写": data.ifDIY == 'true' ? "DIY" : "找的中介",
     },
     {
       key: '4',
       label: '其他信息',
-      children: record?.otherInfo == "" ? "未填写": record?.otherInfo,
+      children: data.otherInfo == "" ? "未填写": data.otherInfo,
     },
    
   ];
@@ -41,7 +39,7 @@ export const DetailModal = ({visible, record, onClose }:DetailModalProps) => {
   return (
     <Modal
       title="详细信息"
-      open={visible}
+      open={true}
       onOk={onClose}
       onCancel={onClose}
       width={1000}

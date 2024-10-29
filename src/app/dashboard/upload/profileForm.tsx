@@ -119,13 +119,13 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col lg:flex-row lg:ml-8">
           <div className="lg:min-w-96 lg:border-r-2 lg:border-gray-300">
-            <div className="text-2xl font-bold mb-4">General *</div>
+            <div className="text-2xl font-bold mb-4">General</div>
             <FormField
               control={form.control}
               name="submitTime"
               render={({ field }) => (
                 <FormItem className="mt-4  flex flex-col">
-                  <FormLabel>递签日期</FormLabel>
+                  <FormLabel>递签日期*</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -172,7 +172,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
               name="submitPlace"
               render={({ field }) => (
                 <FormItem className="mt-4">
-                  <FormLabel>境内境外递交</FormLabel>
+                  <FormLabel>境内境外递交*</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
@@ -213,7 +213,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
               name="ifIncludedCouple"
               render={({ field }) => (
                 <FormItem className="mt-4">
-                  <FormLabel>是否陪读？</FormLabel>
+                  <FormLabel>是否陪读*</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
@@ -248,7 +248,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
               name="major"
               render={({ field }) => (
                 <FormItem className="mt-4">
-                  <FormLabel>主申专业</FormLabel>
+                  <FormLabel>主申专业*</FormLabel>
                   <FormControl>
                     <Input className="lg:w-1/2" placeholder="" {...field} />
                   </FormControl>
@@ -261,7 +261,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
               name="educationLevel"
               render={({ field }) => (
                 <FormItem className="mt-4">
-                  <FormLabel>本/硕/博</FormLabel>
+                  <FormLabel>本/硕/博*</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
@@ -302,7 +302,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
               name="ifGetVisa"
               render={({ field }) => (
                 <FormItem className="mt-4">
-                  <FormLabel>是否已获得签证？</FormLabel>
+                  <FormLabel>是否已获得签证*</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
@@ -404,7 +404,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
               name="schoolType"
               render={({ field }) => (
                 <FormItem className="mt-4">
-                  <FormLabel>学校:</FormLabel>
+                  <FormLabel>主申学校</FormLabel>
                   <FormControl>
                     <Input className="lg:w-1/2" placeholder="" {...field} />
                   </FormControl>

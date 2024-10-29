@@ -3,12 +3,36 @@ import { Record } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { formSchema } from "@/lib/schema";
 
-export const GET = async () => {
+export const GET = async (req: Request) => {
   try {
-    connectToDb();
-    const records = await Record.find();
+    await connectToDb();
+    const url = new URL(req.url);
+    const params = new URLSearchParams(url.search);
+    const paginationCurrent = params.get('pagination[current]');
+    const paginationPageSize = params.get('pagination[pageSize]');
+    // 将值转换为整数，确保它们是数字
+    const current = parseInt(paginationCurrent || "1", 10); // 默认值为 1
+    const pageSize = parseInt(paginationPageSize || "10", 10); // 默认值为 10
+    const sortField = url.searchParams.get("sortField") || "getVisaTime";
+    const sortOrder = url.searchParams.get("sortOrder") === "ascend" ? 1 : -1;
 
-    return NextResponse.json(records);
+    console.log('sortField',sortField)
+    console.log('sortOrder',sortOrder)
+    // 分页与排序
+    const records = await Record.find()
+      .sort({ [sortField]: sortOrder })
+      .skip((current - 1) * pageSize)
+      .limit(pageSize);
+
+    // 获取总条目数
+    const totalRecords = await Record.countDocuments();
+
+    return NextResponse.json({
+      data: records,
+      current,
+      totalPages: Math.ceil(totalRecords / pageSize),
+      totalRecords,
+    });
   } catch (error) {
     throw new Error((error as Error).message);
   }

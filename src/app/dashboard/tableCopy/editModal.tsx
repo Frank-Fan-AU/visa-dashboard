@@ -1,5 +1,5 @@
 'use client'
-
+import { Record } from './columns';
 import { useEffect, useState } from 'react';
 import { Modal} from 'antd'; // 使用 Ant Design 的 Modal 组件
 import {
@@ -28,17 +28,15 @@ import {
   import { format } from "date-fns";
   import { CalendarIcon } from "lucide-react";
   import { cn } from "@/lib/utils";
-import { Record } from '@/type/Record';
 
 
 interface EditModalProps {
-    visible:boolean;
     data: any;
     onClose: () => void;
     onOk:(formData:Record) => void
   }
  
-const EditModal = ({visible,data,onClose,onOk} : EditModalProps) => {
+const EditModal = ({data,onClose,onOk} : EditModalProps) => {
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -67,7 +65,7 @@ const EditModal = ({visible,data,onClose,onOk} : EditModalProps) => {
 
       useEffect(()=>{
         reset(data)
-      },[data])
+      },[])
     // 当输入变化时更新formData状态
 //   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 //     const { name, value } = e.target;
@@ -86,7 +84,7 @@ const EditModal = ({visible,data,onClose,onOk} : EditModalProps) => {
   return (
     <Modal
       title="详细信息"
-      open={visible}
+      open={true}
       onOk={handleOk}
       onCancel={onClose}
       width={1000}
