@@ -125,6 +125,24 @@ const TablePage = () => {
     }
   }
 
+  const deleteRecord = async (id: string) => {
+    // 在这里实现删除行的逻辑
+    const response = await fetch(`/api/admin?id=${id}`, {
+      method: 'DELETE',
+    });
+    const data = await response.json();
+    if (response.ok) {
+      console.log('Document deleted successfully:', data);
+    } else {
+      console.error('Error deleting document:', data);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    await deleteRecord(id); // 调用删除 API
+    fetchData();
+  };
+
   const columns: TableColumnsType<Record> = [
 
     {
@@ -194,7 +212,7 @@ const TablePage = () => {
         <Space size="middle">
           <Button size="small" onClick={()=>{handleDetail(record)}}>详情</Button>
           <Button size="small" onClick={()=>{handleEditBtnClick(record)}}>编辑</Button>
-          <Button size="small">删除</Button>
+          <Button size="small" onClick={()=>{handleDelete(record._id!)}}>删除</Button>
         </Space>
       ),
     },
