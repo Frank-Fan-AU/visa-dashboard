@@ -160,7 +160,7 @@ const TablePage = () => {
       key: 'details',
       render: (_, record) => (
         <Space size="middle">
-          <Button size="small">详情</Button>
+          <Button size="small" onClick={()=>{handleDetail(record)}}>详情</Button>
           <Button size="small">编辑</Button>
           <Button size="small">删除</Button>
         </Space>
