@@ -63,8 +63,8 @@ const TablePage = () => {
   useEffect(fetchData, [
     tableParams.pagination?.current,
     tableParams.pagination?.pageSize,
-    tableParams?.sortOrder,
-    tableParams?.sortField,
+    tableParams.sortOrder,
+    tableParams.sortField,
     JSON.stringify(tableParams.filters),
   ]);
 
