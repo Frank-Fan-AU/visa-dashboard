@@ -187,7 +187,7 @@ export function ProfileForm() {
               name="ifIncludedCouple"
               render={({ field }) => (
                 <FormItem className="mt-4">
-                  <FormLabel>是否陪读？</FormLabel>
+                  <FormLabel>是否陪读</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
@@ -277,7 +277,7 @@ export function ProfileForm() {
               name="ifGetVisa"
               render={({ field }) => (
                 <FormItem className="mt-4">
-                  <FormLabel>是否已获得签证？</FormLabel>
+                  <FormLabel>是否已获得签证</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
@@ -378,7 +378,7 @@ export function ProfileForm() {
               name="schoolType"
               render={({ field }) => (
                 <FormItem className="mt-4">
-                  <FormLabel>学校:</FormLabel>
+                  <FormLabel>主申学校</FormLabel>
                   <FormControl>
                     <Input className="lg:w-1/2" placeholder="" {...field} />
                   </FormControl>

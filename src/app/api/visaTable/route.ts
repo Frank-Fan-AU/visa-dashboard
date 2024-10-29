@@ -3,17 +3,6 @@ import { Record } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
 import { formSchema } from "@/lib/schema";
 
-// export const GET = async () => {
-//   try {
-//     connectToDb();
-//     const records = await Record.find();
-
-//     return NextResponse.json(records);
-//   } catch (error) {
-//     throw new Error((error as Error).message);
-//   }
-// };
-
 export const GET = async (req: Request) => {
   try {
     await connectToDb();
@@ -22,12 +11,13 @@ export const GET = async (req: Request) => {
     const paginationCurrent = params.get('pagination[current]');
     const paginationPageSize = params.get('pagination[pageSize]');
     // 将值转换为整数，确保它们是数字
-    const current = parseInt(paginationCurrent || "1", 1); // 默认值为 1
+    const current = parseInt(paginationCurrent || "1", 10); // 默认值为 1
     const pageSize = parseInt(paginationPageSize || "10", 10); // 默认值为 10
-    console.log(params)
-    const sortField = url.searchParams.get("sortField") || "submitTime";
-    const sortOrder = url.searchParams.get("sortOrder") === "descend" ? -1 : 1;
+    const sortField = url.searchParams.get("sortField") || "getVisaTime";
+    const sortOrder = url.searchParams.get("sortOrder") === "ascend" ? 1 : -1;
 
+    console.log('sortField',sortField)
+    console.log('sortOrder',sortOrder)
     // 分页与排序
     const records = await Record.find()
       .sort({ [sortField]: sortOrder })

@@ -68,9 +68,6 @@ const TablePage = () => {
   ]);
 
   const handleTableChange= (pagination:any, filters:any, sorter:any) => {
-    console.log('pagination',pagination)
-    console.log('filters',filters)
-    console.log('sorter',sorter)
     // 保留之前的 pagination 值，合并新的 pagination 值
   const updatedPagination = {
     ...tableParams.pagination, // 保留之前的 pagination 值
@@ -108,6 +105,7 @@ const TablePage = () => {
       title: '下签日期',
       dataIndex: 'getVisaTime',
       sorter: true, // 这里启用排序
+      defaultSortOrder:'descend',
       width:130
     },
     {
@@ -191,6 +189,7 @@ const TablePage = () => {
         showSizeChanger
         showTotal={(total) => `Total ${total} items`}
         onChange={(page, pageSize) => {
+          console.log('page',page)
           setTableParams({
             ...tableParams,
             pagination:{
