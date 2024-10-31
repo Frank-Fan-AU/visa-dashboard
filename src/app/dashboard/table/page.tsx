@@ -194,14 +194,6 @@ const TablePage = () => {
     {
       title: '专业',
       dataIndex: 'major',
-      ellipsis: {
-        showTitle: false,
-      },
-      render: (major) => (
-        <Tooltip placement="topLeft" title={major}>
-          {major}
-        </Tooltip>
-      ),
     },
     {
       title: '递签地点',
@@ -211,12 +203,16 @@ const TablePage = () => {
     {
       title: '详情',
       key: 'details',
+      width:'auto',
       render: (_, record) => (
-        <Space size="middle">
+    
+          <div className="flex gap-2 whitespace-nowrap">
           <Button size="small" onClick={()=>{handleDetail(record)}}>详情</Button>
          {isAdmin && (<Button size="small" onClick={()=>{handleEditBtnClick(record)}}>编辑</Button>)} 
          {isAdmin && (<Button size="small" onClick={()=>{handleDelete(record._id!)}}>删除</Button>)} 
-        </Space>
+          </div>
+          
+      
       ),
     },
 
@@ -232,6 +228,7 @@ const TablePage = () => {
         onChange={handleTableChange}
         pagination={false}
         loading={loading}
+        tableLayout="auto"
         className="h-full overflow-y-auto w-screen"
       />
       <Pagination
