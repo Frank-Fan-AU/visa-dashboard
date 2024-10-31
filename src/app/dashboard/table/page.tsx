@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import { useUser } from "@clerk/nextjs";
 import { Table, Pagination, Button, Space, Tooltip } from "antd";
 import type { TableColumnsType, TableProps,GetProp } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
@@ -36,6 +36,9 @@ const TablePage = () => {
       pageSize: 10,
     },
   });
+
+  const { user } = useUser();
+  const isAdmin = user?.organizationMemberships[0]?.role === "org:admin";
 
   const fetchData = () => {
     setLoading(true);
@@ -211,8 +214,8 @@ const TablePage = () => {
       render: (_, record) => (
         <Space size="middle">
           <Button size="small" onClick={()=>{handleDetail(record)}}>详情</Button>
-          <Button size="small" onClick={()=>{handleEditBtnClick(record)}}>编辑</Button>
-          <Button size="small" onClick={()=>{handleDelete(record._id!)}}>删除</Button>
+         {isAdmin && (<Button size="small" onClick={()=>{handleEditBtnClick(record)}}>编辑</Button>)} 
+         {isAdmin && (<Button size="small" onClick={()=>{handleDelete(record._id!)}}>删除</Button>)} 
         </Space>
       ),
     },
