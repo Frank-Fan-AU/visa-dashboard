@@ -189,7 +189,13 @@ const TablePage = () => {
     {
       title: '本硕博',
       dataIndex: 'educationLevel',
-      width:100
+      width:100,
+      filters: [
+        { text: '本科', value: '本科' },
+        { text: '硕士', value: '硕士' },
+        { text: '博士', value: '博士' },
+        { text: 'MPhil', value: 'MPhil' },
+      ],
     },
     {
       title: '专业',
