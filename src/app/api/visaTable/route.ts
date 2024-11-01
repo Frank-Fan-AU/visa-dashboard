@@ -16,16 +16,37 @@ export const GET = async (req: Request) => {
     const sortField = url.searchParams.get("sortField") || "getVisaTime";
     const sortOrder = url.searchParams.get("sortOrder") === "ascend" ? 1 : -1;
 
+   // 动态构建筛选条件，支持多选
+   const filterConditions: Record<string, any> = {};
+   params.forEach((value, key) => {
+     if (key.startsWith("filters[")) {
+       const filterKey = key.slice(8, -1); // 提取过滤器的字段名称
+       if (!filterConditions[filterKey]) {
+         filterConditions[filterKey] = [];
+       }
+       filterConditions[filterKey].push(value); // 添加到数组
+     }
+   });
+   // 将数组条件转化为 MongoDB 的 $in 操作符
+   Object.keys(filterConditions).forEach((key) => {
+    if (Array.isArray(filterConditions[key]) && filterConditions[key].length > 1) {
+      filterConditions[key] = { $in: filterConditions[key] };
+    } else {
+      // 如果只有一个值，直接匹配该值
+      filterConditions[key] = filterConditions[key][0];
+    }
+  });
+    console.log('filterConditions:', filterConditions);
     console.log('sortField',sortField)
     console.log('sortOrder',sortOrder)
     // 分页与排序
-    const records = await Record.find()
+    const records = await Record.find(filterConditions)
       .sort({ [sortField]: sortOrder })
       .skip((current - 1) * pageSize)
       .limit(pageSize);
 
     // 获取总条目数
-    const totalRecords = await Record.countDocuments();
+    const totalRecords = await Record.countDocuments(filterConditions);
 
     return NextResponse.json({
       data: records,

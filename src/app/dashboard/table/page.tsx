@@ -189,7 +189,13 @@ const TablePage = () => {
     {
       title: '本硕博',
       dataIndex: 'educationLevel',
-      width:100
+      width:100,
+      filters: [
+        { text: '本科', value: '本科' },
+        { text: '硕士', value: '硕士' },
+        { text: '博士', value: '博士' },
+        { text: 'MPhil', value: 'MPhil' },
+      ],
     },
     {
       title: '专业',
@@ -199,6 +205,22 @@ const TablePage = () => {
       title: '递签地点',
       dataIndex: 'submitPlace',
       width:120
+    },
+    {
+      title: '是否含陪读',
+      dataIndex: 'ifIncludedCouple',
+      width:120,
+      render:(_,record) => {
+        if(record.ifIncludedCouple ==="true"){
+          return "含陪读"
+        }else if(record.ifIncludedCouple ==="false"){
+          return "单独"
+        }else if(record.ifIncludedCouple === ""){
+          return "--"
+        }else{
+          return record.ifIncludedCouple
+        }
+      } 
     },
     {
       title: '详情',
