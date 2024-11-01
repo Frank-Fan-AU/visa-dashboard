@@ -201,6 +201,22 @@ const TablePage = () => {
       width:120
     },
     {
+      title: '是否含陪读',
+      dataIndex: 'ifIncludedCouple',
+      width:120,
+      render:(_,record) => {
+        if(record.ifIncludedCouple ==="true"){
+          return "含陪读"
+        }else if(record.ifIncludedCouple ==="false"){
+          return "单独"
+        }else if(record.ifIncludedCouple === ""){
+          return "--"
+        }else{
+          return record.ifIncludedCouple
+        }
+      } 
+    },
+    {
       title: '详情',
       key: 'details',
       width:'auto',
