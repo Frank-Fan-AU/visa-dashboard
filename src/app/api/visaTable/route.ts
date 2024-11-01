@@ -16,15 +16,17 @@ export const GET = async (req: Request) => {
     const sortField = url.searchParams.get("sortField") || "getVisaTime";
     const sortOrder = url.searchParams.get("sortOrder") === "ascend" ? 1 : -1;
 
-   // 动态构建筛选条件，支持多选
+   // 动态构建筛选条件，支持多选并跳过空值
    const filterConditions: Record<string, any> = {};
    params.forEach((value, key) => {
      if (key.startsWith("filters[")) {
        const filterKey = key.slice(8, -1); // 提取过滤器的字段名称
-       if (!filterConditions[filterKey]) {
-         filterConditions[filterKey] = [];
+       if (value) { // 检查值是否为空字符串
+         if (!filterConditions[filterKey]) {
+           filterConditions[filterKey] = [];
+         }
+         filterConditions[filterKey].push(value); // 添加到数组
        }
-       filterConditions[filterKey].push(value); // 添加到数组
      }
    });
    // 将数组条件转化为 MongoDB 的 $in 操作符

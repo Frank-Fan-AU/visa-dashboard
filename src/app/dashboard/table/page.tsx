@@ -77,7 +77,7 @@ const TablePage = () => {
     ...tableParams.pagination, // 保留之前的 pagination 值
     ...pagination, // 用新的 pagination 值覆盖之前的值
   };
-
+console.log('filters',filters)
 
     setTableParams({
       pagination: updatedPagination,
