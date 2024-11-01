@@ -12,7 +12,7 @@ export const GET = async (req: Request) => {
     const paginationPageSize = params.get('pagination[pageSize]');
     // 将值转换为整数，确保它们是数字
     const current = parseInt(paginationCurrent || "1", 10); // 默认值为 1
-    const pageSize = parseInt(paginationPageSize || "10", 10); // 默认值为 10
+    const pageSize = parseInt(paginationPageSize || "50", 10); // 默认值为 10
     const sortField = url.searchParams.get("sortField") || "getVisaTime";
     const sortOrder = url.searchParams.get("sortOrder") === "ascend" ? 1 : -1;
 
@@ -38,9 +38,6 @@ export const GET = async (req: Request) => {
       filterConditions[key] = filterConditions[key][0];
     }
   });
-    console.log('filterConditions:', filterConditions);
-    console.log('sortField',sortField)
-    console.log('sortOrder',sortOrder)
     // 分页与排序
     const records = await Record.find(filterConditions)
       .sort({ [sortField]: sortOrder })
