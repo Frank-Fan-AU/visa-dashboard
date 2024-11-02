@@ -6,7 +6,6 @@ import { Table, Pagination, Button, Space, Tooltip } from "antd";
 import type { TableColumnsType, TableProps,GetProp } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
 import { Record } from "@/type/Record";
-import { fetchDataApi } from "@/api/visaTable";
 import qs from 'qs';
 import { DetailModal } from "./detailModal";
 import EditModal from "./editModal";
