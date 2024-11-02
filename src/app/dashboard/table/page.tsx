@@ -1,5 +1,5 @@
 "use client";
-
+import { debounce } from "lodash"
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { Table, Pagination, Button, Space, Tooltip } from "antd";
@@ -39,36 +39,39 @@ const TablePage = () => {
   const { user } = useUser();
   const isAdmin = user?.organizationMemberships[0]?.role === "org:admin";
 
-  const fetchData = () => {
+  const fetchData = async () => {
     setLoading(true);
     const queryString = qs.stringify(tableParams, { encode: true, indices: false });
-    fetch(`/api/visaTable?${queryString}`)
-    .then((res) => res.json())
-    .then(({data,totalRecords})=>{
-      setData(data)
-      setLoading(false)
-     // 使用函数式更新
-     setTableParams((prevParams) => ({
-      ...prevParams,
-      pagination: {
-        ...prevParams.pagination,
-        total: totalRecords,
-      },
-    }));
-    })
-    .catch((error) => {
-      setLoading(false); // 确保在出错时停止加载
+  
+    try {
+      const response = await fetch(`/api/visaTable?${queryString}`);
+      const { data, totalRecords } = await response.json();
+      setData(data);
+      setTableParams((prevParams) => ({
+        ...prevParams,
+        pagination: {
+          ...prevParams.pagination,
+          total: totalRecords,
+        },
+      }));
+    } catch (error) {
       console.error('Fetch error:', error);
-    });
+    } finally {
+      setLoading(false);
+    }
   };
+// 给 fetchData 添加防抖，避免过快频繁触发
+const debouncedFetch = debounce(fetchData, 300);
 
-  useEffect(fetchData, [
-    tableParams.pagination?.current,
-    tableParams.pagination?.pageSize,
-    tableParams.sortOrder,
-    tableParams.sortField,
-    JSON.stringify(tableParams.filters),
-  ]);
+useEffect(() => {
+  debouncedFetch();
+}, [
+  tableParams.pagination?.current,
+  tableParams.pagination?.pageSize,
+  tableParams.sortOrder,
+  tableParams.sortField,
+  JSON.stringify(tableParams.filters),
+]);
 
   const handleTableChange= (pagination:any, filters:any, sorter:any) => {
     // 保留之前的 pagination 值，合并新的 pagination 值
@@ -76,7 +79,6 @@ const TablePage = () => {
     ...tableParams.pagination, // 保留之前的 pagination 值
     ...pagination, // 用新的 pagination 值覆盖之前的值
   };
-console.log('filters',filters)
 
     setTableParams({
       pagination: updatedPagination,
