@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useState, useRef, useEffect } from 'react';
 import { LikeOutlined } from '@ant-design/icons';
 import { MessageCircleMore } from 'lucide-react';
 // 定义留言项的类型
@@ -11,6 +11,7 @@ interface Comment {
 
 // 定义留言消息的类型
 interface Message {
+    id: string,
     userAvatar: string;
     username: string;
     content: string;
@@ -38,8 +39,26 @@ interface CommentItemProps {
 const MessageItem = ({ message }: MessageItemProps) => {
     const [isCommentsVisible, setIsCommentsVisible] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);//true是展开状态
-
+    const [showReadMore, setShowReadMore] = useState(false); //是否显示阅读全文
+    const contentRef = useRef<HTMLParagraphElement | null>(null);
     const toggleExpand = () => setIsExpanded((prev) => !prev);
+
+    useEffect(() => {
+        // 检查内容高度是否超过两行
+        if (contentRef.current) {
+            // 暂时移除 line-clamp 样式以测量完整内容高度
+            contentRef.current.classList.remove('line-clamp-2');
+
+            const lineHeight = parseFloat(getComputedStyle(contentRef.current).lineHeight);
+            const maxHeight = lineHeight * 2;
+            if (contentRef.current.scrollHeight > maxHeight) {
+                setShowReadMore(true);
+            }
+            // 检查完成后，恢复 line-clamp 样式
+            contentRef.current.classList.add('line-clamp-2');
+        }
+    }, [message.content]);
+
     return (
         <div className="bg-white p-4 rounded shadow mb-4 border border-gray-200">
             {/* 用户信息和留言内容 */}
@@ -52,7 +71,7 @@ const MessageItem = ({ message }: MessageItemProps) => {
                 <div className="flex-1">
                     <h4 className="font-semibold text-lg">{message.username}</h4>
                     {/* <p className="text-gray-700 mt-1 mb-2">{message.content}</p> */}
-                    <p className={` text-gray-700 mt-1 mb-2 ${isExpanded ? '' : 'line-clamp-2'}`}>{message.content}</p>
+                    <p ref={contentRef} className={` text-gray-700 mt-1 mb-2 ${isExpanded ? '' : 'line-clamp-2'} `}>{message.content}</p>
 
                 </div>
             </div>
@@ -77,10 +96,10 @@ const MessageItem = ({ message }: MessageItemProps) => {
                     <span className="ml-4"></span>
                 </div>
                 <div className="flex items-center space-x-4">
-                <button  className="text-red-500">
-                                删除
-                            </button>
-                    {
+                    {/* <button className="text-red-500">
+                        删除
+                    </button> */}
+                    {showReadMore && (
                         !isExpanded ? (
                             <button onClick={toggleExpand} className="text-blue-500">
                                 阅读全文
@@ -90,7 +109,9 @@ const MessageItem = ({ message }: MessageItemProps) => {
                                 收起
                             </button>
                         )
-                    }{/* 更多选项按钮 */}
+                    )
+
+                    }
                 </div>
             </div>
 

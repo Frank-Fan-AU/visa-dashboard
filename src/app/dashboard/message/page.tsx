@@ -9,6 +9,7 @@ interface Comment {
 
 // 定义留言消息的类型
 interface Message {
+    id:string,
     userAvatar: string;
     username: string;
     content: string;
@@ -17,10 +18,13 @@ interface Message {
 }
 
 // 用于测试的假数据
-const sampleMessage: Message = {
+const sampleMessages: Message[] =
+[
+  {
+    id:'1',
     userAvatar: '/avatarFzj.JPG',
     username: 'John Doe',
-    content: '我想测试一下这个能写多长,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行，,测试数据超过两行,测试数据超过两行,测试数据超过两行文字尾部',
+    content: '这是一段比较短的文字，我不希望展示阅读全文按钮',
     comments: [
       {
         userAvatar: '/avatarBQ.png',
@@ -34,26 +38,45 @@ const sampleMessage: Message = {
       },
     ],
     likes:20
-  };
+  },{
+    id:'2',
+    userAvatar: '/avatarFzj.JPG',
+    username: 'John Doe',
+    content: '我想测试一下这个能写多长,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行,测试数据超过两行，,测试数据超过两行,测试数据超过两行,测试数据超过两行，,测试数据超过两行,测试数据超过两行,测试数据超过两行文字尾部',
+    comments: [
+      {
+        userAvatar: '/avatarBQ.png',
+        username: 'Jane Doe',
+        content: 'This is a sample comment!',
+      },
+      {
+        userAvatar: '/avatarBQ.png',
+        username: 'Tom Smith',
+        content: 'This is another sample comment!',
+      },
+    ],
+    likes:20
+  }
+] 
 
   
 const Page = () => {
     return (
         <div className="flex flex-col h-screen">
           {/* 留言列表展示区 */}
-          <div className="flex-1 overflow-y-auto p-4 bg-gray-100">
+          <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
             <h2 className="text-xl font-semibold mb-4">留言板</h2>
             <div className="space-y-4">
               {/* 使用假数据展示留言，可以用 .map() 遍历并渲染每条留言 */}
-              <MessageItem message={sampleMessage} />
-              <MessageItem message={sampleMessage} />
-
+              {/* <MessageItem message={sampleMessage} />
+              <MessageItem message={sampleMessage} /> */}
+              {sampleMessages.map(message => <MessageItem key={message.id} message={message} />)}
               {/* ...更多留言 */}
             </div>
           </div>
     
           {/* 留言输入区 */}
-      <div className="p-4 bg-gray-100 border-t border-gray-300">
+      <div className="p-4 bg-gray-50 border-t border-gray-300">
         <div className="flex items-center bg-white rounded-full shadow px-4 py-2">
           <textarea
             className="flex-grow p-2 bg-transparent outline-none resize-none placeholder-gray-500"
