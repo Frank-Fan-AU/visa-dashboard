@@ -1,8 +1,7 @@
 "use client";
-import { debounce } from "lodash"
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
-import { Table, Pagination, Button, Space, Tooltip } from "antd";
+import { Table, Pagination, Button} from "antd";
 import type { TableColumnsType, TableProps,GetProp } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
 import { Record } from "@/type/Record";
@@ -60,11 +59,10 @@ const TablePage = () => {
       setLoading(false);
     }
   };
-// 给 fetchData 添加防抖，避免过快频繁触发
-const debouncedFetch = debounce(fetchData, 300);
+
 
 useEffect(() => {
-  debouncedFetch();
+  fetchData();
 }, [
   tableParams.pagination?.current,
   tableParams.pagination?.pageSize,
