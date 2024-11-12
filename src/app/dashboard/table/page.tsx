@@ -120,7 +120,7 @@ useEffect(() => {
         throw new Error(`更新失败: ${response.statusText}`);
       }
       
-      fetchData();
+      await fetchData();
       setIsEditModalOpen(false)
     } catch (error) {
       console.error('更新失败:', error);
@@ -142,7 +142,7 @@ useEffect(() => {
 
   const handleDelete = async (id: string) => {
     await deleteRecord(id); // 调用删除 API
-    fetchData();
+    await fetchData();
   };
 
   const columns: TableColumnsType<Record> = [
