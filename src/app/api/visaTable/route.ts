@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { Record } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
-import { formSchema } from "@/lib/schema";
 
 export const GET = async (req: Request) => {
   try {
