@@ -211,17 +211,11 @@ useEffect(() => {
       title: '是否含陪读',
       dataIndex: 'ifIncludedCouple',
       width:120,
-      render:(_,record) => {
-        if(record.ifIncludedCouple ==="true"){
-          return "含陪读"
-        }else if(record.ifIncludedCouple ==="false"){
-          return "单独"
-        }else if(record.ifIncludedCouple === ""){
-          return "--"
-        }else{
-          return record.ifIncludedCouple
-        }
-      } 
+      filters: [
+        { text: '单独学签', value: '单独学签' },
+        { text: '含陪读一起递', value: '含陪读一起递' },
+        { text: '陪读单独递', value: '陪读单独递' }
+      ],
     },
     {
       title: '详情',
