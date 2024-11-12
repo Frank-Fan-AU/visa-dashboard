@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
 import { Record } from "@/lib/models";
 import { connectToDb } from "@/lib/utils";
-import { formSchema } from "@/lib/schema";
 
 export const GET = async (req: Request) => {
+  
+  const url = new URL(req.url);
+  const params = new URLSearchParams(url.search);
+
   try {
     await connectToDb();
-    const url = new URL(req.url);
-    const params = new URLSearchParams(url.search);
+    
     const paginationCurrent = params.get('pagination[current]');
     const paginationPageSize = params.get('pagination[pageSize]');
     // 将值转换为整数，确保它们是数字

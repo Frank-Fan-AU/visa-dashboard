@@ -1,8 +1,7 @@
 "use client";
-import { debounce } from "lodash"
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
-import { Table, Pagination, Button, Space, Tooltip } from "antd";
+import { Table, Pagination, Button} from "antd";
 import type { TableColumnsType, TableProps,GetProp } from 'antd';
 import type { SorterResult } from 'antd/es/table/interface';
 import { Record } from "@/type/Record";
@@ -60,11 +59,10 @@ const TablePage = () => {
       setLoading(false);
     }
   };
-// 给 fetchData 添加防抖，避免过快频繁触发
-const debouncedFetch = debounce(fetchData, 300);
+
 
 useEffect(() => {
-  debouncedFetch();
+  fetchData();
 }, [
   tableParams.pagination?.current,
   tableParams.pagination?.pageSize,
@@ -122,7 +120,7 @@ useEffect(() => {
         throw new Error(`更新失败: ${response.statusText}`);
       }
       
-      fetchData();
+      await fetchData();
       setIsEditModalOpen(false)
     } catch (error) {
       console.error('更新失败:', error);
@@ -144,7 +142,7 @@ useEffect(() => {
 
   const handleDelete = async (id: string) => {
     await deleteRecord(id); // 调用删除 API
-    fetchData();
+    await fetchData();
   };
 
   const columns: TableColumnsType<Record> = [
@@ -211,17 +209,11 @@ useEffect(() => {
       title: '是否含陪读',
       dataIndex: 'ifIncludedCouple',
       width:120,
-      render:(_,record) => {
-        if(record.ifIncludedCouple ==="true"){
-          return "含陪读"
-        }else if(record.ifIncludedCouple ==="false"){
-          return "单独"
-        }else if(record.ifIncludedCouple === ""){
-          return "--"
-        }else{
-          return record.ifIncludedCouple
-        }
-      } 
+      filters: [
+        { text: '单独学签', value: '单独学签' },
+        { text: '含陪读一起递', value: '含陪读一起递' },
+        { text: '陪读单独递', value: '陪读单独递' }
+      ],
     },
     {
       title: '详情',

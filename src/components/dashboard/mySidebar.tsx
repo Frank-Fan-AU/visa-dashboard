@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "../ui/sidebar";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Table2, FileUp, House,ClipboardList,FlaskConical } from "lucide-react";
+import { Table2, FileUp, Rss,ClipboardList } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function MySidebarDemo({
@@ -47,6 +47,13 @@ export function MySidebarDemo({
       href: "/dashboard/message",
       icon: (
         <Table2 className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      )
+    },
+    {
+      label: "更新日志",
+      href: "/dashboard/update",
+      icon: (
+        <Rss className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
   ];
@@ -88,16 +95,6 @@ export function MySidebarDemo({
                     href: "/dashboard/admin",
                     icon: (
                       <FileUp className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-                    ),
-                  }}
-                />
-                 <SidebarLink
-                  key={"test"}
-                  link={{
-                    label: "Test",
-                    href: "/dashboard/test",
-                    icon: (
-                      <FlaskConical className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
                     ),
                   }}
                 />
