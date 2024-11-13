@@ -10,7 +10,7 @@ import { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "../ui/sidebar";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Table2, FileUp, Rss,ClipboardList } from "lucide-react";
+import { Table2, FileUp, Rss,ClipboardList,MessageSquareMore } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function MySidebarDemo({
@@ -46,7 +46,7 @@ export function MySidebarDemo({
       label: "留言板",
       href: "/dashboard/message",
       icon: (
-        <Table2 className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <MessageSquareMore className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       )
     },
     {

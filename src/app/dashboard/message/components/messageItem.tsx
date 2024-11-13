@@ -2,22 +2,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { LikeOutlined } from '@ant-design/icons';
 import { MessageCircleMore } from 'lucide-react';
-// 定义留言项的类型
-interface Comment {
-    userAvatar: string;
-    username: string;
-    content: string;
-}
+import { Comment, Message } from '../interface';
 
-// 定义留言消息的类型
-interface Message {
-    id: string,
-    userAvatar: string;
-    username: string;
-    content: string;
-    comments: Comment[];
-    likes: number;
-}
 
 // MessageItem 组件的 Props 类型
 interface MessageItemProps {
@@ -71,7 +57,9 @@ const MessageItem = ({ message }: MessageItemProps) => {
                 <div className="flex-1">
                     <h4 className="font-semibold text-lg">{message.username}</h4>
                     {/* <p className="text-gray-700 mt-1 mb-2">{message.content}</p> */}
-                    <p ref={contentRef} className={` text-gray-700 mt-1 mb-2 ${isExpanded ? '' : 'line-clamp-2'} `}>{message.content}</p>
+                    <div ref={contentRef} className={` text-gray-700 mt-1 mb-2 ${isExpanded ? '' : 'line-clamp-2'} `}>{message.content}
+                        <p className='text-gray-400 text-sm'>编辑于{message.updateTime.toISOString().slice(0, 19).replace("T", " ")}</p>
+                    </div>
 
                 </div>
             </div>

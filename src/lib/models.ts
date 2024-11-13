@@ -19,6 +19,11 @@ const recordSchema = new mongoose.Schema({
   infoFrom: { type: String },
   otherInfo: { type: String }
 });
+
+export const Record =
+  mongoose.models?.Record || mongoose.model("Record", recordSchema);
+
+
 const docSchema = new mongoose.Schema({
   categoryId: String,
   authorId: String,
@@ -30,8 +35,6 @@ const docCategoriesSchema = new mongoose.Schema({
   slug: String,
   img: String,
 });
-export const Record =
-  mongoose.models?.Record || mongoose.model("Record", recordSchema);
 
 export const Doc = mongoose.models?.Doc || mongoose.model("Doc", docSchema);
 export const DocCategories =
