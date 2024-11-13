@@ -1,26 +1,27 @@
 'use client'
 import { useState } from "react";
+import { useUser } from "@clerk/nextjs";
+
 
 const MessageInput = () => {
     const [messageContent, setMessageContent] = useState("");
-
+    const { user } = useUser();
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessageContent(event.target.value);
   };
 
   const handleSubmit = async () => {
     if (!messageContent.trim()) return; // Prevent empty messages
-
     // Create the message payload
     const newMessage = {
-      userAvatar: "https://example.com/avatar.jpg", // Set actual user avatar URL
-      username: "Your Username", // Set the actual username
+      userAvatar: user?.imageUrl, // Set actual user avatar URL
+      username: user?.username ? user?.username : user?.id, // Set the actual username
       content: messageContent,
       comments: [],
       likes: 0,
       updateTime: new Date()
     };
-
+    
     try {
       const response = await fetch("/api/message", {
         method: "POST",
