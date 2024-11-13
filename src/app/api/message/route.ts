@@ -58,17 +58,17 @@ export const POST = async (request: Request) => {
 };
 
 export const GET = async (req: Request) => {
+    const { searchParams } = new URL(req.url);
+  const page = parseInt(searchParams.get('page') || '1', 10);
+  const limit = parseInt(searchParams.get('limit') || '10', 10);
     try {
       await connectToDb();
-      const url = new URL(req.url);
-      const limit = parseInt(url.searchParams.get("limit") || "10", 10);
-      const skip = parseInt(url.searchParams.get("skip") || "0", 10);
-  
+     
       // Query messages with pagination
       const messages = await Message.find({})
-        .sort({ updateTime: -1 }) // Sort by newest first
-        .skip(skip)
-        .limit(limit);
+        .skip((page - 1) * limit)
+      .limit(limit)
+      .sort({ updateTime: -1 });;
   
       return NextResponse.json({ data: messages });
     } catch (error) {
