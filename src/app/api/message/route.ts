@@ -42,16 +42,38 @@ export const POST = async (request: Request) => {
         const body: unknown = await request.json();
         console.log("Received message data:", body);
         const params = MessageSchema.safeParse(body);
-        if (!params.success) {
-            throw new Error(params.error.issues[0].message);
+        if (!params.success) {           
+            throw new Error(params.error.issues[0].message); 
         } else {
             // Create and save the new message
             const newMessage = new Message(params.data);
             await newMessage.save();
+            return NextResponse.json({ message: "Message saved successfully", data: newMessage }, { status: 201 });
         }
 
-        return NextResponse.json({});
+       
     } catch (error) {
         throw new Error((error as Error).message);
     }
 };
+
+export const GET = async (req: Request) => {
+    try {
+      await connectToDb();
+      const url = new URL(req.url);
+      const limit = parseInt(url.searchParams.get("limit") || "10", 10);
+      const skip = parseInt(url.searchParams.get("skip") || "0", 10);
+  
+      // Query messages with pagination
+      const messages = await Message.find({})
+        .sort({ updateTime: -1 }) // Sort by newest first
+        .skip(skip)
+        .limit(limit);
+  
+      return NextResponse.json({ data: messages });
+    } catch (error) {
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status: 500 });
+          }
+    }
+  };

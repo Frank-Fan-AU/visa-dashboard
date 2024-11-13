@@ -20,6 +20,16 @@ interface CommentItemProps {
     comment: Comment;
 }
 
+const formatDate = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Get month (0-11) and add 1
+    const day = String(date.getDate()).padStart(2, "0"); // Get day (1-31)
+    const hours = String(date.getHours()).padStart(2, "0"); // Get hours (0-23)
+    const minutes = String(date.getMinutes()).padStart(2, "0"); // Get minutes (0-59)
+    const seconds = String(date.getSeconds()).padStart(2, "0"); // Get seconds (0-59)
+  
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  };
 
 
 const MessageItem = ({ message }: MessageItemProps) => {
@@ -28,6 +38,8 @@ const MessageItem = ({ message }: MessageItemProps) => {
     const [showReadMore, setShowReadMore] = useState(false); //是否显示阅读全文
     const contentRef = useRef<HTMLParagraphElement | null>(null);
     const toggleExpand = () => setIsExpanded((prev) => !prev);
+
+    const formattedDate = formatDate(new Date(message.updateTime));
 
     useEffect(() => {
         // 检查内容高度是否超过两行
@@ -58,7 +70,8 @@ const MessageItem = ({ message }: MessageItemProps) => {
                     <h4 className="font-semibold text-lg">{message.username}</h4>
                     {/* <p className="text-gray-700 mt-1 mb-2">{message.content}</p> */}
                     <div ref={contentRef} className={` text-gray-700 mt-1 mb-2 ${isExpanded ? '' : 'line-clamp-2'} `}>{message.content}
-                        <p className='text-gray-400 text-sm'>编辑于{message.updateTime.toISOString().slice(0, 19).replace("T", " ")}</p>
+                        <p className='text-gray-400 text-sm'>编辑于{formattedDate}</p>
+                        
                     </div>
 
                 </div>

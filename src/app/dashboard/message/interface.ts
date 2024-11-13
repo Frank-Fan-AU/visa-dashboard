@@ -7,7 +7,7 @@ export interface Comment {
 
 // 定义留言消息的类型
 export interface Message {
-    _id:string,
+    _id?:string,
     userAvatar: string;
     username: string;
     content: string;

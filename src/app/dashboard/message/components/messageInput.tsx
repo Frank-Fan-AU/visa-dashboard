@@ -1,45 +1,32 @@
 'use client'
 import { useState } from "react";
 import { useUser } from "@clerk/nextjs";
+import { Message } from "../interface";
 
+interface MessageInputProps {
+    onSubmit: (newMessage: Message) => void;
+  }
 
-const MessageInput = () => {
-    const [messageContent, setMessageContent] = useState("");
+const MessageInput = ({ onSubmit }: MessageInputProps) => {
+    const [content, setContent] = useState<string>("");
     const { user } = useUser();
-  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessageContent(event.target.value);
-  };
+    const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setContent(e.target.value);
+      };
 
   const handleSubmit = async () => {
-    if (!messageContent.trim()) return; // Prevent empty messages
+    if (!content.trim()) return; // Prevent empty messages
     // Create the message payload
     const newMessage = {
-      userAvatar: user?.imageUrl, // Set actual user avatar URL
-      username: user?.username ? user?.username : user?.id, // Set the actual username
-      content: messageContent,
+      userAvatar: user!.imageUrl, // Set actual user avatar URL
+      username: user?.username ? user.username : user!.id, // Set the actual username
+      content: content,
       comments: [],
       likes: 0,
       updateTime: new Date()
     };
-    
-    try {
-      const response = await fetch("/api/message", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newMessage),
-      });
-
-      if (response.ok) {
-        console.log("Message submitted successfully");
-        setMessageContent(""); // Clear the textarea
-      } else {
-        console.error("Error submitting message");
-      }
-    } catch (error) {
-      console.error("Request failed:", error);
-    }
+    onSubmit(newMessage);
+    setContent("")
   };
 
   return (
@@ -47,8 +34,8 @@ const MessageInput = () => {
     <textarea
       className="flex-grow p-2 bg-transparent outline-none resize-none placeholder-gray-500"
       placeholder="Write a message..."
-      value={messageContent}
-          onChange={handleInputChange}
+      value={content}
+    onChange={handleContentChange}
     ></textarea>
     <button className="ml-2 bg-gray-700 text-white rounded-full p-2 hover:bg-gray-800"  onClick={handleSubmit}>
       <svg
