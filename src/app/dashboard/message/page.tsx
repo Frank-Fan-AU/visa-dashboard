@@ -4,14 +4,17 @@ import MessageInput from "./components/messageInput";
 import MessageItem from "./components/messageItem";
 import { Message } from "./interface";
 import InfiniteScroll from 'react-infinite-scroll-component';
-
+import {
+  SignInButton,
+  useUser,
+} from "@clerk/nextjs";
 
 const Page = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [page, setPage] = useState(1); // Page number for pagination
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true); // Flag to check if there are more messages
-
+  const { isSignedIn, user } = useUser();
   // Fetch messages
   const fetchMessages = async () => {
     setLoading(true);
@@ -69,10 +72,10 @@ const Page = () => {
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-gray-50" >
       {/* 留言列表展示区 */}
-      <div className=" p-4 bg-gray-50 " style={{ height:"calc(100vh - 120px)"}}>
+      <div className=" p-4 bg-gray-50 h-screen-minus-120  md:h-screen-minus-100 " >
         <h2 className="text-xl font-semibold mb-4">留言板</h2>
         <div className="space-y-4  overflow-auto" id="scrollableDiv"  style={{
-      height:"calc(100% - 40px)"
+      height:"calc(100% - 30px)"
     }}>
           <InfiniteScroll
             dataLength={messages.length} // This is the length of the currently loaded messages
@@ -91,9 +94,17 @@ const Page = () => {
       </div>
 
       {/* 留言输入区 */}
-      <div className=" bg-gray-50 md:mt-4  h-[80px]">
+      {isSignedIn ? <div className=" bg-gray-50 md:mt-4  h-[80px]">
         <MessageInput onSubmit={handleNewMessage} />
+      </div> :
+      <button className="p-[3px] relative mt-5 ">
+      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+      <div className="px-8 py-2  bg-white rounded-[6px]  relative group transition duration-200 text-black hover:bg-transparent">
+       <SignInButton forceRedirectUrl={"/dashboard/message"}>登录后留言</SignInButton>
       </div>
+    </button>
+      }
+      
     </div>
   );
 };
