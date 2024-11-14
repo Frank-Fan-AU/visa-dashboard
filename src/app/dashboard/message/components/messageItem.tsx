@@ -58,7 +58,7 @@ const MessageItem = ({ message }: MessageItemProps) => {
     }, [message.content]);
 
     return (
-        <div className="bg-white p-4 rounded shadow mb-4 border border-gray-200">
+        <div className="bg-white p-4 rounded shadow mb-4 border border-gray-200 w-full">
             {/* 用户信息和留言内容 */}
             <div className="flex items-start">
                 <img
@@ -66,12 +66,11 @@ const MessageItem = ({ message }: MessageItemProps) => {
                     alt={`${message.username}'s avatar`}
                     className="w-10 h-10 rounded-full mr-3"
                 />
-                <div className="flex-1">
+                <div className=" w-full max-w-full overflow-auto">
                     <h4 className="font-semibold text-lg">{message.username}</h4>
                     {/* <p className="text-gray-700 mt-1 mb-2">{message.content}</p> */}
-                    <div ref={contentRef} className={` text-gray-700 mt-1 mb-2 ${isExpanded ? '' : 'line-clamp-2'} `}>{message.content}
+                    <div ref={contentRef} className={`w-full text-gray-700 mt-1 mb-2 ${isExpanded ? '' : 'line-clamp-2'} break-words`}>{message.content}
                         <p className='text-gray-400 text-sm'>编辑于{formattedDate}</p>
-                        
                     </div>
 
                 </div>
