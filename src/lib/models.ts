@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, model, models } from 'mongoose';
 
 const recordSchema = new mongoose.Schema({
   userId: { type: String },
@@ -24,19 +24,15 @@ export const Record =
   mongoose.models?.Record || mongoose.model("Record", recordSchema);
 
 
-const docSchema = new mongoose.Schema({
-  categoryId: String,
-  authorId: String,
-  title: String,
-  content: String,
-});
-const docCategoriesSchema = new mongoose.Schema({
-  title: String,
-  slug: String,
-  img: String,
+// Define Mongoose schema for MongoDB
+const mongooseMessageSchema = new Schema({
+  userAvatar: { type: String, required: true },
+  username: { type: String, required: true },
+  userId: { type: String, required: true },
+  content: { type: String, required: true },
+  comments: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }], default: [] },
+  likes: { type: Number, default: 0 },
+  updateTime: { type: Date, default: Date.now }
 });
 
-export const Doc = mongoose.models?.Doc || mongoose.model("Doc", docSchema);
-export const DocCategories =
-  mongoose.models?.DocCategories ||
-  mongoose.model("DocCategories", docCategoriesSchema);
+export const Message = models.Message || model('Message', mongooseMessageSchema);
