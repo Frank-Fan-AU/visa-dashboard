@@ -76,7 +76,6 @@ const EditModal = ({visible,data,onClose,onOk} : EditModalProps) => {
     // 获取表单中的当前值
   const handleOk = () => {
     const datanow = form.getValues();
-    console.log('dataNow',datanow)
     onOk(datanow);
   
   };

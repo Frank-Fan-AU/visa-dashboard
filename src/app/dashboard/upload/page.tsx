@@ -3,11 +3,7 @@ import { useAuth } from '@clerk/nextjs'
 import { ProfileForm } from "./profileForm";
 import Image from "next/image";
 const UploadPage = () => {
-  const { isLoaded, userId, sessionId, getToken } = useAuth()
-  console.log('isLoaded',isLoaded)
-  console.log("userId", userId);
-  console.log("sessionId", sessionId);
-  console.log("getToken", getToken);
+  const {userId} = useAuth()
   return (
     <>
       <div className="flex lg:flex-row flex-col mt-8">

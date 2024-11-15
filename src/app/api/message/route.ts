@@ -31,7 +31,6 @@ export const POST = async (request: Request) => {
         await connectToDb();
         const body: unknown = await request.json();
         const params = MessageSchema.safeParse(body);
-        console.log('params',params)
         if (!params.success) {           
             throw new Error(params.error.issues[0].message); 
         } else {

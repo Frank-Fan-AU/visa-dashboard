@@ -1,6 +1,5 @@
 import { connectToDb } from '@/lib/utils';
 import { NextRequest, NextResponse } from 'next/server';
-import mongoose, { Schema, model, models } from 'mongoose';
 import { Message } from '@/lib/models';
 
 export const DELETE = async (req: NextRequest, { params }: { params: { messageId: string} }) => {
@@ -14,9 +13,6 @@ export const DELETE = async (req: NextRequest, { params }: { params: { messageId
           return NextResponse.json({ error: error.message }, { status: 500 });
         }
   }
-  console.log("Message ID:", messageId);
-
-
   return NextResponse.json({ message: 'Delete request received' });
 
 }

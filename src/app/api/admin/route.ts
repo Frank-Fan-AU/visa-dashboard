@@ -19,7 +19,6 @@ export const POST = async (request: Request) => {
     connectToDb();
     const body: unknown = await request.json();
     const params = formSchema.safeParse(body);
-    console.log(params);
     if (!params.success) {
       throw new Error(params.error.issues[0].message);
     }
