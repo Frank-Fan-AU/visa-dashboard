@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { Message } from "../interface";
+import { Send } from "lucide-react";
 
 interface MessageInputProps {
     onSubmit: (newMessage: Message) => void;
@@ -31,22 +32,15 @@ const MessageInput = ({ onSubmit }: MessageInputProps) => {
   };
 
   return (
-    <div className="flex items-center bg-white rounded-full shadow px-4 py-2">
+    <div className="flex items-center  bg-white rounded-xl shadow px-2 mx-2 py-2">
     <textarea
       className="flex-grow p-2 bg-transparent outline-none resize-none placeholder-gray-500"
       placeholder="Write a message..."
       value={content}
     onChange={handleContentChange}
     ></textarea>
-    <button className="ml-2 bg-gray-700 text-white rounded-full p-2 hover:bg-gray-800"  onClick={handleSubmit}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path d="M3 10l6 6v-5h4v-2H9V4l-6 6z" />
-      </svg>
+    <button className="ml-2 p-2"  onClick={handleSubmit}>
+    <Send />
     </button>
   </div>
   )

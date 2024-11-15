@@ -1,14 +1,15 @@
 'use client'
+
 import { useState, useRef, useEffect } from 'react';
-import { LikeOutlined } from '@ant-design/icons';
-import { MessageCircleMore } from 'lucide-react';
+import { MessageCircleMore,Send } from 'lucide-react';
 import { Comment, Message } from '../interface';
+import { useUser } from "@clerk/nextjs";
 
 
 // MessageItem 组件的 Props 类型
 interface MessageItemProps {
     message: Message;
-    currentUserId?:string;
+    currentUserId?: string;
     onDelete: (messageId: string) => void; // 定义删除函数的类型
 }
 
@@ -22,6 +23,8 @@ interface CommentItemProps {
     comment: Comment;
 }
 
+
+
 const formatDate = (date: Date) => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0"); // Get month (0-11) and add 1
@@ -29,12 +32,12 @@ const formatDate = (date: Date) => {
     const hours = String(date.getHours()).padStart(2, "0"); // Get hours (0-23)
     const minutes = String(date.getMinutes()).padStart(2, "0"); // Get minutes (0-59)
     const seconds = String(date.getSeconds()).padStart(2, "0"); // Get seconds (0-59)
-  
+
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  };
+};
 
 
-const MessageItem = ({ message,currentUserId,onDelete }: MessageItemProps) => {
+const MessageItem = ({ message, currentUserId, onDelete }: MessageItemProps) => {
     const isCurrentUserMessage = message.userId === currentUserId;
 
     const [isCommentsVisible, setIsCommentsVisible] = useState(false);
@@ -42,6 +45,9 @@ const MessageItem = ({ message,currentUserId,onDelete }: MessageItemProps) => {
     const [showReadMore, setShowReadMore] = useState(false); //是否显示阅读全文
     const contentRef = useRef<HTMLParagraphElement | null>(null);
     const toggleExpand = () => setIsExpanded((prev) => !prev);
+    const { isSignedIn, user } = useUser();
+    const [commentText, setCommentText] = useState(""); //评论输入框
+    const [comments, setComments] = useState<Comment[]>(message.comments);
 
     const formattedDate = formatDate(new Date(message.updateTime));
 
@@ -60,6 +66,30 @@ const MessageItem = ({ message,currentUserId,onDelete }: MessageItemProps) => {
             contentRef.current.classList.add('line-clamp-2');
         }
     }, [message.content]);
+
+    // 提交评论
+  const handleCommentSubmit = async () => {
+    if (!commentText.trim()) return;
+
+    const newComment = {
+      userId: user?.id,
+      userAvatar: user!.imageUrl,
+      username: user?.username ? user.username : user!.id,
+      content: commentText,
+      likes: 0,
+      updateTime:new Date()
+    };
+
+    const response = await fetch(`/api/message/${message._id}/comment`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newComment),
+    });
+
+    const savedComment = await response.json();
+    setComments((prev) => [savedComment.data, ...prev]);
+    setCommentText("");
+  };
 
 
     return (
@@ -86,11 +116,7 @@ const MessageItem = ({ message,currentUserId,onDelete }: MessageItemProps) => {
             {/* 底部交互区域 */}
             <div className="flex items-center justify-between mt-4 text-gray-500">
                 <div className="flex items-center">
-                    <button className="flex items-center text-blue-500 bg-blue-100 py-1 px-2 rounded-md ">
-                        <LikeOutlined /> {/* 替换成合适的点赞图标 */}
 
-                        <span className="ml-1">赞同 {message.likes} </span>
-                    </button>
                     <button
                         className="text-gray-500 ml-4 text-sm hover:underline flex flex-row items-center"
                         onClick={() => setIsCommentsVisible(!isCommentsVisible)}
@@ -101,16 +127,16 @@ const MessageItem = ({ message,currentUserId,onDelete }: MessageItemProps) => {
                     <span className="ml-4"></span>
                 </div>
                 <div className="flex items-center space-x-4">
-                    
-                   {/* 显示删除按钮 */}
-      {isCurrentUserMessage && (
-        <button
-          className="text-red-500 text-sm hover:underline"
-          onClick={() => onDelete(message._id as string)} 
-        >
-          删除
-        </button>
-      )}
+
+                    {/* 显示删除按钮 */}
+                    {isCurrentUserMessage && (
+                        <button
+                            className="text-red-500 text-sm hover:underline"
+                            onClick={() => onDelete(message._id as string)}
+                        >
+                            删除
+                        </button>
+                    )}
                     {showReadMore && (
                         !isExpanded ? (
                             <button onClick={toggleExpand} className="text-blue-500 text-sm">
@@ -129,7 +155,24 @@ const MessageItem = ({ message,currentUserId,onDelete }: MessageItemProps) => {
 
             {/* 评论区 */}
             {isCommentsVisible && (
-                <CommentList comments={message.comments} />
+                <div className='mt-2'>
+                    {isSignedIn && (
+                        <div className="flex items-center bg-white  shadow px-4 rounded-md mb-2">
+                            <input
+                            className='flex-grow p-2 bg-transparent outline-none resize-none '
+                                type="text"
+                                value={commentText}
+                                onChange={(e) => setCommentText(e.target.value)}
+                                placeholder="输入评论"
+                            />
+                            <button className="ml-2"  onClick={handleCommentSubmit}><Send /></button>
+                            
+ 
+                        </div>
+                    )}
+                    <CommentList comments={comments} />
+                </div>
+
             )}
         </div>
     );
@@ -139,7 +182,7 @@ export default MessageItem;
 
 const CommentList = ({ comments }: CommentListProps) => {
     return (
-        <div className="mt-4 border-t border-gray-200 pt-4">
+        <div className="border-t border-gray-200 pt-2">
             {comments.map((comment, index) => (
                 <CommentItem key={index} comment={comment} />
             ))}

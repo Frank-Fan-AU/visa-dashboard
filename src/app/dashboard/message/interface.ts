@@ -3,6 +3,8 @@ export interface Comment {
     userAvatar: string;
     username: string;
     content: string;
+    updateTime:Date;
+    userId?:string
 }
 
 // 定义留言消息的类型

@@ -1,30 +1,7 @@
 import { NextResponse } from "next/server";
-import { z } from "zod";
-import mongoose, { Schema, model, models } from 'mongoose';
 import { connectToDb } from "@/lib/utils";
 import { Message } from "@/lib/models";
-
-// Define your Zod schema for validation
-const CommentSchema = z.object({
-    _id: z.string().optional(),
-    userAvatar: z.string().url(),
-    username: z.string(),
-    content: z.string(),
-    likes: z.number().nonnegative(),
-    updateTime: z.preprocess((arg) => (typeof arg === 'string' || arg instanceof Date ? new Date(arg) : arg), z.date())
-});
-
-const MessageSchema = z.object({
-    _id: z.string().optional(),
-    userId:z.string().optional(),
-    userAvatar: z.string().url(),
-    username: z.string(),
-    content: z.string(),
-    comments: z.array(CommentSchema),
-    likes: z.number().nonnegative(),
-    updateTime: z.preprocess((arg) => (typeof arg === 'string' || arg instanceof Date ? new Date(arg) : arg), z.date())
-});
-
+import { MessageSchema } from "@/lib/schema";
 
 export const POST = async (request: Request) => {
     try {
@@ -39,8 +16,6 @@ export const POST = async (request: Request) => {
             await newMessage.save();
             return NextResponse.json({ message: "Message saved successfully", data: newMessage }, { status: 201 });
         }
-
-       
     } catch (error) {
         throw new Error((error as Error).message);
     }

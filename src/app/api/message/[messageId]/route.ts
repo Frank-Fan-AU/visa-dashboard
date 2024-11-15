@@ -2,6 +2,7 @@ import { connectToDb } from '@/lib/utils';
 import { NextRequest, NextResponse } from 'next/server';
 import { Message } from '@/lib/models';
 
+
 export const DELETE = async (req: NextRequest, { params }: { params: { messageId: string} }) => {
   const { messageId  } = params;
   try {
@@ -16,3 +17,4 @@ export const DELETE = async (req: NextRequest, { params }: { params: { messageId
   return NextResponse.json({ message: 'Delete request received' });
 
 }
+

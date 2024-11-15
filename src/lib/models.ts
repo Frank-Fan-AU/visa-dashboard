@@ -30,7 +30,19 @@ const mongooseMessageSchema = new Schema({
   username: { type: String, required: true },
   userId: { type: String, required: true },
   content: { type: String, required: true },
-  comments: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }], default: [] },
+  comments: {
+    type: [
+      {
+        userAvatar: { type: String, required: true },
+        username: { type: String, required: true },
+        userId: { type: String, required: true },
+        content: { type: String, required: true },
+        likes: { type: Number, default: 0 },
+        updateTime: { type: Date, default: Date.now },
+      },
+    ],
+    default: [],
+  },
   likes: { type: Number, default: 0 },
   updateTime: { type: Date, default: Date.now }
 });
