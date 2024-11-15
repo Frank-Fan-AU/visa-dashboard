@@ -85,7 +85,7 @@ const MessageItem = ({ message, currentUserId, onDelete }: MessageItemProps) => 
                 <div className=" w-full max-w-full overflow-auto">
                     <div className="font-semibold text-lg flex flex-row items-center">{message.username}<div className='text-gray-400 text-xs ml-2'>{formattedDate}</div></div>
                     {/* <p className="text-gray-700 mt-1 mb-2">{message.content}</p> */}
-                    <div ref={contentRef} className={`w-full text-gray-700 mt-1 mb-2 ${isExpanded ? '' : 'line-clamp-2'} break-words`}>{message.content}
+                    <div ref={contentRef} className={`w-full text-gray-700 mt-1 mb-2 ${isExpanded ? '' : 'line-clamp-2'} break-words whitespace-pre-line`}>{message.content}
                         
                     </div>
 
