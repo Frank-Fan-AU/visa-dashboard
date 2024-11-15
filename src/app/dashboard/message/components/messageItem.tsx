@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { MessageCircleMore,Send } from 'lucide-react';
 import { Comment, Message } from '../interface';
 import { useUser } from "@clerk/nextjs";
+import { CommentList } from './commentList';
 
 
 // MessageItem 组件的 Props 类型
@@ -12,18 +13,6 @@ interface MessageItemProps {
     currentUserId?: string;
     onDelete: (messageId: string) => void; // 定义删除函数的类型
 }
-
-// CommentList 组件的 Props 类型
-interface CommentListProps {
-    comments: Comment[];
-}
-
-// CommentItem 组件的 Props 类型
-interface CommentItemProps {
-    comment: Comment;
-}
-
-
 
 const formatDate = (date: Date) => {
     const year = date.getFullYear();
@@ -170,7 +159,7 @@ const MessageItem = ({ message, currentUserId, onDelete }: MessageItemProps) => 
  
                         </div>
                     )}
-                    <CommentList comments={comments} />
+                    <CommentList messageId={message._id} comments={comments} setComments={setComments} currentUserId={currentUserId}  />
                 </div>
 
             )}
@@ -180,28 +169,3 @@ const MessageItem = ({ message, currentUserId, onDelete }: MessageItemProps) => 
 
 export default MessageItem;
 
-const CommentList = ({ comments }: CommentListProps) => {
-    return (
-        <div className="border-t border-gray-200 pt-2">
-            {comments.map((comment, index) => (
-                <CommentItem key={index} comment={comment} />
-            ))}
-        </div>
-    );
-};
-
-const CommentItem = ({ comment }: CommentItemProps) => {
-    return (
-        <div className="flex items-start mb-3">
-            <img
-                src={comment.userAvatar}
-                alt={`${comment.username}'s avatar`}
-                className="w-8 h-8 rounded-full mr-3"
-            />
-            <div>
-                <h5 className="font-semibold text-sm">{comment.username}</h5>
-                <p className="text-gray-600 text-sm">{comment.content}</p>
-            </div>
-        </div>
-    );
-};

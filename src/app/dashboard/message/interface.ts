@@ -1,5 +1,6 @@
 // 定义留言项的类型
 export interface Comment {
+    _id?:string,
     userAvatar: string;
     username: string;
     content: string;
