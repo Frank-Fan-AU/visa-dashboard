@@ -5,6 +5,7 @@ import { MessageCircleMore,Send } from 'lucide-react';
 import { Comment, Message } from '../interface';
 import { useUser } from "@clerk/nextjs";
 import { CommentList } from './commentList';
+import { formatDate } from '@/lib/utils';
 
 
 // MessageItem 组件的 Props 类型
@@ -14,16 +15,7 @@ interface MessageItemProps {
     onDelete: (messageId: string) => void; // 定义删除函数的类型
 }
 
-const formatDate = (date: Date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Get month (0-11) and add 1
-    const day = String(date.getDate()).padStart(2, "0"); // Get day (1-31)
-    const hours = String(date.getHours()).padStart(2, "0"); // Get hours (0-23)
-    const minutes = String(date.getMinutes()).padStart(2, "0"); // Get minutes (0-59)
-    const seconds = String(date.getSeconds()).padStart(2, "0"); // Get seconds (0-59)
 
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-};
 
 
 const MessageItem = ({ message, currentUserId, onDelete }: MessageItemProps) => {
@@ -82,19 +74,19 @@ const MessageItem = ({ message, currentUserId, onDelete }: MessageItemProps) => 
 
 
     return (
-        <div className="bg-white p-4 rounded shadow mb-4 border border-gray-200 w-full">
+        <div className="bg-white p-2 rounded shadow mb-4 border border-gray-200 w-full">
             {/* 用户信息和留言内容 */}
-            <div className="flex items-start">
+            <div className="flex items-center">
                 <img
                     src={message.userAvatar}
                     alt={`${message.username}'s avatar`}
                     className="w-10 h-10 rounded-full mr-3"
                 />
                 <div className=" w-full max-w-full overflow-auto">
-                    <h4 className="font-semibold text-lg">{message.username}</h4>
+                    <div className="font-semibold text-lg flex flex-row items-center">{message.username}<div className='text-gray-400 text-xs ml-2'>{formattedDate}</div></div>
                     {/* <p className="text-gray-700 mt-1 mb-2">{message.content}</p> */}
                     <div ref={contentRef} className={`w-full text-gray-700 mt-1 mb-2 ${isExpanded ? '' : 'line-clamp-2'} break-words`}>{message.content}
-                        <p className='text-gray-400 text-sm'>编辑于{formattedDate}</p>
+                        
                     </div>
 
                 </div>
@@ -103,7 +95,7 @@ const MessageItem = ({ message, currentUserId, onDelete }: MessageItemProps) => 
 
 
             {/* 底部交互区域 */}
-            <div className="flex items-center justify-between mt-4 text-gray-500">
+            <div className="flex items-center justify-between mt-2 text-gray-500">
                 <div className="flex items-center">
 
                     <button
