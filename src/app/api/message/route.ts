@@ -15,6 +15,7 @@ const CommentSchema = z.object({
 
 const MessageSchema = z.object({
     _id: z.string().optional(),
+    userId:z.string().optional(),
     userAvatar: z.string().url(),
     username: z.string(),
     content: z.string(),
@@ -27,6 +28,7 @@ const MessageSchema = z.object({
 const mongooseMessageSchema = new Schema({
     userAvatar: { type: String, required: true },
     username: { type: String, required: true },
+    userId: { type: String, required: true },
     content: { type: String, required: true },
     comments: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }], default: [] },
     likes: { type: Number, default: 0 },
@@ -40,8 +42,8 @@ export const POST = async (request: Request) => {
     try {
         await connectToDb();
         const body: unknown = await request.json();
-        console.log("Received message data:", body);
         const params = MessageSchema.safeParse(body);
+        console.log('params',params)
         if (!params.success) {           
             throw new Error(params.error.issues[0].message); 
         } else {

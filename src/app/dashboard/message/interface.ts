@@ -13,5 +13,6 @@ export interface Message {
     content: string;
     comments: Comment[];
     likes:number;
-    updateTime:Date
+    updateTime:Date;
+    userId?:string
 }

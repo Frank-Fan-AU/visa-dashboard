@@ -56,10 +56,18 @@ const Page = () => {
       });
 
       const savedMessage = await response.json();
-      console.log('saveMessage', savedMessage)
       setMessages((prevMessages) => [savedMessage.data, ...prevMessages]);
     } catch (error) {
       console.error("Error adding message:", error);
+    }
+  };
+
+  const handleDelete = async (messageId: string) => {
+    try {
+      await fetch(`/api/message/${messageId}`, { method: "DELETE" });
+      setMessages((prevMessages) => prevMessages.filter((msg) => msg._id !== messageId));
+    } catch (error) {
+      console.error("Error deleting message:", error);
     }
   };
 
@@ -87,7 +95,7 @@ const Page = () => {
             scrollableTarget="scrollableDiv" // The target container for the scroll
           >
             {messages.map((message) => (
-              <MessageItem key={message._id} message={message} />
+              <MessageItem key={message._id} message={message} currentUserId={user?.id} onDelete={handleDelete} />
             ))}
           </InfiniteScroll>
         </div>

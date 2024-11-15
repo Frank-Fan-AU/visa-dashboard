@@ -8,6 +8,8 @@ import { Comment, Message } from '../interface';
 // MessageItem 组件的 Props 类型
 interface MessageItemProps {
     message: Message;
+    currentUserId?:string;
+    onDelete: (messageId: string) => void; // 定义删除函数的类型
 }
 
 // CommentList 组件的 Props 类型
@@ -32,7 +34,9 @@ const formatDate = (date: Date) => {
   };
 
 
-const MessageItem = ({ message }: MessageItemProps) => {
+const MessageItem = ({ message,currentUserId,onDelete }: MessageItemProps) => {
+    const isCurrentUserMessage = message.userId === currentUserId;
+
     const [isCommentsVisible, setIsCommentsVisible] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);//true是展开状态
     const [showReadMore, setShowReadMore] = useState(false); //是否显示阅读全文
@@ -56,6 +60,7 @@ const MessageItem = ({ message }: MessageItemProps) => {
             contentRef.current.classList.add('line-clamp-2');
         }
     }, [message.content]);
+
 
     return (
         <div className="bg-white p-4 rounded shadow mb-4 border border-gray-200 w-full">
@@ -96,16 +101,23 @@ const MessageItem = ({ message }: MessageItemProps) => {
                     <span className="ml-4"></span>
                 </div>
                 <div className="flex items-center space-x-4">
-                    {/* <button className="text-red-500">
-                        删除
-                    </button> */}
+                    
+                   {/* 显示删除按钮 */}
+      {isCurrentUserMessage && (
+        <button
+          className="text-red-500 text-sm hover:underline"
+          onClick={() => onDelete(message._id as string)} 
+        >
+          删除
+        </button>
+      )}
                     {showReadMore && (
                         !isExpanded ? (
-                            <button onClick={toggleExpand} className="text-blue-500">
+                            <button onClick={toggleExpand} className="text-blue-500 text-sm">
                                 阅读全文
                             </button>
                         ) : (
-                            <button onClick={toggleExpand} className="text-blue-500">
+                            <button onClick={toggleExpand} className="text-blue-500 text-sm">
                                 收起
                             </button>
                         )

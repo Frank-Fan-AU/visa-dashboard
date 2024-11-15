@@ -19,6 +19,7 @@ const MessageInput = ({ onSubmit }: MessageInputProps) => {
     // Create the message payload
     const newMessage = {
       userAvatar: user!.imageUrl, // Set actual user avatar URL
+      userId:user!.id,
       username: user?.username ? user.username : user!.id, // Set the actual username
       content: content,
       comments: [],
