@@ -7,11 +7,7 @@ import { message } from "antd";
 
 export default function RightPart() {
   const [messageApi, contextHolder] = message.useMessage(); // 使用 message 组件
-  const handleClick = () => {
-    messageApi.info(
-      "处于设计阶段，暂未开发完成，敬请期待。递签统计表已开发完成，可以点击查看。"
-    );
-  };
+
   return (
     <>
       {contextHolder}
@@ -33,16 +29,18 @@ export default function RightPart() {
             </div>
           </WobbleCard>
         </Link>
-        <div onClick={handleClick}
+        <div 
         className="col-span-1 min-h-[300px]">
+          <Link href="/dashboard/message">
            <WobbleCard containerClassName="h-full" key={"2"}>
             <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
               留言板
             </h2>
             <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
-            该板块上线后，欢迎大家给我们留言，无论是等签过程中的吐槽，还是下签之后的心得，又或者是对我们网站的改进建议，都欢迎写下来与我们分享！（未做）
+            欢迎大家给我们留言，无论是等签过程中的吐槽，还是下签之后的心得，又或者是对我们网站的改进建议，都欢迎写下来与我们分享！
             </p>
           </WobbleCard>
+          </Link>
         </div>
 
 
