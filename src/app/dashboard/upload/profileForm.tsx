@@ -67,9 +67,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
     const fetchData = async ()=>{
       if (userId) {  
         let res  = await fetch(`/api/upload/${userId}`);
-        console.log('res',res)
           let json =await res.json()
-          console.log('json',json)
           if(json.exists){
             reset(json.data)
           }

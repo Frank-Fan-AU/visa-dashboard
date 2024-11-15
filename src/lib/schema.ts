@@ -37,3 +37,26 @@ export const formSchema = z.object({
   otherInfo:z.string().optional(),
   userId:z.string().optional(),
 })
+
+
+// Define your Zod schema for validation
+export const CommentSchema = z.object({
+  _id: z.string().optional(),
+  userAvatar: z.string().url(),
+  username: z.string(),
+  userId:z.string().optional(),
+  content: z.string(),
+  likes: z.number().nonnegative(),
+  updateTime: z.preprocess((arg) => (typeof arg === 'string' || arg instanceof Date ? new Date(arg) : arg), z.date())
+});
+
+export const MessageSchema = z.object({
+  _id: z.string().optional(),
+  userId:z.string().optional(),
+  userAvatar: z.string().url(),
+  username: z.string(),
+  content: z.string(),
+  comments: z.array(CommentSchema),
+  likes: z.number().nonnegative(),
+  updateTime: z.preprocess((arg) => (typeof arg === 'string' || arg instanceof Date ? new Date(arg) : arg), z.date())
+});
