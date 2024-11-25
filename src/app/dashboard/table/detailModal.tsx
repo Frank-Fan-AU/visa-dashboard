@@ -1,4 +1,3 @@
-
 import { Record } from '@/type/Record';
 import { Modal } from 'antd'; // 使用 Ant Design 的 Modal 组件
 import { Descriptions } from 'antd';
@@ -33,7 +32,15 @@ export const DetailModal = ({visible, record, onClose }:DetailModalProps) => {
     {
       key: '4',
       label: '其他信息',
-      children: record?.otherInfo == "" ? "未填写": record?.otherInfo,
+      children: record?.otherInfo == "" ? "未填写" : (
+        <div style={{ 
+          whiteSpace: 'pre-wrap',
+          lineHeight: '1.5',
+          padding: '8px 0'
+        }}>
+          {record?.otherInfo}
+        </div>
+      ),
     },
    
   ];
