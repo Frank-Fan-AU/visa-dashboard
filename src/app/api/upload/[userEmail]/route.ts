@@ -3,7 +3,7 @@ import { connectToDb } from "@/lib/utils";
 import { NextResponse } from "next/server";
 
 type Params = {
-  userId: string;
+  userEmail: string;
 };
 export async function GET(request: Request, { params }: { params: Params }) {
   try {
@@ -11,11 +11,11 @@ export async function GET(request: Request, { params }: { params: Params }) {
     await connectToDb();
 
     // 获取路径参数中的 userId
-    const userId = params.userId;
+    const userEmail = params.userEmail;
 
     // 查询数据库中是否存在该 userId 的记录
     //const recordExists = await Record.exists({ userId });
-    const record = await Record.findOne({ userId });
+    const record = await Record.findOne({ userEmail });
     // 返回结果，如果有记录返回 true，没有则返回 false
     if (record) {
       return NextResponse.json({ exists: true, data: record });

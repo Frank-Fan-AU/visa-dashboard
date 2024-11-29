@@ -50,9 +50,9 @@ const defaultValues = {
   otherInfo: "",
 };
 type ProfileFormProps = {
-  userId: string | null | undefined;
+  userEmail: string | null | undefined;
 };
-export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
+export const ProfileForm: React.FC<ProfileFormProps> = ({ userEmail }) => {
   const [messageApi, contextHolder] = message.useMessage();
   
   // 1. Define your form.
@@ -65,8 +65,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
 
   useEffect(() => {
     const fetchData = async ()=>{
-      if (userId) {  
-        let res  = await fetch(`/api/upload/${userId}`);
+      if (userEmail) {  
+        let res  = await fetch(`/api/upload/${userEmail}`);
           let json =await res.json()
           if(json.exists){
             reset(json.data)
@@ -74,13 +74,13 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userId }) => {
        }
     }
     fetchData()
-  }, [userId]);
+  }, [userEmail]);
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
-    if (userId) {
-      values.userId = userId; // userId 不为 null 时才赋值
+    if (userEmail) {
+      values.userEmail = userEmail; // userEmail 不为 null 时才赋值
     }
     // ✅ This will be type-safe and validated.
     const response = await fetch("/api/upload", {

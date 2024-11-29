@@ -36,6 +36,7 @@ export const formSchema = z.object({
   infoFrom:z.string().optional(),
   otherInfo:z.string().optional(),
   userId:z.string().optional(),
+  userEmail:z.string().optional(),
 })
 
 
