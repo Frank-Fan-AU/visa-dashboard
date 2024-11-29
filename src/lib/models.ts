@@ -2,6 +2,7 @@ import mongoose, { Schema, model, models } from 'mongoose';
 
 const recordSchema = new mongoose.Schema({
   userId: { type: String },
+  userEmail: { type: String },
   ifSubmit: { type: String },
   submitTime: { type: String },
   submitPlace: { type: String },

@@ -24,10 +24,10 @@ export const POST = async (request: Request) => {
       throw new Error(params.error.issues[0].message);
     }
     // 解构获取需要的数据
-    const { userId, ...formData } = params.data;
+    const { userEmail, ...formData } = params.data;
     // 使用 findOneAndUpdate 实现查找并更新（如果没有则插入）
     const res = await Record.findOneAndUpdate(
-      { userId }, // 查询条件：根据 userId 查找记录
+      { userEmail }, // 查询条件：根据 userId 查找记录
       { $set: formData }, // 更新的内容
       { upsert: true, new: true } // 如果没有找到记录则插入，返回新的文档
     );
