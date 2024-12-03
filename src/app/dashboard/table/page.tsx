@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { Table, Pagination, Button} from "antd";
 import type { TableColumnsType, TableProps,GetProp } from 'antd';
-import type { SorterResult } from 'antd/es/table/interface';
+import type { SorterResult, SortOrder } from 'antd/es/table/interface';
 import { Record } from "@/type/Record";
 import qs from 'qs';
 import { DetailModal } from "./detailModal";
@@ -26,7 +26,7 @@ const TablePage = () => {
   const [selectedRecord, setSelectedRecord] = useState<Record | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-
+  const [sortOrder, setSortOrder] = useState<SortOrder | null>('descend'); // 初始排序状态
 
   const [tableParams, setTableParams] = useState<TableParams>({
     pagination: {
@@ -72,6 +72,8 @@ useEffect(() => {
 ]);
 
   const handleTableChange= (pagination:any, filters:any, sorter:any) => {
+    setSortOrder(sorter.order || null); // 更新排序状态
+
     // 保留之前的 pagination 值，合并新的 pagination 值
   const updatedPagination = {
     ...tableParams.pagination, // 保留之前的 pagination 值
@@ -145,20 +147,33 @@ useEffect(() => {
     await fetchData();
   };
 
+  // 工具函数：根据排序状态生成静态提示
+const getSorterTooltip = (sortOrder?: 'ascend' | 'descend' | null): string => {
+  console.log('sortOrder',sortOrder)
+  if(sortOrder === 'ascend'){
+    return '点击由近到远排序'
+  }else if(sortOrder === 'descend'){
+    return '点击取消排序'
+  }
+  return '点击由远到近排序'
+};
+
   const columns: TableColumnsType<Record> = [
 
     {
       title: '递签日期',
       dataIndex: 'submitTime',
-      sorter: true, // 这里启用排序
-      width:130
+      sorter: true,
+      width: 130,
+      showSorterTooltip: { title: getSorterTooltip(sortOrder) }, // 传入静态提示
     },
     {
       title: '下签日期',
       dataIndex: 'getVisaTime',
-      sorter: true, // 这里启用排序
-      defaultSortOrder:'descend',
-      width:130
+      sorter: true,
+      defaultSortOrder: 'descend',
+      width: 130,
+      showSorterTooltip: { title: getSorterTooltip(sortOrder) }, // 传入静态提示
     },
     {
       title: '签证处理时间',
@@ -246,15 +261,16 @@ useEffect(() => {
         pagination={false}
         loading={loading}
         tableLayout="auto"
-        className="h-full overflow-y-auto w-screen"
+        className="overflow-y-auto w-screen"
       />
       <Pagination
-      className="flex items-center justify-end space-x-2"
+      className="flex items-center justify-end space-x-2 custom-pagination mt-4 mb-2"
         total={tableParams.pagination?.total}
         current={tableParams.pagination?.current}
         pageSize={tableParams.pagination?.pageSize}
+        simple={{ readOnly: true }}
         showSizeChanger
-        showTotal={(total) => `Total ${total} items`}
+        showTotal={(total) => `共 ${total} 条`}
         onChange={(page, pageSize) => {
           setTableParams({
             ...tableParams,
@@ -269,6 +285,13 @@ useEffect(() => {
 
       <DetailModal visible={isDetailModalOpen} record={selectedRecord} onClose={() => setIsDetailModalOpen(false)} />
       <EditModal visible={isEditModalOpen} data={selectedRecord} onClose={handleCloseEditModal} onOk={handleEdit}  />
+      <style jsx global>{`
+        @media only screen and (max-width: 576px) {
+          .custom-pagination .ant-pagination-options {
+            display: block !important;
+          }
+        }
+      `}</style>
     </div>
   )
 };
