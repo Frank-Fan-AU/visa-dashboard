@@ -42,7 +42,13 @@ export const GET = async (req: Request) => {
   });
     // 分页与排序
     const records = await Record.find(filterConditions)
-      .sort({ [sortField]: sortOrder })
+      .sort(
+        sortField === "getVisaTime" 
+          ? { [sortField]: sortOrder, submitTime: -1 } // getVisaTime排序时，submitTime降序
+          : sortField === "submitTime"
+            ? { [sortField]: sortOrder, getVisaTime: -1 } // submitTime排序时，getVisaTime升序
+            : { [sortField]: sortOrder } // 其他字段保持单一排序
+      )
       .skip((current - 1) * pageSize)
       .limit(pageSize);
 
