@@ -116,7 +116,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userEmail }) => {
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col lg:flex-row lg:ml-8">
-          <div className="lg:min-w-96 lg:border-r-2 lg:border-gray-300">
+          <div className="lg:min-w-[500px] lg:border-r-2 lg:border-gray-300">
             <div className="text-2xl font-bold mb-4">General</div>
             <FormField
               control={form.control}
@@ -288,6 +288,12 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userEmail }) => {
                           <RadioGroupItem value="博士" />
                         </FormControl>
                         <FormLabel className="font-normal">博士</FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="Non-Award" />
+                        </FormControl>
+                        <FormLabel className="font-normal">Non-Award</FormLabel>
                       </FormItem>
                     </RadioGroup>
                   </FormControl>

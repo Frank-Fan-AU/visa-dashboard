@@ -265,6 +265,12 @@ const EditModal = ({visible,data,onClose,onOk} : EditModalProps) => {
                         </FormControl>
                         <FormLabel className="font-normal">博士</FormLabel>
                       </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="Non-Award" />
+                        </FormControl>
+                        <FormLabel className="font-normal">Non-Award</FormLabel>
+                      </FormItem>
                     </RadioGroup>
                   </FormControl>
                   <FormMessage />

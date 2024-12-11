@@ -91,7 +91,7 @@ export function ProfileForm() {
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col lg:flex-row lg:ml-8">
-          <div className="lg:min-w-96 lg:border-r-2 lg:border-gray-300 ">
+          <div className="lg:min-w-[500px] lg:border-r-2 lg:border-gray-300 ">
             <div className="text-2xl font-bold mb-4">General*</div>
                 <FormField
                   control={form.control}
@@ -266,6 +266,12 @@ export function ProfileForm() {
                         </FormControl>
                         <FormLabel className="font-normal">博士</FormLabel>
                       </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="Non-Award" />
+                        </FormControl>
+                        <FormLabel className="font-normal">Non-Award</FormLabel>
+                      </FormItem>
                     </RadioGroup>
                   </FormControl>
                   <FormMessage />
@@ -370,7 +376,7 @@ export function ProfileForm() {
             )}
           </div>
 
-          <div className="min-w-full mt-4 lg:mt-0 lg:w-1/2 lg:ml-8">
+          <div className="min-w-full mt-4 lg:mt-0 lg:w-1/2 lg:ml-12">
             <div className="text-2xl font-bold mb-4">Details</div>
             
             <FormField

@@ -208,6 +208,7 @@ const getSorterTooltip = (sortOrder?: 'ascend' | 'descend' | null): string => {
         { text: '本科', value: '本科' },
         { text: '硕士', value: '硕士' },
         { text: '博士', value: '博士' },
+        { text: 'Non-Award', value: 'Non-Award' },
         { text: 'MPhil', value: 'MPhil' },
       ],
     },
@@ -251,8 +252,6 @@ const getSorterTooltip = (sortOrder?: 'ascend' | 'descend' | null): string => {
 
   return (
     <div>
-        <div className='w-full text-center text-sm text-red-500'>近期用户满100人了,认证服务需切换生产环境，需要麻烦大家重新注册下，给注册用户造成不便了，不好意思！</div>
-        <div className='w-full text-center text-sm text-red-500'>注册过的最好用之前注册的邮箱注册，这样个人递签信息才能同步（这条信息将持续显示两周）</div>
       <Table
         rowKey="_id"
         columns={columns}

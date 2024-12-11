@@ -26,7 +26,7 @@ const docList:docListType[] = [
         img:'',
         title:'免责声明',
         description:'必读',
-        avatar:'',
+        avatar:'/alarm.jpg',
         slug:'Disclaimer'
     },
     {
