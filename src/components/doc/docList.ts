@@ -24,6 +24,13 @@ const docList:docListType[] = [
     // },
     {
         img:'',
+        title:'免责声明',
+        description:'必读',
+        avatar:'',
+        slug:'Disclaimer'
+    },
+    {
+        img:'',
         title:'80表格',
         description:'主申副申都要',
         avatar:'',
