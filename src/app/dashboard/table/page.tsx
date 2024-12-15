@@ -219,7 +219,12 @@ const getSorterTooltip = (sortOrder?: 'ascend' | 'descend' | null): string => {
     {
       title: '递签地点',
       dataIndex: 'submitPlace',
-      width:120
+      width:120,
+      filters: [
+        { text: '国内递交', value: '国内递交' },
+        { text: '海外递交', value: '海外递交' },
+        { text: '澳洲境内递交', value: '澳洲境内递交' }
+      ],
     },
     {
       title: '是否含陪读',
