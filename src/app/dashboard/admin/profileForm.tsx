@@ -46,7 +46,7 @@ export function ProfileForm() {
       ifTogether: "",
       major: "",
       majorType: "",
-      educationLevel: "本科",
+      educationLevel: "博士",
       schoolType: "",
       ifDIY: "",
       isUser: "",
