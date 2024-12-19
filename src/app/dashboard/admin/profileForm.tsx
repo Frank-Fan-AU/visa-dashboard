@@ -85,7 +85,7 @@ export function ProfileForm() {
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col lg:flex-row lg:ml-8">
-          <div className="lg:min-w-[500px] lg:border-r-2 lg:border-gray-300 ">
+          <div className="lg:min-w-[420px] lg:border-r-2 lg:border-gray-300 ">
             <div className="text-2xl font-bold mb-4">General*</div>
             <FormField
               control={form.control}

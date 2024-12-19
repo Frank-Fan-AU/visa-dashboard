@@ -4,10 +4,10 @@ const AdminPage = () => {
   return (
     <>
       <div className="flex lg:flex-row flex-col mt-8">
-        <div className="w-full lg:w-3/4  px-5 ">
+        <div className="w-full lg:w-[70%]  px-5 lg:px-0">
           <ProfileForm></ProfileForm>
         </div>
-        <div className=" w-full lg:w-1/4  lg:ml-4">
+        <div className=" w-full lg:w-[20%]  lg:ml-11">
           <Image
             src="/xiaqian.jpeg"
             alt="Sydney Opera House"
