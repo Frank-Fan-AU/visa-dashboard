@@ -2,16 +2,8 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { useEffect } from "react";
 import {
   Form,
@@ -27,8 +19,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { formSchema } from "@/lib/schema";
 import { z } from "zod";
+import type { DatePickerProps } from 'antd';
 
-import { message } from "antd";
+import moment from 'moment';
+import { message, DatePicker } from "antd";
 import React from "react";
 
 const defaultValues = {
@@ -124,42 +118,16 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userEmail }) => {
               render={({ field }) => (
                 <FormItem className="mt-4  flex flex-col">
                   <FormLabel>递签日期*</FormLabel>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          variant={"outline"}
-                          className={cn(
-                            "w-[240px] pl-3 text-left font-normal",
-                            !field.value && "text-muted-foreground"
-                          )}>
-                          {field.value ? (
-                            format(new Date(field.value), "yyyy-MM-dd")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={
-                          field.value ? new Date(field.value) : undefined
-                        }
-                        onSelect={(date) => {
-                          if (date) {
-                            field.onChange(format(date, "yyyy-MM-dd")); // 将 Date 对象转换为字符串并存储
-                          }
-                        }}
-                        disabled={(date) =>
-                          date > new Date() || date < new Date("1900-01-01")
-                        }
-                        initialFocus
-                      />
-                    </PopoverContent>
-                  </Popover>
+                  <DatePicker
+                    value={field.value ? moment(field.value) : null} // 使用 moment 来转换日期值
+                    onChange={(date, dateString) => {
+                      field.onChange(dateString); // 更新表单的日期值为字符串格式
+                    }}
+                    disabledDate={(current) => current && current > moment().endOf('day')} // 禁用未来日期
+                    format="YYYY-MM-DD" // 设置日期格式
+                    style={{ width: 240 }}
+                    size="large"
+                  />
 
                   <FormMessage />
                 </FormItem>
@@ -338,42 +306,16 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userEmail }) => {
                   render={({ field }) => (
                     <FormItem className="mt-4 flex flex-col">
                       <FormLabel>下签日期</FormLabel>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={"outline"}
-                              className={cn(
-                                "lg:w-[240px] w-[200px] pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}>
-                              {field.value ? (
-                                format(new Date(field.value), "yyyy-MM-dd")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={
-                              field.value ? new Date(field.value) : undefined
-                            }
-                            onSelect={(date) => {
-                              if (date) {
-                                field.onChange(format(date, "yyyy-MM-dd")); // 将 Date 对象转换为字符串并存储
-                              }
-                            }}
-                            disabled={(date) =>
-                              date > new Date() || date < new Date("2022-01-01")
-                            }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
+                      <DatePicker
+                    value={field.value ? moment(field.value) : null} // 使用 moment 来转换日期值
+                    onChange={(date, dateString) => {
+                      field.onChange(dateString); // 更新表单的日期值为字符串格式
+                    }}
+                    disabledDate={(current) => current && current > moment().endOf('day')} // 禁用未来日期
+                    format="YYYY-MM-DD" // 设置日期格式
+                    style={{ width: 240 }}
+                    size="large"
+                  />
 
                       <FormMessage />
                     </FormItem>

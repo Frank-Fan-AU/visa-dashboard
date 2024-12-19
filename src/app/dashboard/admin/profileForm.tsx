@@ -2,16 +2,9 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+
 import {
   Form,
   FormControl,
@@ -28,7 +21,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { formSchema } from "@/lib/schema";
 import { z } from "zod";
 
-import { message } from "antd";
+import { message, DatePicker } from "antd";
+import moment from 'moment';
 
 export function ProfileForm() {
   const [messageApi, contextHolder] = message.useMessage();
@@ -36,7 +30,7 @@ export function ProfileForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      ifSubmit:"",
+      ifSubmit: "",
       submitTime: "",
       submitPlace: "国内递交",
       ifGetVisa: "false",
@@ -93,95 +87,68 @@ export function ProfileForm() {
           className="flex flex-col lg:flex-row lg:ml-8">
           <div className="lg:min-w-[500px] lg:border-r-2 lg:border-gray-300 ">
             <div className="text-2xl font-bold mb-4">General*</div>
-                <FormField
-                  control={form.control}
-                  name="submitTime"
-                  render={({ field }) => (
-                    <FormItem className="mt-4 flex flex-col">
-                      <FormLabel>递签日期</FormLabel>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={"outline"}
-                              className={cn(
-                                "w-[240px] pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}>
-                              {field.value ? (
-                                format(new Date(field.value), "yyyy-MM-dd")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={
-                              field.value ? new Date(field.value) : undefined
-                            }
-                            onSelect={(date) => {
-                              if (date) {
-                                field.onChange(format(date, "yyyy-MM-dd")); // 将 Date 对象转换为字符串并存储
-                              }
-                            }}
-                            disabled={(date) =>
-                              date > new Date() || date < new Date("1900-01-01")
-                            }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
+            <FormField
+              control={form.control}
+              name="submitTime"
+              render={({ field }) => (
+                <FormItem className="mt-4 flex flex-col">
+                  <FormLabel>递签日期</FormLabel>
+                  <DatePicker
+                    value={field.value ? moment(field.value) : null} // 使用 moment 来转换日期值
+                    onChange={(date, dateString) => {
+                      field.onChange(dateString); // 更新表单的日期值为字符串格式
+                    }}
+                    disabledDate={(current) => current && current > moment().endOf('day')} // 禁用未来日期
+                    format="YYYY-MM-DD" // 设置日期格式
+                    style={{ width: 260 }}
+                    size="large"
+                  />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="submitPlace"
+              render={({ field }) => (
+                <FormItem className="mt-4">
+                  <FormLabel>境内境外递交</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      className="flex flex-row space-x-3">
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="国内递交" />
+                        </FormControl>
+                        <FormLabel className="font-normal">
+                          国内递交
+                        </FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="海外递交" />
+                        </FormControl>
+                        <FormLabel className="font-normal">
+                          海外递交
+                        </FormLabel>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-1 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="澳洲境内递交" />
+                        </FormControl>
+                        <FormLabel className="font-normal">
+                          澳洲境内递交
+                        </FormLabel>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="submitPlace"
-                  render={({ field }) => (
-                    <FormItem className="mt-4">
-                      <FormLabel>境内境外递交</FormLabel>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          value={field.value}
-                          className="flex flex-row space-x-3">
-                          <FormItem className="flex items-center space-x-1 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="国内递交" />
-                            </FormControl>
-                            <FormLabel className="font-normal">
-                              国内递交
-                            </FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-1 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="海外递交" />
-                            </FormControl>
-                            <FormLabel className="font-normal">
-                              海外递交
-                            </FormLabel>
-                          </FormItem>
-                          <FormItem className="flex items-center space-x-1 space-y-0">
-                            <FormControl>
-                              <RadioGroupItem value="澳洲境内递交" />
-                            </FormControl>
-                            <FormLabel className="font-normal">
-                              澳洲境内递交
-                            </FormLabel>
-                          </FormItem>
-                        </RadioGroup>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-            
             <FormField
               control={form.control}
               name="ifIncludedCouple"
@@ -231,7 +198,7 @@ export function ProfileForm() {
                 </FormItem>
               )}
             />
-          <FormField
+            <FormField
               control={form.control}
               name="educationLevel"
               render={({ field }) => (
@@ -315,42 +282,16 @@ export function ProfileForm() {
                   render={({ field }) => (
                     <FormItem className="mt-4 flex flex-col">
                       <FormLabel>下签日期</FormLabel>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={"outline"}
-                              className={cn(
-                                "lg:w-[240px] w-[200px] pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
-                              )}>
-                              {field.value ? (
-                                format(new Date(field.value), "yyyy-MM-dd")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={
-                              field.value ? new Date(field.value) : undefined
-                            }
-                            onSelect={(date) => {
-                              if (date) {
-                                field.onChange(format(date, "yyyy-MM-dd")); // 将 Date 对象转换为字符串并存储
-                              }
-                            }}
-                            disabled={(date) =>
-                              date > new Date() || date < new Date("2022-01-01")
-                            }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
+                      <DatePicker
+                    value={field.value ? moment(field.value) : null} // 使用 moment 来转换日期值
+                    onChange={(date, dateString) => {
+                      field.onChange(dateString); // 更新表单的日期值为字符串格式
+                    }}
+                    disabledDate={(current) => current && current > moment().endOf('day')} // 禁用未来日期
+                    format="YYYY-MM-DD" // 设置日期格式
+                    style={{ width: 240 }}
+                    size="large"
+                  />
 
                       <FormMessage />
                     </FormItem>
@@ -378,7 +319,7 @@ export function ProfileForm() {
 
           <div className="min-w-full mt-4 lg:mt-0 lg:w-1/2 lg:ml-12">
             <div className="text-2xl font-bold mb-4">Details</div>
-            
+
             <FormField
               control={form.control}
               name="schoolType"
@@ -393,7 +334,7 @@ export function ProfileForm() {
                 </FormItem>
               )}
             />
-            
+
 
             <FormField
               control={form.control}
@@ -446,7 +387,7 @@ export function ProfileForm() {
               Submit
             </Button>
           </div>
-         
+
         </form>
       </Form>
     </>
