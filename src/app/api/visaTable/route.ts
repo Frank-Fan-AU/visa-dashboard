@@ -31,15 +31,24 @@ export const GET = async (req: Request) => {
        }
      }
    });
+
    // 将数组条件转化为 MongoDB 的 $in 操作符
    Object.keys(filterConditions).forEach((key) => {
+    const values = filterConditions[key];
+    console.log('VALUES',values)
     if (Array.isArray(filterConditions[key]) && filterConditions[key].length > 1) {
-      filterConditions[key] = { $in: filterConditions[key] };
+      // 如果有多个值，使用 $or 和 $regex 实现模糊搜索
+    filterConditions[key] = {
+      $or: values.map((val: string) => ({
+        [key]: { $regex: val, $options: "i" },
+      })),
+    };
     } else {
-      // 如果只有一个值，直接匹配该值
-      filterConditions[key] = filterConditions[key][0];
+      // 单个值也使用 $regex 实现模糊搜索
+    filterConditions[key] = { $regex: values[0], $options: "i" };
     }
   });
+  
     // 分页与排序
     const records = await Record.find(filterConditions)
       .sort(

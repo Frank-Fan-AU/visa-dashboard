@@ -1,13 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useUser } from "@clerk/nextjs";
-import { Table, Pagination, Button} from "antd";
-import type { TableColumnsType, TableProps,GetProp } from 'antd';
+import { Table, Pagination, Button, Input, Space} from "antd";
+import type { TableColumnsType, TableProps,GetProp, InputRef, TableColumnType } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 import type { SorterResult, SortOrder } from 'antd/es/table/interface';
+import type { FilterDropdownProps } from 'antd/es/table/interface';
 import { Record } from "@/type/Record";
 import qs from 'qs';
 import { DetailModal } from "./detailModal";
 import EditModal from "./editModal";
+
 
 type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
 
@@ -27,6 +30,12 @@ const TablePage = () => {
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [sortOrder, setSortOrder] = useState<SortOrder | null>('descend'); // 初始排序状态
+
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef<InputRef>(null);
+
+  type DataIndex = keyof Record;
 
   const [tableParams, setTableParams] = useState<TableParams>({
     pagination: {
@@ -149,7 +158,6 @@ useEffect(() => {
 
   // 工具函数：根据排序状态生成静态提示
 const getSorterTooltip = (sortOrder?: 'ascend' | 'descend' | null): string => {
-  console.log('sortOrder',sortOrder)
   if(sortOrder === 'ascend'){
     return '点击由近到远排序'
   }else if(sortOrder === 'descend'){
@@ -157,6 +165,70 @@ const getSorterTooltip = (sortOrder?: 'ascend' | 'descend' | null): string => {
   }
   return '点击由远到近排序'
 };
+
+const handleSearch = (
+  selectedKeys: string[],
+  confirm: FilterDropdownProps['confirm'],
+  dataIndex: DataIndex,
+) => {
+  confirm();
+  setSearchText(selectedKeys[0]);
+  setSearchedColumn(dataIndex);
+};
+const handleReset = (clearFilters: () => void) => {
+  clearFilters();
+  setSearchText('');
+};
+
+//工具函数： 表头搜索框
+const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => ({
+  filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+    <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
+      <Input
+        ref={searchInput}
+        placeholder={`Search ${dataIndex}`}
+        value={selectedKeys[0]}
+        onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+        onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
+        style={{ marginBottom: 8, display: 'block' }}
+      />
+      <Space>
+        <Button
+          type="primary"
+          onClick={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
+          icon={<SearchOutlined />}
+          size="small"
+          style={{ width: 90 }}
+        >
+          Search
+        </Button>
+        <Button
+          onClick={() => clearFilters && handleReset(clearFilters)}
+          size="small"
+          style={{ width: 90 }}
+        >
+          Reset
+        </Button>
+
+        <Button
+          type="link"
+          size="small"
+          onClick={() => {
+            close();
+          }}
+        >
+          close
+        </Button>
+      </Space>
+    </div>
+  ),
+  filterIcon: (filtered: boolean) => (
+    <SearchOutlined style={{ color: filtered ? '#1677ff' : undefined }} />
+  ),
+  render: (text) =>
+   text
+});
+
 
   const columns: TableColumnsType<Record> = [
 
@@ -215,6 +287,7 @@ const getSorterTooltip = (sortOrder?: 'ascend' | 'descend' | null): string => {
     {
       title: '专业',
       dataIndex: 'major',
+      ...getColumnSearchProps('major'),
     },
     {
       title: '递签地点',
@@ -248,7 +321,6 @@ const getSorterTooltip = (sortOrder?: 'ascend' | 'descend' | null): string => {
          {isAdmin && (<Button size="small" onClick={()=>{handleDelete(record._id!)}}>删除</Button>)} 
           </div>
           
-      
       ),
     },
 
