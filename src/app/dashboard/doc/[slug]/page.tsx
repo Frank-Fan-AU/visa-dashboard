@@ -1,38 +1,25 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { MDXRemote } from 'next-mdx-remote/rsc'; // 使用next-mdx-remote来处理mdx文件
-import ImageGallery from '@/components/doc/imageGallery';
-import Image from 'next/image';
+import MDXComponent from '@/components/common/MDXComponent';
+import BackButton from '@/components/common/BackButton';
+import PageHeading from '@/components/common/PageHeading';
+import { fetchContentByName } from '@/lib/contentfulApi';
 
 
 interface DocPageProps {
   params: { slug: string };
 }
 
+const DocDetailPage = async ({ params: { slug } }: DocPageProps) => {
+console.log(slug)
+  const post = await fetchContentByName(slug);
 
-const components = {
-  ImageGallery, // 注册组件
-  Image
-};
-
-const DocDetailPage = ({ params: { slug } }: DocPageProps) => {
-  const docDir = path.join(process.cwd(), 'src', 'docContent');
-  const filePath = path.join(docDir, `${slug}.mdx`);
-
-  // 检查文件是否存在
-  if (!fs.existsSync(filePath)) {
-    return <div>Document not found</div>;
-  }
-
-  const source = fs.readFileSync(filePath, 'utf8');
-  const { content, data } = matter(source);
 
   return (
     <div>
-      {/* { path.join(process.cwd(),'src','docPosts')} */}
-      {/* <h1>{data.title || slug}</h1> */}
-      <MDXRemote source={content} components={components}/>
+      <BackButton url='/dashboard/doc' />
+      <PageHeading title={post.title} description={post.describe} />
+      <div className='mt-5 space-y-6 leading-[1.8] dark:text-neutral-300'>
+        <MDXComponent>{post.content}</MDXComponent>
+      </div>
     </div>
   )
 };

@@ -18,6 +18,9 @@ const nextConfig = {
     },
     pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
     images:{
+        domains: [
+            'images.ctfassets.net'  // 添加 Contentful 的图片域名
+          ],
         remotePatterns:[
             {
                 protocol: 'https',

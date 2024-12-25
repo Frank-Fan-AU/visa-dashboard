@@ -50,6 +50,9 @@ const Page = () => {
       {
         children:`feat: 表格添加专业搜索功能,更换网站header logo. 2024-12-24`
       },
+      {
+        children:`feat: 使用contentful CMS来管理递签攻略内容，此后递签攻略内容部分可交由开发之外的人(bignqi)进行管理 & 优化内容显示样式 2024-12-25`
+      },
     ]}
   />
     </div>
