@@ -14,6 +14,11 @@ interface DetailModalProps {
 export const DetailModal = ({visible, record, onClose }:DetailModalProps) => {
 
   const items: DescriptionsProps['items'] = [
+    // {
+    //   key: '0',
+    //   label: '签证官',
+    //   children: record?.visaOfficer == "" ?  "未填写": record?.visaOfficer,
+    // },
     {
       key: '1',
       label: '学校',

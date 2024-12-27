@@ -231,6 +231,18 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
 
 
   const columns: TableColumnsType<Record> = [
+    {
+      title: '是否已下签',
+      dataIndex: 'ifGetVisa',
+      width:120,
+      render: (_, record) => {
+        return record.ifGetVisa === "true" ? '已下签' : '未下签';
+      },
+      filters: [
+        { text: '已下签', value: "true" },
+        { text: '未下签', value: "false" },
+      ],
+    },
 
     {
       title: '递签日期',
@@ -272,6 +284,7 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
       dataIndex: 'visaOfficer',
       width:120
     },
+   
     {
       title: '本硕博',
       dataIndex: 'educationLevel',
@@ -340,12 +353,13 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
         className="overflow-y-auto w-screen"
       />
       <Pagination
-      className="flex items-center justify-end space-x-2 custom-pagination mt-4 mb-2"
+      className="flex items-center justify-end space-x-2 custom-pagination mt-4 mb-2 mr-4"
         total={tableParams.pagination?.total}
         current={tableParams.pagination?.current}
         pageSize={tableParams.pagination?.pageSize}
         simple={{ readOnly: true }}
         showSizeChanger
+        showQuickJumper
         showTotal={(total) => `共 ${total} 条`}
         onChange={(page, pageSize) => {
           setTableParams({

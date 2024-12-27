@@ -5,6 +5,7 @@ export type Record = {
     visaOfficer: string;
     ifIncludedCouple: string;
     ifTogether: string;
+    ifGetVisa: string;
     major: string;
     majorType: string;
     educationLevel: string;
