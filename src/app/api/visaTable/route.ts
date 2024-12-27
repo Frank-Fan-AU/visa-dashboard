@@ -32,23 +32,21 @@ export const GET = async (req: Request) => {
      }
    });
 
-   // 将数组条件转化为 MongoDB 的 $in 操作符
-   Object.keys(filterConditions).forEach((key) => {
-    const values = filterConditions[key];
-    console.log('VALUES',values)
-    if (Array.isArray(filterConditions[key]) && filterConditions[key].length > 1) {
-      // 如果有多个值，使用 $or 和 $regex 实现模糊搜索
-    filterConditions[key] = {
-      $or: values.map((val: string) => ({
-        [key]: { $regex: val, $options: "i" },
-      })),
-    };
-    } else {
-      // 单个值也使用 $regex 实现模糊搜索
+    // 将多个值转换为 $or 查询
+Object.keys(filterConditions).forEach((key) => {
+  const values = filterConditions[key];
+  if (Array.isArray(values) && values.length > 1) {
+    filterConditions.$or = values.map((val: string) => ({
+      [key]: { $regex: val, $options: "i" },
+    }));
+    delete filterConditions[key]; // 移除原来的字段
+  } else if (Array.isArray(values) && values.length === 1) {
     filterConditions[key] = { $regex: values[0], $options: "i" };
-    }
-  });
-  
+  }
+});
+
+
+console.log("QUERY CONDITIONS", JSON.stringify(filterConditions, null, 2));
     // 分页与排序
     const records = await Record.find(filterConditions)
       .sort(
