@@ -282,7 +282,8 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
     {
       title: '签证官',
       dataIndex: 'visaOfficer',
-      width:120
+      width:120,
+      ...getColumnSearchProps('visaOfficer'),
     },
    
     {
