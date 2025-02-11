@@ -11,6 +11,8 @@ import qs from 'qs';
 import { DetailModal } from "./detailModal";
 import EditModal from "./editModal";
 
+import Confetti from 'react-confetti';
+
 
 type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
 
@@ -33,6 +35,11 @@ const TablePage = () => {
 
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
+
+  const [isCelebrating, setIsCelebrating] = useState(true);//庆祝组件
+  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(0);
+
   const searchInput = useRef<InputRef>(null);
 
   type DataIndex = keyof Record;
@@ -69,6 +76,32 @@ const TablePage = () => {
     }
   };
 
+  useEffect(() => {
+    // 检查是否在客户端渲染
+    if (typeof window !== 'undefined') {
+      setWindowWidth(window.innerWidth);
+      setWindowHeight(window.innerHeight);
+
+      // 监听窗口大小变化，更新宽高
+      const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+        setWindowHeight(window.innerHeight);
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      // 5秒后停止庆祝效果
+      const timer = setTimeout(() => {
+        setIsCelebrating(false);
+      }, 5000); // 5000ms = 5秒
+
+      // 清除定时器和事件监听器，防止内存泄漏
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, []);
 
 useEffect(() => {
   fetchData();
@@ -343,6 +376,9 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
 
   return (
     <div>
+    {isCelebrating && <Confetti width={windowWidth} height={windowHeight}  />
+    }
+    {isCelebrating && <div className="text-center text-2xl font-bold text-red-500">历时200天，我们终于下签啦！！！庆祝三天！！！</div>}
       <Table
         rowKey="_id"
         columns={columns}

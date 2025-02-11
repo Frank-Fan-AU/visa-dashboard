@@ -43,6 +43,7 @@
     "next-mdx-remote": "^5.0.0",
     "qs": "^6.13.0",
     "react": "^18",
+    "react-confetti": "^6.2.2",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18",
     "react-hook-form": "^7.52.2",
