@@ -1,17 +1,31 @@
+'use client';
+import { useEffect, useState } from 'react';
 import { HeroHighlight, Highlight } from "../ui/hero-highlight";
-import { Skeleton } from "@/components/ui/skeleton";
+
 import Contributors from "./contributors";
 import RightPart from "./rightPart";
 import Link from "next/link";
 import { SignInButton } from "@clerk/nextjs";
+import en from '@/locales/en.json';
+import zh from '@/locales/zh.json';
+import LangSwitcher from "../common/LangSwitcher";
 
 const HomePage = () => {
+  const [lang, setLang] = useState('en');
+
+  useEffect(() => {
+    const stored = localStorage.getItem('lang') || 'en';
+    setLang(stored);
+  }, []);
+  const t = lang === 'zh' ? zh : en;
+
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center  px-8 mb-4">
       <div className="w-full lg:w-1/2">
         <HeroHighlight >
+        <LangSwitcher />
         <h1 className="text-5xl font-bold text-black px-4 pb-4 mt-8">AU-500-VISA-Dashboard</h1>
-          <h1 className="text-5xl font-bold text-black px-4 py-2">欢迎👏🏻 </h1>
+          <h1 className="text-5xl font-bold text-black px-4 py-2">{t.title}👏🏻 </h1>
           <h2 className="text-3xl font-bold text-black px-4 pt-2">
             更容易获取所有要关心的签证信息
           </h2>
