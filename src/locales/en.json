@@ -1,4 +1,12 @@
 {
-    "title": "Welcome",
-    "description": "This is a simple bilingual site."
+    "homePage": {
+        "title": "Welcome to Visa Information",
+        "subTitle": "Easier access to all visa information you need.",
+        "highlight": "Share your visa progress,",
+        "normalDesc": "exchange visa information, and help more people who are preparing for visas",
+        "button": {
+            "left": "Visa-Table",
+            "right": "Login to Share"
+        }
+    }
 }

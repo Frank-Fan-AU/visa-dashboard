@@ -25,13 +25,13 @@ const HomePage = () => {
         <HeroHighlight >
         <LangSwitcher />
         <h1 className="text-5xl font-bold text-black px-4 pb-4 mt-8">AU-500-VISA-Dashboard</h1>
-          <h1 className="text-5xl font-bold text-black px-4 py-2">{t.title}👏🏻 </h1>
+          <h1 className="text-5xl font-bold text-black px-4 py-2">{t.homePage.title}👏🏻 </h1>
           <h2 className="text-3xl font-bold text-black px-4 pt-2">
-            更容易获取所有要关心的签证信息
+            {t.homePage.subTitle}
           </h2>
           <div className="text-black py-10 px-4">
-            <Highlight>分享您的签证进度，</Highlight>
-            交流签证信息，帮助到更多正在准备签证的人
+            <Highlight>{t.homePage.highlight}</Highlight>
+            {t.homePage.normalDesc}
           </div>
           <div className="flex flex-row items-center ">
             <div className="px-4">
@@ -39,7 +39,7 @@ const HomePage = () => {
                 <button className="p-[3px] relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
                   <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
-                    Visa-数据看板
+                    {t.homePage.button.left}
                   </div>
                 </button>
               </Link>
@@ -48,7 +48,7 @@ const HomePage = () => {
               <button className="p-[3px] relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
                 <div className="px-8 py-2  bg-white rounded-[6px]  relative group transition duration-200 text-black hover:bg-transparent">
-                 <SignInButton forceRedirectUrl={"/dashboard/table"}>Login to share</SignInButton>
+                 <SignInButton forceRedirectUrl={"/dashboard/table"}>{t.homePage.button.right}</SignInButton>
                 </div>
               </button>
             </div>

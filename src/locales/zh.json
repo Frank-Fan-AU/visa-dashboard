@@ -1,4 +1,12 @@
 {
-    "title": "欢迎",
-    "description": "这是一个简单的双语网站。"
+   "homePage": {
+        "title": "欢迎",
+        "subTitle": "更容易获取所有要关心的签证信息。",
+        "highlight": "分享你的签证进度，",
+        "normalDesc": "交流签证信息，帮助更多正在准备签证的人",
+        "button": {
+            "left": "Visa-数据看板",
+            "right": "登录后分享"
+        }
+    }
   }
