@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
 import Script from "next/script";
+import { I18nProvider } from "@/context/i18n-context";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
             `}
           </Script>
         </head>
+        <I18nProvider>
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
@@ -47,6 +49,7 @@ export default function RootLayout({
           {/* <Navbar /> */}
           {children}
         </body>
+        </I18nProvider>
       </html>
     </ClerkProvider>
   );

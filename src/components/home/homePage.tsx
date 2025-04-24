@@ -1,4 +1,5 @@
 'use client';
+import useTranslation from '@/hooks/useTranslation';
 import { useEffect, useState } from 'react';
 import { HeroHighlight, Highlight } from "../ui/hero-highlight";
 
@@ -6,19 +7,11 @@ import Contributors from "./contributors";
 import RightPart from "./rightPart";
 import Link from "next/link";
 import { SignInButton } from "@clerk/nextjs";
-import en from '@/locales/en.json';
-import zh from '@/locales/zh.json';
+
 import LangSwitcher from "../common/LangSwitcher";
 
 const HomePage = () => {
-  const [lang, setLang] = useState('en');
-
-  useEffect(() => {
-    const stored = localStorage.getItem('lang') || 'en';
-    setLang(stored);
-  }, []);
-  const t = lang === 'zh' ? zh : en;
-
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center  px-8 mb-4">
       <div className="w-full lg:w-1/2">
