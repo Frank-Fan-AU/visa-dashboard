@@ -4,10 +4,11 @@ import React from "react";
 import { WobbleCard } from "../ui/wobble-card";
 import Link from "next/link";
 import { message } from "antd";
+import useTranslation from "@/hooks/useTranslation";
 
 export default function RightPart() {
   const [messageApi, contextHolder] = message.useMessage(); // 使用 message 组件
-
+const { t } = useTranslation();
   return (
     <>
       {contextHolder}
@@ -21,10 +22,10 @@ export default function RightPart() {
             key={"1"}>
             <div className="max-w-xs">
               <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-              递签攻略
+              {t.homePage.card.redTitle}
               </h2>
               <p className="mt-4 text-left  text-base/6 text-neutral-200">
-              分享与递签相关的材料准备清单、表格填写、文书模板、体检预约流程以及递签系统的填写步骤等，希望给还未递签的朋友一些参考！
+              {t.homePage.card.redDesc}
               </p>
             </div>
           </WobbleCard>
@@ -34,10 +35,10 @@ export default function RightPart() {
           <Link href="/dashboard/message">
            <WobbleCard containerClassName="h-full" key={"2"}>
             <h2 className="max-w-80  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-              留言板
+            {t.homePage.card.purpleTitle}
             </h2>
             <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
-            欢迎大家给我们留言，无论是等签过程中的吐槽，还是下签之后的心得，又或者是对我们网站的改进建议，都欢迎写下来与我们分享！
+            {t.homePage.card.purpleDesc}
             </p>
           </WobbleCard>
           </Link>
@@ -50,10 +51,10 @@ export default function RightPart() {
           <WobbleCard containerClassName="bg-blue-900 h-full" key={"3"}>
             <div className="max-w-sm">
               <h2 className="max-w-sm md:max-w-lg  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                递签统计表
+              {t.homePage.card.blueTitle}
               </h2>
               <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
-              这里是我们从各个下签贴、等签群中搜集来的递签信息，希望给大家一些参考！
+              {t.homePage.card.blueDesc}
               </p>
             </div>
             <Image
