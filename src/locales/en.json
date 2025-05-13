@@ -1,0 +1,68 @@
+{
+  "homePage": {
+    "title": "Welcome to Visa Information",
+    "subTitle": "Easier access to all visa information you need.",
+    "highlight": "Share your visa progress,",
+    "normalDesc": "exchange visa information",
+    "normalDesc2": "Help more people who are preparing for visas",
+    "button": {
+      "left": "Visa-Table",
+      "right": "Login to Share"
+    },
+    "card": {
+      "redTitle": "Visa Submission Guide",
+      "redDesc": "Provides checklists, templates, and step-by-step guidance on submitting your visa, including document preparation, form filling, medical exam booking, and system walkthroughs — a helpful reference for students yet to lodge their application.",
+      "blueTitle": "Visa Submission Table",
+      "blueDesc": "We’ve gathered real visa submission data from community posts and chat groups to help you get a better idea of what to expect.",
+      "purpleTitle": "Message Board",
+      "purpleDesc": "Share your thoughts or visa journey with us!"
+    },
+    "blackCard": {
+      "title": "What Can We Offer You?",
+      "card1": {
+        "title": "If You Haven’t Submitted Yet",
+        "desc": "Check out the <Visa Submission Guide> section on the homepage. We’ve compiled helpful tips such as how to fill out visa-related forms, book a medical exam, and more. We'll also share document templates, preparation checklists, and step-by-step instructions for using the visa submission system to support those who haven't submitted yet."
+      },
+      "card2": {
+        "title": "If You’re Waiting for Approval",
+        "desc": "Visit the <Visa Dashboard> on the homepage, go to <My Submission Info>, and upload your submission date. On the <Submission Stats> page, you can see how many others are also waiting. Once your visa is granted, don’t forget to come back and update your info. Best of luck!"
+      },
+      "card3": {
+        "title": "If Your Visa Has Been Granted",
+        "desc": "Head to the <Visa Dashboard> on the homepage, go to <My Submission Info>, and upload both your submission and grant dates to help others waiting for their visa."
+      },
+      "card4": {
+        "title": "How to Upload and Update Your Info",
+        "desc": "Click <login to share> on the homepage to register or log in, then go to <Visa Dashboard> and choose <My Submission Info>. Fill in your details and submit. You can update your info anytime by resubmitting on the same page — the stats will update automatically. *Note: Each user can only update their own visa record."
+      }
+    }
+  },
+  "sidebar": {
+    "visatable": "Visa-Table",
+    "visaGuide": "Visa Submission Guide",
+    "messageBoard": "Message Board",
+    "updateLog": "Update Log"
+  },
+  "tableRow": {
+    "ifGetVisa": "Visa Granted",
+    "submitDate": "Submission Date",
+    "grantDate": "Grant Date",
+    "handleTime": "Processing Time",
+    "visaOfficer": "Visa Officer",
+    "educationLevel": "Education Level",
+    "major": "Major",
+    "submitPlace": "Submission Location",
+    "ifIncludedCouple": "Includes Partner",
+    "details": "Details",
+    "Granted": "Granted",
+    "pending": "Pending",
+    "days": "Days",
+    "Bachelor": "Bachelor",
+    "Master": "Master",
+    "PhD": "PhD"
+  },
+  "loginToComment": "Login to Comment",
+  "comments": "comments",
+  "Expand": "Expand",
+  "Collapse": "Collapse"
+}

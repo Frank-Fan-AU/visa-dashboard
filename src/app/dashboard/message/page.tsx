@@ -8,8 +8,10 @@ import {
   SignInButton,
   useUser,
 } from "@clerk/nextjs";
+import useTranslation from "@/hooks/useTranslation";
 
 const Page = () => {
+  const {t} = useTranslation();
   const [messages, setMessages] = useState<Message[]>([]);
   const [page, setPage] = useState(1); // Page number for pagination
   const [loading, setLoading] = useState(false);
@@ -81,7 +83,7 @@ const Page = () => {
     <div className="flex flex-col h-screen overflow-hidden bg-gray-50" >
       {/* 留言列表展示区 */}
       <div className=" p-4 bg-gray-50 h-screen-minus-120  md:h-screen-minus-100 " >
-        <h2 className="text-xl font-semibold mb-4">留言板</h2>
+        <h2 className="text-xl font-semibold mb-4">{t.sidebar.messageBoard}</h2>
         <div className="space-y-4  overflow-auto" id="scrollableDiv"  style={{
       height:"calc(100% - 30px)"
     }}>
@@ -108,7 +110,7 @@ const Page = () => {
       <button className="p-[3px] relative mt-5 ">
       <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
       <div className="px-8 py-2  bg-white rounded-[6px]  relative group transition duration-200 text-black hover:bg-transparent">
-       <SignInButton forceRedirectUrl={"/dashboard/message"}>登录后留言</SignInButton>
+       <SignInButton forceRedirectUrl={"/dashboard/message"}>{t.loginToComment}</SignInButton>
       </div>
     </button>
       }

@@ -12,6 +12,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Table2, FileUp, Rss,ClipboardList,MessageSquareMore } from "lucide-react";
 import { cn } from "@/lib/utils";
+import useTranslation from "@/hooks/useTranslation";
 
 export function MySidebarDemo({
   children,
@@ -19,6 +20,7 @@ export function MySidebarDemo({
   children: React.ReactNode;
 }>) {
   const { isSignedIn, user } = useUser();
+  const { t } = useTranslation();
   const isAdmin = user?.organizationMemberships[0]?.role === "org:admin";
   const links = [
     // {
@@ -29,28 +31,28 @@ export function MySidebarDemo({
     //   ),
     // },
     {
-      label: "递签统计表",
+      label: t.sidebar.visatable,
       href: "/dashboard/table",
       icon: (
         <Table2 className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: "递签攻略",
+      label: t.sidebar.visaGuide,
       href: "/dashboard/doc",
       icon: (
         <ClipboardList className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: "留言板",
+      label: t.sidebar.messageBoard,
       href: "/dashboard/message",
       icon: (
         <MessageSquareMore className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       )
     },
     {
-      label: "更新日志",
+      label: t.sidebar.updateLog,
       href: "/dashboard/update",
       icon: (
         <Rss className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />

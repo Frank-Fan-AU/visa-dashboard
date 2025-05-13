@@ -6,6 +6,7 @@ import { Comment, Message } from '../interface';
 import { useUser } from "@clerk/nextjs";
 import { CommentList } from './commentList';
 import { formatDate } from '@/lib/utils';
+import useTranslation from '@/hooks/useTranslation';
 
 
 // MessageItem 组件的 Props 类型
@@ -19,6 +20,8 @@ interface MessageItemProps {
 
 
 const MessageItem = ({ message, currentUserId, onDelete }: MessageItemProps) => {
+     const { t } = useTranslation();
+
     const isCurrentUserMessage = message.userId === currentUserId;
 
     const [isCommentsVisible, setIsCommentsVisible] = useState(false);
@@ -103,7 +106,7 @@ const MessageItem = ({ message, currentUserId, onDelete }: MessageItemProps) => 
                         onClick={() => setIsCommentsVisible(!isCommentsVisible)}
                     >
                         <MessageCircleMore className=" h-4" />
-                        {isCommentsVisible ? '收起评论' : message.comments.length + '条评论'}
+                        {isCommentsVisible ? '收起评论' : message.comments.length + t.comments}
                     </button>
                     <span className="ml-4"></span>
                 </div>
@@ -121,11 +124,11 @@ const MessageItem = ({ message, currentUserId, onDelete }: MessageItemProps) => 
                     {showReadMore && (
                         !isExpanded ? (
                             <button onClick={toggleExpand} className="text-blue-500 text-sm">
-                                阅读全文
+                                {t.Expand}
                             </button>
                         ) : (
                             <button onClick={toggleExpand} className="text-blue-500 text-sm">
-                                收起
+                                {t.Collapse}
                             </button>
                         )
                     )
