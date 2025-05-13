@@ -12,6 +12,7 @@ import { DetailModal } from "./detailModal";
 import EditModal from "./editModal";
 
 import Confetti from 'react-confetti';
+import useTranslation from "@/hooks/useTranslation";
 
 
 type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
@@ -39,6 +40,8 @@ const TablePage = () => {
   // const [isCelebrating, setIsCelebrating] = useState(true);//庆祝组件
   // const [windowWidth, setWindowWidth] = useState(0);
   // const [windowHeight, setWindowHeight] = useState(0);
+
+  const {t} = useTranslation();
 
   const searchInput = useRef<InputRef>(null);
 
@@ -265,27 +268,27 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
 
   const columns: TableColumnsType<Record> = [
     {
-      title: '是否已下签',
+      title: t.tableRow.ifGetVisa,
       dataIndex: 'ifGetVisa',
       width:120,
       render: (_, record) => {
-        return record.ifGetVisa === "true" ? '已下签' : '未下签';
+        return record.ifGetVisa === "true" ? t.tableRow.Granted : t.tableRow.pending;
       },
       filters: [
-        { text: '已下签', value: "true" },
-        { text: '未下签', value: "false" },
+        { text: t.tableRow.Granted, value: "true" },
+        { text: t.tableRow.pending, value: "false" },
       ],
     },
 
     {
-      title: '递签日期',
+      title: t.tableRow.submitDate,
       dataIndex: 'submitTime',
       sorter: true,
       width: 130,
       showSorterTooltip: { title: getSorterTooltip(sortOrder) }, // 传入静态提示
     },
     {
-      title: '下签日期',
+      title: t.tableRow.grantDate,
       dataIndex: 'getVisaTime',
       sorter: true,
       defaultSortOrder: 'descend',
@@ -293,7 +296,7 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
       showSorterTooltip: { title: getSorterTooltip(sortOrder) }, // 传入静态提示
     },
     {
-      title: '签证处理时间',
+      title: t.tableRow.handleTime,
       dataIndex: 'handleTime',
       render: (_, record) => {
         const submitTime = record.submitTime;
@@ -306,38 +309,38 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
           // 计算相差的天数
           const diffTime = endDate.getTime() - startDate.getTime();
           const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // 转换为天数
-          return diffDays >= 0 ? `${diffDays} 天` : "未下签";
+          return diffDays >= 0 ? `${diffDays} ${t.tableRow.days}` : t.tableRow.pending;
         };
         return (calculateDaysBetween(submitTime, getVisaTime))
       },
       width:120
     },
     {
-      title: '签证官',
+      title: t.tableRow.visaOfficer,
       dataIndex: 'visaOfficer',
       width:120,
       ...getColumnSearchProps('visaOfficer'),
     },
    
     {
-      title: '本硕博',
+      title: t.tableRow.educationLevel,
       dataIndex: 'educationLevel',
       width:100,
       filters: [
-        { text: '本科', value: '本科' },
-        { text: '硕士', value: '硕士' },
-        { text: '博士', value: '博士' },
+        { text: t.tableRow.Bachelor, value: '本科' },
+        { text: t.tableRow.Master, value: '硕士' },
+        { text: t.tableRow.PhD, value: '博士' },
         { text: 'Non-Award', value: 'Non-Award' },
         { text: 'MPhil', value: 'MPhil' },
       ],
     },
     {
-      title: '专业',
+      title: t.tableRow.major,
       dataIndex: 'major',
       ...getColumnSearchProps('major'),
     },
     {
-      title: '递签地点',
+      title: t.tableRow.submitPlace,
       dataIndex: 'submitPlace',
       width:120,
       filters: [
@@ -347,7 +350,7 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
       ],
     },
     {
-      title: '是否含陪读',
+      title: t.tableRow.ifIncludedCouple,
       dataIndex: 'ifIncludedCouple',
       width:120,
       filters: [
@@ -357,7 +360,7 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
       ],
     },
     {
-      title: '详情',
+      title: t.tableRow.details,
       key: 'details',
       width:'auto',
       render: (_, record) => (

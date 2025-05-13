@@ -36,5 +36,33 @@
         "desc": "Click <login to share> on the homepage to register or log in, then go to <Visa Dashboard> and choose <My Submission Info>. Fill in your details and submit. You can update your info anytime by resubmitting on the same page — the stats will update automatically. *Note: Each user can only update their own visa record."
       }
     }
-  }
+  },
+  "sidebar": {
+    "visatable": "Visa-Table",
+    "visaGuide": "Visa Submission Guide",
+    "messageBoard": "Message Board",
+    "updateLog": "Update Log"
+  },
+  "tableRow": {
+    "ifGetVisa": "Visa Granted",
+    "submitDate": "Submission Date",
+    "grantDate": "Grant Date",
+    "handleTime": "Processing Time",
+    "visaOfficer": "Visa Officer",
+    "educationLevel": "Education Level",
+    "major": "Major",
+    "submitPlace": "Submission Location",
+    "ifIncludedCouple": "Includes Partner",
+    "details": "Details",
+    "Granted": "Granted",
+    "pending": "Pending",
+    "days": "Days",
+    "Bachelor": "Bachelor",
+    "Master": "Master",
+    "PhD": "PhD"
+  },
+  "loginToComment": "Login to Comment",
+  "comments": "comments",
+  "Expand": "Expand",
+  "Collapse": "Collapse"
 }

@@ -36,5 +36,33 @@
         "desc": "首页点击<login to share>注册、登录后，返回主页点击<visa-数据看板>，选择<个人递签信息>，根据个人情况填写，上传成功后，如有情况更新可直接在该界面重新上传，递签统计表会自动更新。ps：每位用户只能更新自己的递签信息"
       }
     }
-  }
+  },
+  "sidebar": {
+    "visatable": "递签统计表",
+    "visaGuide": "递签攻略",
+    "messageBoard": "留言板",
+    "updateLog": "更新日志"
+  },
+  "tableRow": {
+    "ifGetVisa": "是否已下签",
+    "submitDate": "递签日期",
+    "grantDate": "下签日期",
+    "handleTime": "处理时长",
+    "visaOfficer": "签证官",
+    "educationLevel": "本硕博",
+    "major": "专业",
+    "submitPlace": "递签地点",
+    "ifIncludedCouple": "是否包含配偶",
+    "details": "详情",
+    "Granted": "已下签",
+    "pending": "未下签",
+    "days": "天",
+    "Bachelor": "本科",
+    "Master": "硕士",
+    "PhD": "博士"
+  },
+  "loginToComment": "登录后留言",
+  "comments":"条评论",
+  "Expand": "展开",
+  "Collapse": "收起"
 }
