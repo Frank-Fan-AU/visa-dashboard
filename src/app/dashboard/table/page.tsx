@@ -411,6 +411,7 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
           })
         }}
       />
+      <p className=' text-center text-xl text-red-500 mb-10 ml-8 mt-2'>如果你在等签期间觉得这个网站对你有帮助，请在您下签后登录网站，将您的信息在Profile中分享给网站，让更多需要的人受益！</p>
 
 
       <DetailModal visible={isDetailModalOpen} record={selectedRecord} onClose={() => setIsDetailModalOpen(false)} />
