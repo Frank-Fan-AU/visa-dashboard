@@ -8,14 +8,21 @@ const people = [
     name: "ZeJie",
     designation: "Developer",
     image:"/zj-avator.jpg",
-    href:"https://zejie.info"
+    href:"https://frankfan.info"
   },
   {
     id: 2,
     name: "BingQI",
-    designation: "Information Collector",
+    designation: "Information Collector inital-03/21/2025",
     image:"/bq-avator.jpg",
     href:"https://www.xiaohongshu.com/user/profile/59e978d511be10340721d1d0"
+  },
+  {
+    id: 3,
+    name: "乐高哥",
+    designation: "Information Collector 03/21/2025-06/16/2025",
+    image:"/legaoge.jpg",
+    href:""
   },
   
 ];
