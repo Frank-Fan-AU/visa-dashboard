@@ -31,7 +31,7 @@ export default function Contributors() {
   return (
     <div className="flex flex-row items-center justify-start w-3/4 mt-12 ml-4 lg:relative">
       <div className="lg:text-2xl font-bold mr-4">Contributers:</div>
-      <AnimatedTooltip items={people} />
+      <AnimatedTooltip items={people}/>
       <Image className="absolute w-[80px] h-[50px] right-0 lg:absolute lg:w-[100px] lg:h-[60px]  lg:right-20 lg:top-2" src="/clickMe.png" width={80} height={40} alt="click me"/>
     </div>
   );
