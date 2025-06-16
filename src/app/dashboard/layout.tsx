@@ -13,8 +13,7 @@ export default function DashboardLayout({
   return (
     <>
       {/* <MySidebarDemo>{children}</MySidebarDemo> */}
-      <div className="px-6">{children}</div>
-      
+      <div className="w-full px-2 sm:px-4 md:px-6">{children}</div>
     </>
   );
 }

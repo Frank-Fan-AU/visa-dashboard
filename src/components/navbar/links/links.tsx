@@ -14,7 +14,7 @@ const Links = () => {
     { title: t.navbar.admin, path: "/dashboard/admin" },
   ];
   return (
-    <div className="flex items-center space-x-1">
+    <div className="flex flex-col md:flex-row md:items-center md:space-x-1 space-y-2 md:space-y-0">
       {links.map((link, index) => (
         <NavLink item={link} key={index} />
       ))}
