@@ -141,13 +141,20 @@ export default function DonatePage() {
               <CardContent className="p-6">
                 <div className="flex flex-col items-center text-center space-y-2">
                   <h3 className="text-lg font-semibold text-gray-900">{sponsor.nickname}</h3>
-                  <p className="text-gray-600 italic">"{sponsor.message}"</p>
+                  <p className="text-gray-600 italic">&ldquo;{sponsor.message}&rdquo;</p>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
+
+      <p className="text-center text-lg md:text-xl font-medium text-red-600 bg-red-50 py-4 px-6 rounded-lg shadow-sm mb-4">
+        如果你在等签期间觉得这个网站对你有帮助，请在您下签后登录网站，将您的信息在Profile中分享给网站，让更多需要的人受益！
+      </p>
+      <p className="text-center text-base md:text-lg font-medium text-gray-600 bg-gray-50 py-3 px-6 rounded-lg shadow-sm mb-10">
+        远大愿景：能实现不用管理员额外维护就能记录最详尽的下签记录
+      </p>
     </div>
   );
 }
