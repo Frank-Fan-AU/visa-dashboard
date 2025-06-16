@@ -109,8 +109,9 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userEmail }) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col lg:flex-row lg:ml-8">
-          <div className="lg:min-w-[500px] lg:border-r-2 lg:border-gray-300">
+          className="flex flex-col lg:flex-row lg:ml-8 ">
+
+          <div className="w-full lg:w-1/3 px-4">
             <div className="text-2xl font-bold mb-4">General</div>
             <FormField
               control={form.control}
@@ -342,7 +343,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ userEmail }) => {
             
           </div>
 
-          <div className="min-w-full mt-4 lg:mt-0 lg:w-1/2 lg:ml-8">
+          <div className="w-full lg:w-2/3 px-4 mt-8 lg:mt-0">
             <div className="text-2xl font-bold mb-4">Details</div>
             
             <FormField
