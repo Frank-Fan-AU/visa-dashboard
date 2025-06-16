@@ -43,6 +43,12 @@
     "messageBoard": "Message Board",
     "updateLog": "Update Log"
   },
+  "navbar": {
+    "visatable": "Table",
+    "visaGuide": "Guide",
+    "messageBoard": "Message",
+    "updateLog": "Update"
+  },
   "tableRow": {
     "ifGetVisa": "Visa Granted",
     "submitDate": "Submission Date",

@@ -12,7 +12,9 @@ export default function DashboardLayout({
 }>) {
   return (
     <>
-      <MySidebarDemo>{children}</MySidebarDemo>
+      {/* <MySidebarDemo>{children}</MySidebarDemo> */}
+      <div className="px-6">{children}</div>
+      
     </>
   );
 }

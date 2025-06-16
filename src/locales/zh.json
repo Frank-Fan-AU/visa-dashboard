@@ -43,6 +43,12 @@
     "messageBoard": "留言板",
     "updateLog": "更新日志"
   },
+  "navbar": {
+    "visatable": "递签统计表",
+    "visaGuide": "递签攻略",
+    "messageBoard": "留言板",
+    "updateLog": "更新日志"
+  },
   "tableRow": {
     "ifGetVisa": "是否已下签",
     "submitDate": "递签日期",

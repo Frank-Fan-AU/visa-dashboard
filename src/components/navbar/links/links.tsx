@@ -1,13 +1,19 @@
+'use client';
+import useTranslation from "@/hooks/useTranslation";
 import NavLink from "./navLink/navLink";
-const links = [
-  { title: "Home", path: "/" },
-  { title: "Dashboard", path: "/dashboard" },
-];
+
 const Links = () => {
+  const { t, lang } = useTranslation();
+  const links = [
+    { title: t.navbar.visatable, path: "/dashboard/table" },
+    { title: t.navbar.visaGuide, path: "/dashboard/doc" },
+    { title: t.navbar.messageBoard, path: "/dashboard/message" },
+    { title: t.navbar.updateLog, path: "/dashboard/update" },
+  ];
   return (
-    <div className="flex gap-4 items-center pr-4">
+    <div className="flex items-center space-x-1">
       {links.map((link, index) => (
-        <NavLink item={link} key={index} /> // Pass the link object to NavLink component
+        <NavLink item={link} key={index} />
       ))}
     </div>
   );

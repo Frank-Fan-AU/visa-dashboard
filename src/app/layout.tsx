@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
 import Script from "next/script";
 import { I18nProvider } from "@/context/i18n-context";
+import Navbar from "@/components/navbar/navbar";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -46,7 +47,7 @@ export default function RootLayout({
             fontSans.variable
           )}
         >
-          {/* <Navbar /> */}
+          <Navbar />
           {children}
         </body>
         </I18nProvider>
