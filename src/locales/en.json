@@ -47,7 +47,10 @@
     "visatable": "Table",
     "visaGuide": "Guide",
     "messageBoard": "Message",
-    "updateLog": "Update"
+    "updateLog": "Update",
+    "donate": "Donate&Thanks",
+    "profile": "Profile",
+    "admin": "Admin"
   },
   "tableRow": {
     "ifGetVisa": "Visa Granted",

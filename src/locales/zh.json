@@ -47,7 +47,10 @@
     "visatable": "递签统计表",
     "visaGuide": "递签攻略",
     "messageBoard": "留言板",
-    "updateLog": "更新日志"
+    "updateLog": "更新日志",
+    "donate": "捐赠&鸣谢",
+    "profile": "个人递签信息",
+    "admin": "管理后台"
   },
   "tableRow": {
     "ifGetVisa": "是否已下签",

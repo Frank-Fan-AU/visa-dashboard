@@ -270,7 +270,7 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
     {
       title: t.tableRow.ifGetVisa,
       dataIndex: 'ifGetVisa',
-      width:120,
+
       render: (_, record) => {
         return record.ifGetVisa === "true" ? t.tableRow.Granted : t.tableRow.pending;
       },
@@ -284,7 +284,7 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
       title: t.tableRow.submitDate,
       dataIndex: 'submitTime',
       sorter: true,
-      width: 130,
+  
       showSorterTooltip: { title: getSorterTooltip(sortOrder) }, // 传入静态提示
     },
     {
@@ -292,7 +292,7 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
       dataIndex: 'getVisaTime',
       sorter: true,
       defaultSortOrder: 'descend',
-      width: 130,
+ 
       showSorterTooltip: { title: getSorterTooltip(sortOrder) }, // 传入静态提示
     },
     {
@@ -313,19 +313,19 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
         };
         return (calculateDaysBetween(submitTime, getVisaTime))
       },
-      width:120
+
     },
     {
       title: t.tableRow.visaOfficer,
       dataIndex: 'visaOfficer',
-      width:120,
+
       ...getColumnSearchProps('visaOfficer'),
     },
    
     {
       title: t.tableRow.educationLevel,
       dataIndex: 'educationLevel',
-      width:100,
+   
       filters: [
         { text: t.tableRow.Bachelor, value: '本科' },
         { text: t.tableRow.Master, value: '硕士' },
@@ -342,7 +342,7 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
     {
       title: t.tableRow.submitPlace,
       dataIndex: 'submitPlace',
-      width:120,
+
       filters: [
         { text: '国内递交', value: '国内递交' },
         { text: '海外递交', value: '海外递交' },
@@ -352,7 +352,7 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
     {
       title: t.tableRow.ifIncludedCouple,
       dataIndex: 'ifIncludedCouple',
-      width:120,
+ 
       filters: [
         { text: '单独学签', value: '单独学签' },
         { text: '含陪读一起递', value: '含陪读一起递' },
