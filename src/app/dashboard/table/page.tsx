@@ -411,7 +411,14 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
           })
         }}
       />
-      <p className=' text-center text-xl text-red-500 mb-10 ml-8 mt-2'>如果你在等签期间觉得这个网站对你有帮助，请在您下签后登录网站，将您的信息在Profile中分享给网站，让更多需要的人受益！</p>
+      <div className="max-w-4xl mx-auto px-4">
+        <p className="text-center text-lg md:text-xl font-medium text-red-600 bg-red-50 py-4 px-6 rounded-lg shadow-sm mb-4">
+          如果你在等签期间觉得这个网站对你有帮助，请在您下签后登录网站，将您的信息在Profile中分享给网站，让更多需要的人受益！
+        </p>
+        <p className="text-center text-base md:text-lg font-medium text-gray-600 bg-gray-50 py-3 px-6 rounded-lg shadow-sm mb-10">
+          远大愿景：能实现不用管理员额外维护就能记录最详尽的下签记录
+        </p>
+      </div>
 
 
       <DetailModal visible={isDetailModalOpen} record={selectedRecord} onClose={() => setIsDetailModalOpen(false)} />
