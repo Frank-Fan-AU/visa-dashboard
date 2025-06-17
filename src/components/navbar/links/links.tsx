@@ -10,8 +10,8 @@ const Links = () => {
     { title: t.navbar.messageBoard, path: "/dashboard/message" },
     { title: t.navbar.updateLog, path: "/dashboard/update" },
     { title: t.navbar.donate, path: "/dashboard/donate" },
-    { title: t.navbar.profile, path: "/dashboard/upload" },
-    { title: t.navbar.admin, path: "/dashboard/admin" },
+    // { title: t.navbar.profile, path: "/dashboard/upload" },
+    // { title: t.navbar.admin, path: "/dashboard/admin" },
   ];
   return (
     <div className="flex flex-col md:flex-row md:items-center md:space-x-1 space-y-2 md:space-y-0">
