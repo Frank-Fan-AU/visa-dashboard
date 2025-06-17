@@ -3,6 +3,7 @@ import Link from "next/link";
 import Links from "./links/links";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,10 +31,12 @@ const Navbar = () => {
   return (
     <div className="h-16 bg-white border-b border-gray-100 shadow-sm relative z-50">
       <div className="mx-auto h-full flex items-center justify-between px-4 sm:px-6">
+      
         <Link 
           href="/" 
-          className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+          className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity flex"
         >
+          <Image src="/visa.ico" alt="logo" width={32} height={32} className="mr-2"/>
           AU-500-visa-dashboard
         </Link>
         
