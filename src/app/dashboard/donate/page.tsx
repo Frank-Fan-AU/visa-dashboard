@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface DonorInfo {
@@ -149,12 +150,7 @@ export default function DonatePage() {
         </div>
       </div>
 
-      <p className="text-center text-lg md:text-xl font-medium text-red-600 bg-red-50 py-4 px-6 rounded-lg shadow-sm mb-4">
-        如果你在等签期间觉得这个网站对你有帮助，请在您下签后登录网站，将您的信息在Profile中分享给网站，让更多需要的人受益！
-      </p>
-      <p className="text-center text-base md:text-lg font-medium text-gray-600 bg-gray-50 py-3 px-6 rounded-lg shadow-sm mb-10">
-        远大愿景：能实现不用管理员额外维护就能记录最详尽的下签记录
-      </p>
+
     </div>
   );
 }
