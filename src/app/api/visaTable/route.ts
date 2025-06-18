@@ -49,6 +49,7 @@ Object.keys(filterConditions).forEach((key) => {
 console.log("QUERY CONDITIONS", JSON.stringify(filterConditions, null, 2));
     // 分页与排序
     const records = await Record.find(filterConditions)
+      .select('-userEmail') // 排除 userEmail 字段
       .sort(
         sortField === "getVisaTime" 
           ? { [sortField]: sortOrder, submitTime: -1 } // getVisaTime排序时，submitTime降序
