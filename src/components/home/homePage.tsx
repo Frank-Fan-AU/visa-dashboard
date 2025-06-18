@@ -7,8 +7,6 @@ import RightPart from "./rightPart";
 import Link from "next/link";
 import { SignInButton } from "@clerk/nextjs";
 
-import LangSwitcher from "../common/LangSwitcher";
-
 const HomePage = () => {
   const { t, lang } = useTranslation();
   return (

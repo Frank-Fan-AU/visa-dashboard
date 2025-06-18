@@ -1,7 +1,7 @@
 'use client';
 import useTranslation from "@/hooks/useTranslation";
 import NavLink from "./navLink/navLink";
-import { useUser, SignInButton } from "@clerk/nextjs";
+import { useUser, SignInButton, SignOutButton } from "@clerk/nextjs";
 
 const Links = () => {
   const { t, lang } = useTranslation();
@@ -31,6 +31,13 @@ const Links = () => {
       {links.map((link, index) => (
         <NavLink item={link} key={index} />
       ))}
+      {isSignedIn && (
+        <SignOutButton>
+          <button className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+            Sign Out
+          </button>
+        </SignOutButton>
+      )}
     </div>
   );
 };
