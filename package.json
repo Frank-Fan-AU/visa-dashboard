@@ -25,6 +25,7 @@
     "@tanstack/react-table": "^8.20.1",
     "@tiptap/extension-image": "^2.6.6",
     "@types/mdx": "^2.0.13",
+    "@vercel/analytics": "^1.5.0",
     "antd": "^5.20.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

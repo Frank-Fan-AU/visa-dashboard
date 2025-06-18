@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Script from "next/script";
 import { I18nProvider } from "@/context/i18n-context";
 import Navbar from "@/components/navbar/navbar";
+import { Analytics } from '@vercel/analytics/next';
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -59,10 +60,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <head>
-          <Script
+          {/* <Script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-SMCJYMH0HP"
-          ></Script>
+          ></Script> */}
           <Script id="google-analytics">
             {`
               window.dataLayer = window.dataLayer || [];
@@ -82,6 +83,7 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          <Analytics />
         </body>
         </I18nProvider>
       </html>
