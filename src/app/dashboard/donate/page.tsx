@@ -55,12 +55,12 @@ const contributors: ContributorInfo[] = [
 
 const sponsors: SponsorInfo[] = [
   {
-    nickname: '赞助者',
-    message: '之后会将赞赏站长的留言展示在这里，感谢您的慷慨支持！'
-  },
-  {
     nickname: '一只汽水冰',
     message: '感谢一只汽水冰为测试赞赏码转给站长的￥1！'
+  },
+  {
+    nickname: 'Wonderstruck',
+    message: '未留言（感谢首位赞助者！！）'
   },
 ];
 
