@@ -62,6 +62,10 @@ const sponsors: SponsorInfo[] = [
     nickname: 'Wonderstruck',
     message: '未留言（感谢首位赞助者！！）'
   },
+  {
+    nickname: '嗯？',
+    message: '感谢付出，祝我们早日下签🫡'
+  },
 ];
 
 export default function DonatePage() {
