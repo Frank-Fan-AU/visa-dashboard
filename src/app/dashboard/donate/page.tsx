@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
+import { useState, useEffect } from 'react';
 
 interface DonorInfo {
   name: string;
@@ -53,22 +54,15 @@ const contributors: ContributorInfo[] = [
   },
 ];
 
-const sponsors: SponsorInfo[] = [
-  {
-    nickname: '一只汽水冰',
-    message: '感谢一只汽水冰为测试赞赏码转给站长的￥1！'
-  },
-  {
-    nickname: 'Wonderstruck',
-    message: '未留言（感谢首位赞助者！！）'
-  },
-  {
-    nickname: '嗯？',
-    message: '感谢付出，祝我们早日下签🫡'
-  },
-];
 
 export default function DonatePage() {
+
+  const [sponsors, setSponsors] = useState<SponsorInfo[]>([]);
+  useEffect(() => {
+    fetch('/api/sponsors')
+      .then(res => res.json())
+      .then(data => setSponsors(data));
+  }, []);
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold text-center mb-8">支持我们</h1>
@@ -140,7 +134,7 @@ export default function DonatePage() {
       {/* 赞助者感谢栏 */}
       <div className="mt-16">
         <h2 className="text-2xl font-bold text-center mb-8">感谢赞助</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {sponsors.map((sponsor, index) => (
             <Card key={index} className="bg-gray-50">
               <CardContent className="p-6">
