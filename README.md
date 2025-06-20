@@ -47,13 +47,11 @@
 
 数据库中间件:mongoosejs
 
-数据库：MongoDB Altas
-
-等数据量起来了考虑用java代替，同时现在看来如果用MongoDB的免费额度用完了还需要迁移到主机
+数据库：MongoDB Altas + 使用edge config stroe存不常改动的数据（开发者信息、参与者信息、捐助者）
 
 代码仓库：github
 
-部署：Route53域名托管+Amplify一键部署
+部署 ~~：Route53域名托管+Amplify一键部署~~ vercel部署
 
 组件库：
 
@@ -75,10 +73,24 @@
 
     mdx：长文章书写+展示
 
+    contentful： 文章管理
+
 
 ## Getting Started
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+env example:
+```
+# mongodb dev
+MONGO = mongodb://admin:password@xxx.xx.xxx.xxx:xxx/xxxx?authSource=admin
+CLERK_SECRET_KEY = sk_test_xxxxxxxxxxxxxxxxxxxxx
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY = pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxx
+NEXT_PUBLIC_CONTENTFUL_SPACE_ID=xxxxxxxxx
+NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxx
+EDGE_CONFIG="https://edge-config.vercel.com/xxxxxxxxxxxxxxxxxxxxxxx?token=xxxxxxxxxxxxxxx"
+
+```
 
 
 First, run the development server:
@@ -92,6 +104,7 @@ pnpm dev
 # or
 bun dev
 ```
+
 
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
