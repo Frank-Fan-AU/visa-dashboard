@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import { get } from '@vercel/edge-config';
 
+
+export const dynamic = 'force-dynamic';
+
+
 export const GET = async () => {
     try {
         const sponsors = await get('sponsors');
