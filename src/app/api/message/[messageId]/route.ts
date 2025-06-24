@@ -2,6 +2,7 @@ import { connectToDb } from '@/lib/utils';
 import { NextRequest, NextResponse } from 'next/server';
 import { Message } from '@/lib/models';
 
+export const dynamic = 'force-dynamic';
 
 export const DELETE = async (req: NextRequest, { params }: { params: { messageId: string} }) => {
   const { messageId  } = params;
