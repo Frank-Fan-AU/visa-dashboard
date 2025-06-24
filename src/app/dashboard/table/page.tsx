@@ -10,10 +10,9 @@ import { Record } from "@/type/Record";
 import qs from 'qs';
 import { DetailModal } from "./detailModal";
 import EditModal from "./editModal";
-
-import Confetti from 'react-confetti';
+import { SignInButton } from "@clerk/nextjs";
 import useTranslation from "@/hooks/useTranslation";
-import Link from "next/link";
+
 
 
 type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
@@ -413,8 +412,8 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
         }}
       />
       <div className="max-w-4xl mx-auto px-4">
-      <p className="text-center text-lg md:text-xl font-medium text-red-600 bg-red-50 py-4 px-6 rounded-lg shadow-sm mb-4">
-        如果你在等签期间觉得这个网站对你有帮助，请在您下签后<Link href="/login" className="underline hover:text-red-700">登录</Link>网站，将您的信息在Profile中分享给网站，让更多需要的人受益！
+      <p className="text-center text-lg md:text-xl font-medium text-gray-600 bg-red-50 py-4 px-6 rounded-lg shadow-sm mb-4">
+        如果你在等签期间觉得这个网站对你有帮助，请在您下签后<SignInButton><span className="underline hover:text-red-700">登录</span></SignInButton>网站，将您的信息在Profile中分享给网站，让更多需要的人受益！
       </p>
       <p className="text-center text-base md:text-lg font-medium text-gray-600 bg-gray-50 py-3 px-6 rounded-lg shadow-sm mb-10">
         远大愿景：能实现不用管理员额外维护就能记录最详尽的下签记录

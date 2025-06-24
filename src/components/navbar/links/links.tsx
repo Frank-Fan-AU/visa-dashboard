@@ -33,11 +33,20 @@ const Links = () => {
       ))}
       {isSignedIn && (
         <SignOutButton>
-          <button className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+          <button className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium transition-colors">
             Sign Out
           </button>
         </SignOutButton>
       )}
+      {
+        !isSignedIn && (
+          <SignInButton>
+            <button className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium transition-colors">
+              Sign In
+            </button>
+          </SignInButton>
+        )
+      }
     </div>
   );
 };

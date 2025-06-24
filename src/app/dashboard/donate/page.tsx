@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { useState, useEffect } from 'react';
+import useTranslation from "@/hooks/useTranslation";
 
 interface DonorInfo {
   name: string;
@@ -24,38 +24,41 @@ interface SponsorInfo {
   message: string;
 }
 
-const donors: DonorInfo[] = [
-  {
-    name: '网站开发：Frank Fan',
-    avatar: '/zj-avator.jpg',
-    wechatQR: '/zj-donate.JPG',
-    message: '希望网站能持续运营下去，帮助更多需要的人'
-  },
-  {
-    name: '数据维护员：暂无',
-    avatar: '/unknowPeople.webp',
-    wechatQR: '/woodFish.png',
-    message: '加入我们，协助我们维护数据，将信息传递下去！\n联系方式：fanzejiea@gmail.com'
-  }
-];
 
-const contributors: ContributorInfo[] = [
-    {
-        name: '一只汽水冰',
-        contribution: '感谢一只汽水冰于网站创立-03/21/2025维护数据！',
-        date: '网站创立-03/21/2025',
-        avatar: '/bq-avator.jpg'
-      },
-  {
-    name: '乐高哥',
-    contribution: '感谢乐高哥于03/21/2025-06/16/2025期间协助我们维护数据，将信息传递下去！',
-    date: '03/21/2025-06/16/2025',
-    avatar: '/legaoge.jpg'
-  },
-];
 
 
 export default function DonatePage() {
+  const {t} = useTranslation();
+
+  const donors: DonorInfo[] = [
+    {
+      name: t.donate.card1.title,
+      avatar: '/zj-avator.jpg',
+      wechatQR: '/zj-donate.JPG',
+      message: t.donate.card1.desc
+    },
+    {
+      name: t.donate.card2.title,
+      avatar: '/Arabella-avator.jpg',
+      wechatQR: '/Arabella-reward.jpg',
+      message: t.donate.card2.desc
+    }
+  ];
+  
+  const contributors: ContributorInfo[] = [
+      {
+          name: t.donate.card3.title,
+          contribution: t.donate.card3.desc,
+          date: '网站创立-03/21/2025',
+          avatar: '/bq-avator.jpg'
+        },
+    {
+      name: t.donate.card4.title,
+      contribution: t.donate.card4.desc,
+      date: '03/21/2025-06/16/2025',
+      avatar: '/legaoge.jpg'
+    },
+  ];
 
   const [sponsors, setSponsors] = useState<SponsorInfo[]>([]);
   useEffect(() => {
@@ -65,7 +68,7 @@ export default function DonatePage() {
   }, []);
   return (
     <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">支持我们</h1>
+      <h1 className="text-3xl font-bold text-center mb-8">{t.donate.title1}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         {donors.map((donor, index) => (
           <Card key={index} className="overflow-hidden">
@@ -86,7 +89,7 @@ export default function DonatePage() {
                 <div className="flex-1 flex flex-col space-y-2">
                  
                   <div className="flex flex-col items-center">
-                    <p className="text-xs text-gray-500 mb-1">微信赞赏码</p>
+                    <p className="text-xs text-gray-500 mb-1">{t.donate.wechatQR}</p>
                     <div className="relative w-40 h-40">
                       <Image
                         src={donor.wechatQR}
@@ -105,7 +108,7 @@ export default function DonatePage() {
 
       {/* 鸣谢栏 */}
       <div className="mt-16">
-        <h2 className="text-2xl font-bold text-center mb-8">特别鸣谢</h2>
+        <h2 className="text-2xl font-bold text-center mb-8">{t.donate.title2}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {contributors.map((contributor, index) => (
             <Card key={index} className="bg-gray-50">
@@ -121,9 +124,9 @@ export default function DonatePage() {
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900">{contributor.name}</h3>
                   <p className="text-gray-600">{contributor.contribution}</p>
-                  {contributor.date && (
+                  {/* {contributor.date && (
                     <p className="text-sm text-gray-500">{contributor.date}</p>
-                  )}
+                  )} */}
                 </div>
               </CardContent>
             </Card>
@@ -133,7 +136,7 @@ export default function DonatePage() {
 
       {/* 赞助者感谢栏 */}
       <div className="mt-16">
-        <h2 className="text-2xl font-bold text-center mb-8">感谢赞助</h2>
+        <h2 className="text-2xl font-bold text-center mb-8">{t.donate.title3}</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {sponsors.map((sponsor, index) => (
             <Card key={index} className="bg-gray-50">

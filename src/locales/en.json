@@ -70,6 +70,28 @@
     "Master": "Master",
     "PhD": "PhD"
   },
+  "donate": {
+    "title1": "Support Us",
+    "title2": "Special Thanks",
+    "title3": "Thank You",
+    "wechatQR": "Wechat Reward QR Code",
+    "card1":{
+      "title":"Website Developer: Frank Fan",
+      "desc":"Hope the website can continue to operate and help more people"
+    },
+    "card2":{
+      "title":"Data Maintainer: Arabella",
+      "desc":"Joined us on 06/24/2025 to help us maintain data and pass it on!"
+    },
+    "card3":{
+      "title":"Data Maintainer: 一只汽水冰",
+      "desc":"Joined us on 03/21/2025 to help us maintain data and pass it on!"
+    },
+    "card4":{
+      "title":"Data Maintainer: 乐高哥",
+      "desc":"Helped us maintain data from 03/21/2025 to 06/16/2025 to pass it on!"
+    }
+  },
   "loginToComment": "Login to Comment",
   "comments": "comments",
   "Expand": "Expand",
