@@ -22,8 +22,15 @@ const people = [
     name: "乐高哥",
     designation: "Information Collector 03/21/2025-06/16/2025",
     image:"/legaoge.jpg",
-    href:""
+    href:"/dashboard/donate"
   },
+  {
+    id: 4,
+    name: "Arabella",
+    designation: "Information Collector start from 06/23/2025",
+    image:"/Arabella-avator.jpg",
+    href:"/dashboard/donate"
+  }
   
 ];
 
