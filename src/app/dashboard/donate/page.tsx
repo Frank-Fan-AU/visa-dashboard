@@ -36,13 +36,13 @@ export default function DonatePage() {
       avatar: '/zj-avator.jpg',
       wechatQR: '/zj-donate.JPG',
       message: t.donate.card1.desc
-    },
-    {
-      name: t.donate.card2.title,
-      avatar: '/Arabella-avator.jpg',
-      wechatQR: '/Arabella-reward.jpg',
-      message: t.donate.card2.desc
     }
+    // {
+    //   name: t.donate.card2.title,
+    //   avatar: '/Arabella-avator.jpg',
+    //   wechatQR: '/Arabella-reward.jpg',
+    //   message: t.donate.card2.desc
+    // }
   ];
   
   const contributors: ContributorInfo[] = [
@@ -58,6 +58,18 @@ export default function DonatePage() {
       date: '03/21/2025-06/16/2025',
       avatar: '/legaoge.jpg'
     },
+        {
+      name: t.donate.card5.title,
+      contribution: t.donate.card5.desc,
+      avatar: '/Arabella-avator.jpg',
+      date: '06/23/2025-present'
+    },
+    {
+      name: t.donate.card6.title,
+      contribution: t.donate.card6.desc,
+      avatar: '/chen-avator.png',
+      date: '07/04/2025-present'
+    }
   ];
 
   const [sponsors, setSponsors] = useState<SponsorInfo[]>([]);
@@ -69,27 +81,26 @@ export default function DonatePage() {
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold text-center mb-8">{t.donate.title1}</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-        {donors.map((donor, index) => (
-          <Card key={index} className="overflow-hidden">
-            <CardContent className="p-4">
-              <div className="flex items-center space-x-4">
-                <div className="flex flex-col items-center space-y-2 flex-shrink-0">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden">
-                    <Image
-                      src={donor.avatar}
-                      alt={donor.name}
-                      fill
-                      className="object-cover"
-                    />
+      <div className="flex justify-center mb-12">
+        <div className="max-w-md w-full">
+          {donors.map((donor, index) => (
+            <Card key={index} className="overflow-hidden">
+              <CardContent className="p-6">
+                <div className="flex flex-row gap-6 items-center justify-center space-y-4">
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="relative w-16 h-16 rounded-full overflow-hidden">
+                      <Image
+                        src={donor.avatar}
+                        alt={donor.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <h2 className="text-lg font-semibold text-center">{donor.name}</h2>
+                    <p className="text-sm text-gray-600 whitespace-pre-line text-center">{donor.message}</p>
                   </div>
-                  <h2 className="text-lg font-semibold text-center">{donor.name}</h2>
-                  <p className="text-sm text-gray-600 whitespace-pre-line text-center">{donor.message}</p>
-                </div>
-                <div className="flex-1 flex flex-col space-y-2">
-                 
                   <div className="flex flex-col items-center">
-                    <p className="text-xs text-gray-500 mb-1">{t.donate.wechatQR}</p>
+                    <p className="text-xs text-gray-500 mb-2">{t.donate.wechatQR}</p>
                     <div className="relative w-40 h-40">
                       <Image
                         src={donor.wechatQR}
@@ -100,10 +111,10 @@ export default function DonatePage() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
 
       {/* 鸣谢栏 */}
