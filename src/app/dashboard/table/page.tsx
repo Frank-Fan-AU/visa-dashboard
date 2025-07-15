@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useUser } from "@clerk/nextjs";
-import { Table, Pagination, Button, Input, Space} from "antd";
+import { Table, Pagination, Button, Input, Space, Modal } from "antd";
 import type { TableColumnsType, TableProps,GetProp, InputRef, TableColumnType } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import type { SorterResult, SortOrder } from 'antd/es/table/interface';
@@ -192,6 +192,9 @@ useEffect(() => {
     await fetchData();
   };
 
+  const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
+
   // 工具函数：根据排序状态生成静态提示
 const getSorterTooltip = (sortOrder?: 'ascend' | 'descend' | null): string => {
   if(sortOrder === 'ascend'){
@@ -367,8 +370,11 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
     
           <div className="flex gap-2 whitespace-nowrap">
           <Button size="small" onClick={()=>{handleDetail(record)}}>详情</Button>
+         {isAdmin && (<Button size="small" onClick={()=>{
+        setPendingDeleteId(record._id!);
+        setIsDeleteModalVisible(true);
+      }}>删除</Button>)} 
          {isAdmin && (<Button size="small" onClick={()=>{handleEditBtnClick(record)}}>编辑</Button>)} 
-         {isAdmin && (<Button size="small" onClick={()=>{handleDelete(record._id!)}}>删除</Button>)} 
           </div>
           
       ),
@@ -423,6 +429,25 @@ const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Record> => 
 
       <DetailModal visible={isDetailModalOpen} record={selectedRecord} onClose={() => setIsDetailModalOpen(false)} />
       <EditModal visible={isEditModalOpen} data={selectedRecord} onClose={handleCloseEditModal} onOk={handleEdit}  />
+      <Modal
+  title="确认删除"
+  open={isDeleteModalVisible}
+  onOk={async () => {
+    if (pendingDeleteId) {
+      await handleDelete(pendingDeleteId);
+    }
+    setIsDeleteModalVisible(false);
+    setPendingDeleteId(null);
+  }}
+  onCancel={() => {
+    setIsDeleteModalVisible(false);
+    setPendingDeleteId(null);
+  }}
+  okText="确认"
+  cancelText="取消"
+>
+  <p>确定要删除这条记录吗？此操作不可恢复！</p>
+</Modal>
       <style jsx global>{`
         @media only screen and (max-width: 576px) {
           .custom-pagination .ant-pagination-options {
