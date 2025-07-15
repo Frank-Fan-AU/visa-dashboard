@@ -107,5 +107,22 @@
   "loginToComment": "Login to Comment",
   "comments": "comments",
   "Expand": "Expand",
-  "Collapse": "Collapse"
+  "Collapse": "Collapse",
+  "footer": {
+    "description": "Australian 500 Student Visa information collection platform, providing visa application guidance and information sharing services for international students.",
+    "quickLinks": "Quick Links",
+    "dashboard": "Dashboard",
+    "visaTable": "Visa Table",
+    "messages": "Message Board",
+    "donate": "Donate",
+    "support": "Support",
+    "documentation": "Documentation",
+    "upload": "Upload",
+    "contact": "Contact Us",
+    "test": "Test",
+    "allRightsReserved": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "admin": "Admin"
+  }
 }

@@ -6,6 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Script from "next/script";
 import { I18nProvider } from "@/context/i18n-context";
 import Navbar from "@/components/navbar/navbar";
+import Footer from "@/components/common/Footer";
 import { Analytics } from '@vercel/analytics/next';
 
 const fontSans = FontSans({
@@ -77,12 +78,15 @@ export default function RootLayout({
         <I18nProvider>
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
+            "min-h-screen bg-background font-sans antialiased max-w-screen-2xl mx-auto flex flex-col",
             fontSans.variable
           )}
         >
           <Navbar />
-          {children}
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
           <Analytics />
         </body>
         </I18nProvider>

@@ -107,5 +107,22 @@
   "loginToComment": "登录后留言",
   "comments":"条评论",
   "Expand": "展开",
-  "Collapse": "收起"
+  "Collapse": "收起",
+  "footer": {
+    "description": "澳洲500学签信息收集平台，为留学生提供签证申请指导和信息分享服务。",
+    "quickLinks": "快速链接",
+    "dashboard": "仪表板",
+    "visaTable": "签证表格",
+    "messages": "留言板",
+    "donate": "捐赠支持",
+    "support": "帮助支持",
+    "documentation": "使用文档",
+    "upload": "上传材料",
+    "contact": "联系我们",
+    "test": "功能测试",
+    "allRightsReserved": "保留所有权利。",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "admin": "管理后台"
+  }
 }
