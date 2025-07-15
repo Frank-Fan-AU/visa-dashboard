@@ -46,13 +46,8 @@ export default function CardCarousel({ cards, speed = 30 }: CardCarouselProps) {
     return () => clearInterval(interval);
   }, [speed, isPaused, cards.length]);
 
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-  };
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
 
   return (
     <div 
@@ -71,14 +66,14 @@ export default function CardCarousel({ cards, speed = 30 }: CardCarouselProps) {
         {/* 第一组卡片 */}
         {cards.map((card, index) => (
           <div key={index} className="flex-shrink-0">
-            <DonateCard {...card} />
+            <DonateCard {...card} setIsPaused={setIsPaused} />
           </div>
         ))}
         
         {/* 复制卡片实现无缝循环 */}
         {cards.map((card, index) => (
           <div key={`duplicate-${index}`} className="flex-shrink-0">
-            <DonateCard {...card} />
+            <DonateCard {...card} setIsPaused={setIsPaused} />
           </div>
         ))}
       </div>

@@ -33,7 +33,6 @@ const cards = [
         type: 'donate' as const,
         name: 'Emp***',
         amount: '¥50',
-        content: '大家都早日下签！'
       },
           {
         type: 'donate' as const,
@@ -103,7 +102,7 @@ export default function UserThanks() {
       We received gratitude in the form of money or private messages, which made us feel warm.
     </div>
     </div>
-      <CardCarousel cards={cards} speed={60} />
+      <CardCarousel cards={cards} speed={80} />
     </div>
   );
 }

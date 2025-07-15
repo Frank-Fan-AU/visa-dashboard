@@ -13,6 +13,7 @@ interface DonateCardProps {
   content?: string;
   image?: string;
   alt?: string;
+  setIsPaused?: (paused: boolean) => void;
 }
 
 export default function DonateCard({ 
@@ -22,7 +23,8 @@ export default function DonateCard({
   amount, 
   content, 
   image, 
-  alt = "图片" 
+  alt = "图片", 
+  setIsPaused
 }: DonateCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -36,11 +38,13 @@ export default function DonateCard({
     e.stopPropagation();
     if (type === 'image' && image) {
       setIsModalOpen(true);
+      setIsPaused?.(true);
     }
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setIsPaused?.(false);
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
