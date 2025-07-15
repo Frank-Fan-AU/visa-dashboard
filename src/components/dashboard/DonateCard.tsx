@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 interface DonateCardProps {
   type: 'donate' | 'image';
@@ -24,12 +25,40 @@ export default function DonateCard({
   alt = "图片" 
 }: DonateCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  const handleImageClick = () => {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleImageClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (type === 'image' && image) {
       setIsModalOpen(true);
     }
   };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setIsModalOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isModalOpen]);
 
   return (
     <>
@@ -75,28 +104,35 @@ export default function DonateCard({
         </CardContent>
       </Card>
 
-      {/* 图片弹窗 */}
-      {isModalOpen && image && (
+      {/* 图片弹窗 - 使用原生 Portal 确保完全独立 */}
+      {mounted && isModalOpen && image && createPortal(
         <div 
-          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
-          onClick={() => setIsModalOpen(false)}
+          className="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center"
+          onClick={handleCloseModal}
         >
-          <div className="relative max-w-4xl max-h-4xl p-4">
+          <div 
+            className="relative max-w-[70vw] max-h-[40vh] flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
             <Image
               src={image}
               alt={alt}
-              width={800}
-              height={600}
-              className="object-contain rounded-lg"
+              width={600}
+              height={450}
+              className="object-contain rounded-lg shadow-2xl"
+              priority
             />
             <button
-              className="absolute top-2 right-2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors"
-              onClick={() => setIsModalOpen(false)}
+              className="absolute -top-3 -right-3 bg-white/90 hover:bg-white text-gray-800 rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg border border-gray-200"
+              onClick={handleCloseModal}
             >
-              ✕
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
             </button>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

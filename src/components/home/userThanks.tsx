@@ -4,35 +4,91 @@ import CardCarousel from "../dashboard/CardCarousel";
 const cards = [
     {
       type: 'donate' as const,
-      avatar: '/zj-avator.jpg',
-      name: '张先生',
-      amount: '¥100',
-      content: '感谢您的支持！'
-    },
-    {
-      type: 'donate' as const,
-      avatar: '/Arabella-avator.jpg',
-      name: 'Arabella',
+      name: 'Won***',
       amount: '¥50',
-      content: '继续加油！'
     },
-    {
-      type: 'image' as const,
-      image: '/zj-donate.JPG',
-      alt: '微信赞赏码'
-    },
-    {
-      type: 'image' as const,
-      image: '/Arabella-reward.jpg',
-      alt: '支付宝收款码'
-    },
+
     {
       type: 'donate' as const,
-      avatar: '/bq-avator.jpg',
-      name: 'BQ',
-      amount: '¥200',
-      content: '项目很棒！'
-    }
+      name: '嗯？',
+      amount: '¥9.99',
+      content: '感谢付出，祝我们早日下签🫡'
+    },
+    {
+        type: 'donate' as const,
+        name: 'ahi***',
+        amount: '¥20',
+      },
+      {
+        type: 'donate' as const,
+        amount: '¥5',
+      },
+      {
+        type: 'donate' as const,
+        name: 'Amo***',
+        amount: '¥100',
+        content: '大家都早日下签！'
+      },
+      {
+        type: 'donate' as const,
+        name: 'Emp***',
+        amount: '¥50',
+        content: '大家都早日下签！'
+      },
+          {
+        type: 'donate' as const,
+        name: 'x***',
+        amount: '¥10',
+      },
+      {
+        type: 'image' as const,
+        image: '/thankspic/thankspic1.png',
+      },
+      {
+        type: 'image' as const,
+        image: '/thankspic/thankspic2.png',
+      },
+      {
+        type: 'image' as const,
+        image: '/thankspic/thankspic3.png',
+      },
+      {
+        type: 'image' as const,
+        image: '/thankspic/thankspic4.png',
+      },
+      {
+        type: 'image' as const,
+        image: '/thankspic/thankspic5.png',
+      },
+      {
+        type: 'image' as const,
+        image: '/thankspic/thankspic6.png',
+      },
+      {
+        type: 'image' as const,
+        image: '/thankspic/thankspic7.png',
+      },
+      {
+        type: 'image' as const,
+        image: '/thankspic/thankspic8.png',
+      },
+      {
+        type: 'image' as const,
+        image: '/thankspic/thankspic9.png',
+      },
+      {
+        type: 'image' as const,
+        image: '/thankspic/thankspic10.png',
+      },
+      {
+        type: 'image' as const,
+        image: '/thankspic/thankspic11.png',
+      },
+      {
+        type: 'image' as const,
+        image: '/thankspic/thankspic12.png',
+      },
+
   ];
 
 
