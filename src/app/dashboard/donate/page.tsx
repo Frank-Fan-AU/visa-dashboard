@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useState, useEffect } from 'react';
 import useTranslation from "@/hooks/useTranslation";
 import UserThanks from '@/components/home/userThanks';
+import DonateHeader from '@/components/dashboard/DonateHeader';
 
 interface DonorInfo {
   name: string;
@@ -31,20 +32,7 @@ interface SponsorInfo {
 export default function DonatePage() {
   const {t} = useTranslation();
 
-  const donors: DonorInfo[] = [
-    {
-      name: t.donate.card1.title,
-      avatar: '/zj-avator.jpg',
-      wechatQR: '/zj-donate.JPG',
-      message: t.donate.card1.desc
-    }
-    // {
-    //   name: t.donate.card2.title,
-    //   avatar: '/Arabella-avator.jpg',
-    //   wechatQR: '/Arabella-reward.jpg',
-    //   message: t.donate.card2.desc
-    // }
-  ];
+
   
   const contributors: ContributorInfo[] = [
       {
@@ -87,30 +75,35 @@ export default function DonatePage() {
   }, []);
   return (
     <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">{t.donate.title1}</h1>
-      <div className="flex justify-center mb-12">
+   
+      <h1 className="text-3xl font-bold text-center mb-2">{t.donate.title1}</h1>
+      <div className="text-lg text-gray-600 font-medium text-center my-4">您可以通过如下方式支持我们 🙏 🙏 🙏</div>
+      
+      <DonateHeader />
+
+      {/* <div className="flex justify-center mb-12">
         <div className="max-w-md w-full">
-          {donors.map((donor, index) => (
-            <Card key={index} className="overflow-hidden">
+         
+            <Card  className="overflow-hidden">
               <CardContent className="p-6">
                 <div className="flex flex-row gap-6 items-center justify-center space-y-4">
                   <div className="flex flex-col items-center space-y-2">
                     <div className="relative w-16 h-16 rounded-full overflow-hidden">
                       <Image
-                        src={donor.avatar}
-                        alt={donor.name}
+                        src={'/zj-avator.jpg'}
+                        alt={t.donate.card1.title}
                         fill
                         className="object-cover"
                       />
                     </div>
-                    <h2 className="text-lg font-semibold text-center">{donor.name}</h2>
-                    <p className="text-sm text-gray-600 whitespace-pre-line text-center">{donor.message}</p>
+                    <h2 className="text-lg font-semibold text-center">{t.donate.card1.title}</h2>
+                    <p className="text-sm text-gray-600 whitespace-pre-line text-center">{t.donate.card1.desc}</p>
                   </div>
                   <div className="flex flex-col items-center">
                     <p className="text-xs text-gray-500 mb-2">{t.donate.wechatQR}</p>
                     <div className="relative w-40 h-40">
                       <Image
-                        src={donor.wechatQR}
+                        src={'/zj-donate.JPG'}
                         alt="微信赞赏码"
                         fill
                         className="object-contain"
@@ -120,9 +113,9 @@ export default function DonatePage() {
                 </div>
               </CardContent>
             </Card>
-          ))}
+          
         </div>
-      </div>
+      </div> */}
 
       {/* 鸣谢栏 */}
       <div className="mt-16">

@@ -46,7 +46,7 @@ export default function Footer() {
           </div>
 
           {/* 快速链接 */}
-          <div>
+          {/* <div>
             <h4 className="text-sm font-semibold text-gray-900 mb-4">
               {t.footer?.quickLinks || "快速链接"}
             </h4>
@@ -72,10 +72,10 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* 帮助支持 */}
-          <div>
+          {/* <div>
             <h4 className="text-sm font-semibold text-gray-900 mb-4">
               {t.footer?.support || "帮助支持"}
             </h4>
@@ -100,7 +100,7 @@ export default function Footer() {
               </li>
 
             </ul>
-          </div>
+          </div> */}
         </div>
 
         {/* 底部版权信息 */}
