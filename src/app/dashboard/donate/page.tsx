@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { useState, useEffect } from 'react';
 import useTranslation from "@/hooks/useTranslation";
+import UserThanks from '@/components/home/userThanks';
 
 interface DonorInfo {
   name: string;
@@ -152,7 +153,7 @@ export default function DonatePage() {
       </div>
 
       {/* 赞助者感谢栏 */}
-      <div className="mt-16">
+      {/* <div className="mt-16">
         <h2 className="text-2xl font-bold text-center mb-8">{t.donate.title3}</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {sponsors.map((sponsor, index) => (
@@ -166,7 +167,8 @@ export default function DonatePage() {
             </Card>
           ))}
         </div>
-      </div>
+      </div> */}
+      <UserThanks/>
 
 
     </div>

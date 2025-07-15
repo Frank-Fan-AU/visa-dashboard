@@ -1,7 +1,7 @@
 import { Divider } from "antd";
 import CardCarousel from "../dashboard/CardCarousel";
 
-const cards = [
+export const cards = [
     {
       type: 'donate' as const,
       name: 'Won***',
