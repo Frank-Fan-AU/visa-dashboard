@@ -67,7 +67,13 @@ export default function DonatePage() {
     {
       name: t.donate.card6.title,
       contribution: t.donate.card6.desc,
-      avatar: '/chen-avator.png',
+      avatar: '/shangshang-avator.png',
+      date: '07/04/2025-present'
+    },
+    {
+      name: t.donate.card7.title,
+      contribution: t.donate.card7.desc,
+      avatar: '/Empty-avator.jpg',
       date: '07/04/2025-present'
     }
   ];

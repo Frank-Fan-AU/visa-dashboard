@@ -30,7 +30,21 @@ const people = [
     designation: "Information Collector start from 06/23/2025",
     image:"/Arabella-avator.jpg",
     href:"/dashboard/donate"
-  }
+  },
+  {
+    id: 5,
+    name: "商商",
+    designation: "Information Collector start from 07/04/2025",
+    image:"/shangshang-avator.png",
+    href:"/dashboard/donate"
+  },
+  {
+    id: 6,
+    name: "Empty",
+    designation: "Information Collector start from 07/05/2025",
+    image:"/Empty-avator.jpg",
+    href:"/dashboard/donate"
+  },
   
 ];
 
@@ -39,7 +53,7 @@ export default function Contributors() {
     <div className="flex flex-row items-center justify-start w-3/4 mt-12 ml-4 lg:relative">
       <div className="lg:text-2xl font-bold mr-4">Contributers:</div>
       <AnimatedTooltip items={people}/>
-      <Image className="absolute w-[80px] h-[50px] right-0 lg:absolute lg:w-[100px] lg:h-[60px]  lg:right-20 lg:top-2" src="/clickMe.png" width={80} height={40} alt="click me"/>
+      {/* <Image className="absolute w-[80px] h-[50px] right-0 lg:absolute lg:w-[100px] lg:h-[60px]  lg:right-20 lg:top-2" src="/clickMe.png" width={80} height={40} alt="click me"/> */}
     </div>
   );
 }
