@@ -20,7 +20,7 @@ const people = [
   {
     id: 3,
     name: "乐高哥",
-    designation: "Information Collector 03/21/2025-06/16/2025",
+    designation: "Information Collector 03/21/2025-08/08/2025",
     image:"/legaoge.jpg",
     href:"/dashboard/donate"
   },
