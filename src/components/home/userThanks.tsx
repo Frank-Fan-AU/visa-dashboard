@@ -34,10 +34,22 @@ export const cards = [
         name: 'Emp***',
         amount: '¥50',
       },
-          {
+      {
         type: 'donate' as const,
         name: 'x***',
         amount: '¥10',
+      },
+      {
+        type: 'donate' as const,
+        name: '宣小宜',
+        amount: '¥100',
+        content: '感谢,希望大家一路顺利'
+      },
+      {
+        type: 'donate' as const,
+        name: '甘小鹿快快**',
+        amount: '¥88',
+        content: '感谢感谢，会有好报的'
       },
       {
         type: 'image' as const,
