@@ -52,6 +52,24 @@ export const cards = [
         content: '感谢感谢，会有好报的'
       },
       {
+        type: 'donate' as const,
+        name: '奶茶肚',
+        amount: '¥6.6',
+        content: '感谢你们为留学生提供帮助！助力你们帮助到更多人！'
+      },
+      {
+        type: 'donate' as const,
+        name: 'h1蜡笔小新杜',
+        amount: '¥20',
+        content: '提前祝愿我能够秒签！'
+      },
+      {
+        type: 'donate' as const,
+        name: '匿名用户',
+        amount: '¥100',
+        content: '感谢你们为留学生提供帮助！助力你们帮助到更多人！'
+      },
+      {
         type: 'image' as const,
         image: '/thankspic/thankspic1.png',
       },
